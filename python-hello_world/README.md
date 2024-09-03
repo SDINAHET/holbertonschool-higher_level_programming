@@ -25,6 +25,8 @@ Holberton
 6-concat.py
 
 python3 6-concat.py
+Welcome to Holberton School!
+
 
 
 7-edges.py
