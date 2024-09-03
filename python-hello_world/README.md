@@ -26,6 +26,7 @@ Holberton
 
 python3 6-concat.py
 Welcome to Holberton School!
+
 1ere version
 #!/usr/bin/python3
 str1 = "Welcome to"
@@ -38,12 +39,13 @@ str2 = "School"
 str3 = str1 + " " + str2
 print(f"Welcome to {str3}!")
 
-
-
-
 7-edges.py
 
 python3 7-edges.py
+
+First 3 letters: Hol
+Last 2 letters: on
+Middle word: olberto
 
 
 8-concat_edges.py
