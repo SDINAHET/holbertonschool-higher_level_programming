@@ -19,7 +19,8 @@ Float: 3.14
 5-print_string.py
 
 python3 5-print_string.py
-
+Holberton SchoolHolberton SchoolHolberton School
+Holberton
 
 6-concat.py
 
