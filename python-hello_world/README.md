@@ -13,18 +13,29 @@ python3 3-print_number.py
 
 4-print_float.py
 
+python3 4-print_float.py
+Float: 3.14
 
 5-print_string.py
+
+python3 5-print_string.py
 
 
 6-concat.py
 
+python3 6-concat.py
+
 
 7-edges.py
+
+python3 7-edges.py
 
 
 8-concat_edges.py
 
+python3 8-concat_edges.py
+
 
 9-easter_egg.py
 
+python3 9-easter_egg.py
