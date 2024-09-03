@@ -1,0 +1,7 @@
+Write a program that prints all the names defined by the compiled module hidden_4.pyc (please download it locally in your sandbox using curl).
+
+This task must be done on the sandbox only
+File 4-hidden_discovery.py must be located on the folder /tmp/
+You should print one name per line, in alpha order
+You should print only names that do not start with __
+Your code should not be executed when imported
