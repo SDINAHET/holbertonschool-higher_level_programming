@@ -39,5 +39,19 @@ Notes:
 In Python 3, the print function requires parentheses, unlike Python 2 where print a was valid.
 The triple quotes """Simple variable""" are a docstring or comment, which is ignored by the interpreter.
 
+Explanation:
+if __name__ == "__main__":: This block ensures that the code inside it runs only if the script is executed directly, and not if it is imported as a module.
+from variable_load_5 import a: This imports the variable a from variable_load_5.py.
+print(a): This prints the value of a.
+How It Works:
+When you run 5-variable_load.py directly (e.g., ./5-variable_load.py), it will print 98 as defined in variable_load_5.py.
+If 5-variable_load.py is imported as a module in another script, the code inside the if __name__ == "__main__": block will not execute.
+
+Run
+./5-variable_load.py
+
+output:
+98
+
 hidden_4.pyc
 
