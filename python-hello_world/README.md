@@ -66,6 +66,18 @@ print(str[39:66] + str[106:112] + str[:6])
 str = "Python is an interpreted, interactive, object-oriented programming language that combines remarkable power with very clear syntax"
 print(str[39:66] + str[106:112] + str[:6])
 
+3ème version:
+#!/usr/bin/python3
+str = ("Python is an interpreted, interactive, object-oriented programming"
+       " language that combines remarkable power with very clear syntax")
+print(str[39:66] + str[-17:-11] + str[:6])
+
+4eme version:
+#!/usr/bin/python3
+str = ("Python is an interpreted, interactive, object-oriented programming "
+       "language that combines remarkable power with very clear syntax")
+print(str[39:66] + str[106:112] + str[:6])
+
 9-easter_egg.py
 
 python3 9-easter_egg.py
