@@ -275,17 +275,59 @@ output:
 
 7-islower.py
 
+Explication
+Importation de la fonction : islower = __import__('7-islower').islower importe la fonction islower depuis le fichier 7-islower.py.
+Tests :
+Chaque appel à islower est formaté pour afficher si le caractère est "lower" (minuscule) ou "upper" (majuscule) selon le résultat retourné par la fonction.
+Exécution
+Assurez-vous que les fichiers 7-islower.py et 7-main.py sont dans le même répertoire. Puis, exécutez 7-main.py en utilisant la commande suivante dans votre terminal :
+
+./7-main.py
+
+output:
+a is lower
+H is upper
+A is upper
+3 is upper
+g is lower
+
+Assurez-vous que 7-islower.py contient uniquement la définition de la fonction islower, et que 7-main.py est configuré pour tester la fonction comme décrit.
 
 8-uppercase.py
 
+Explanation
+Loop through each character: The loop iterates over each character in the string.
+
+Check if the character is lowercase:
+
+ord(char) >= 97 and ord(char) <= 122: This checks if the character is a lowercase letter.
+Convert to uppercase:
+
+If the character is lowercase, convert it to uppercase by subtracting 32 from its ASCII value and then converting it back to a character using chr().
+Print the character:
+
+Use print("{}".format(char), end="") to print each character without a newline after each character.
+The print("") after the loop ensures that a newline is printed after the entire string.
+
+8-main.py
+
+output
+BEST
+BEST SCHOOL 98 BATTERY STREET
 
 9-print_last_digit.py
+
+
 
 
 10-add.py
 
 
+
+
 11-pow.py
+
+
 
 
 12-fizzbuzz.py
