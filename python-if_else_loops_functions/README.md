@@ -317,13 +317,49 @@ BEST SCHOOL 98 BATTERY STREET
 
 9-print_last_digit.py
 
+Explanation
+abs(number): This ensures that if the input number is negative, it becomes positive before we extract the last digit.
 
+number % 10: This operation gives the last digit of the number. For example:
 
+98 % 10 = 8
+-1024 % 10 = 4 (because we use abs() to convert -1024 to 1024).
+Print the last digit: Use print("{}".format(last_digit), end="") to print the last digit without a newline after the output.
+
+Return the last digit: The function also returns the value of the last digit, as specified.
+
+Testing
+You can test the function with the following 9-main.py script:
+#!/usr/bin/env python3
+print_last_digit = __import__('9-print_last_digit').print_last_digit
+
+print_last_digit(98)
+print_last_digit(0)
+r = print_last_digit(-1024)
+print(r)
+
+Expected Output
+Running ./9-main.py should produce the following output:
+8044
+
+Breakdown of Output:
+The last digit of 98 is 8, which is printed.
+The last digit of 0 is 0, which is printed.
+The last digit of -1024 is 4, which is printed and returned by the function.
 
 10-add.py
 
+Explanation
+a + b: This adds the two integers a and b and returns the result.
+The function simply returns the sum of the two integers.
+Testing
+You can test the function with the following 10-main.py script:
 
-
+Expected Output
+Running ./10-main.py should produce the following output:
+3
+98
+98
 
 11-pow.py
 
