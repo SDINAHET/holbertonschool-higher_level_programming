@@ -60,12 +60,12 @@ for letter in range(97, 123):
     print(chr(letter))
 
 
-1ere version:
+1ere version: 7 check sur 7
 #!/usr/bin/python3
 for letter in range(97, 123):
     print("{}".format(chr(letter)), end="")
 
-2ème version:
+2ème version: 2 check sur 7
 #!/usr/bin/python3
 
 print(''.join(chr(i) for i in range(97, 123)))
