@@ -47,6 +47,18 @@ First 3 letters: Hol
 Last 2 letters: on
 Middle word: olberto
 
+1er version:
+#!/usr/bin/python3
+word = "Holberton"
+word_first_3 = word[:3]
+word_last_2 = word[-2:]
+middle_word = word[1:-1]
+print(f"First 3 letters: {word_first_3}")
+print(f"Last 2 letters: {word_last_2}")
+print(f"Middle word: {middle_word}")
+
+2ème version:
+
 
 8-concat_edges.py
 
@@ -141,3 +153,8 @@ Although never is often better than *right* now.
 If the implementation is hard to explain, it's a bad idea.
 If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!
+
+
+
+
+mettre lf au lieu de crlf pour executer ./file.py
