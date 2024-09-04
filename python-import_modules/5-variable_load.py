@@ -2,5 +2,4 @@
 a = 98
 """Simple variable
 """
-#print(a)
 print("{}".format(a))
