@@ -363,7 +363,18 @@ Running ./10-main.py should produce the following output:
 
 11-pow.py
 
+Explanation
+a ** b: This computes a raised to the power of b. This works for both positive and negative exponents, and it can handle any integer or floating-point numbers.
 
+Testing
+You can test the function with the following 11-main.py script:
 
+Expected Output
+Running ./11-main.py should produce the following output:
+4
+9604
+1
+0.0001
+-1024
 
 12-fizzbuzz.py
