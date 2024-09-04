@@ -111,19 +111,10 @@ Print: print("{}".format(chr(letter)), end="") prints each character correspondi
 
 This code will output all letters of the alphabet except 'e' and 'q'.
 
-4-print_hexa.py
-
-Explanation:
-Range: range(0, 99) iterates through numbers from 0 to 98.
-
-{:x}: In the format string, {:x} formats the number as a lowercase hexadecimal without the "0x" prefix. The "0x" is added manually in the string.
-
-print function: This prints each number in the required format.
-
 output:
 abcdfghijklmnoprstuvwxyz
 
-5-print_comb2.py
+4-print_hexa.py
 
 Explanation:
 Range: range(0, 99) iterates through numbers from 0 to 98.
@@ -240,6 +231,29 @@ output:
 96 = 0x60
 97 = 0x61
 98 = 0x62
+
+5-print_comb2.py
+
+Explanation:
+Range: range(0, 99) iterates through numbers from 0 to 98.
+
+{:x}: In the format string, {:x} formats the number as a lowercase hexadecimal without the "0x" prefix. The "0x" is added manually in the string.
+
+print function: This prints each number in the required format.
+
+Explanation:
+range(100): The loop iterates over numbers from 0 to 99.
+
+{:02d}: This formatting ensures each number is printed with at least two digits. For example, 0 becomes 00, 9 becomes 09, etc.
+
+Conditional Statement:
+
+If the current number is less than 99, print it followed by , , and use end="" to avoid moving to the next line.
+If the number is 99, print it without a trailing comma and space, ensuring the output ends correctly with 99 followed by a newline.
+This program meets the constraints of using no more than two print functions and only one loop, without storing numbers or strings in variables or importing any modules.
+
+output:
+00, 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99
 
 6-print_comb3.py
 
