@@ -252,11 +252,26 @@ If the current number is less than 99, print it followed by , , and use end="" t
 If the number is 99, print it without a trailing comma and space, ensuring the output ends correctly with 99 followed by a newline.
 This program meets the constraints of using no more than two print functions and only one loop, without storing numbers or strings in variables or importing any modules.
 
+./5-print_comb2.py
 output:
 00, 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99
 
 6-print_comb3.py
 
+Explanation:
+First loop (for i in range(0, 10)): This loop iterates over the first digit from 0 to 9.
+
+Second loop (for j in range(i + 1, 10)): This loop iterates over the second digit from i+1 to 9. This ensures that the two digits are different and that combinations like 01 and 10 are not repeated.
+
+Conditional Statement:
+
+If the pair of digits is 89 (the last valid combination), it is printed without a trailing comma and space to ensure the output format is correct.
+Otherwise, each combination is printed followed by a comma and a space, using end="" to keep printing on the same line.
+This code meets all the constraints of using no more than two loops, no more than three print functions, and it does not store numbers or strings in variables or import any modules. The output is in ascending order, with the smallest combination printed first.
+
+./6-print_comb3.py
+output:
+01, 02, 03, 04, 05, 06, 07, 08, 09, 12, 13, 14, 15, 16, 17, 18, 19, 23, 24, 25, 26, 27, 28, 29, 34, 35, 36, 37, 38, 39, 45, 46, 47, 48, 49, 56, 57, 58, 59, 67, 68, 69, 78, 79, 89
 
 7-islower.py
 
