@@ -5,3 +5,16 @@ File 4-hidden_discovery.py must be located on the folder /tmp/
 You should print one name per line, in alpha order
 You should print only names that do not start with __
 Your code should not be executed when imported
+
+curl -Lso "hidden_4.pyc" "https://github.com/hs-hq/0x02.py/raw/main/hidden_4.pyc"
+
+To list all names defined by the compiled module hidden_4.pyc, follow these steps:
+
+1-Download the hidden_4.pyc file:
+2-Write a script to list the names:
+
+File Structure:
+
+4-hidden_discovery.py (the file to create)
+Make sure the script is located in /tmp/.
+4-hidden_discovery.py:
