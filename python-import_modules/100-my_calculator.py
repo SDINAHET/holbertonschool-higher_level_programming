@@ -39,7 +39,7 @@ def main():
         sys.exit(1)
 
     result = operations[operator](a, b)
-    print(f"{a} {operator} {b} = {result}")
+    print("{} {} {} = {}".format(a, operator, b, result))
     sys.exit(0)
 
 
