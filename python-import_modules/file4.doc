@@ -1,0 +1,83 @@
+Here is a Python script (4-hidden_discovery.py) that solves the task of printing all the names defined in the compiled module hidden_4.pyc, except for those starting with __.
+
+To achieve this, you will:
+
+Download the hidden_4.pyc file using curl.
+Write the script to list the names of the objects in the module.
+Filter out names starting with __.
+Sort the output alphabetically and print each name on a new line.
+Here is the Python script you need to place in /tmp/:
+
+Script: /tmp/4-hidden_discovery.py
+python
+Copier le code
+#!/usr/bin/python3
+import hidden_4
+
+if __name__ == "__main__":
+    # Get all names from the hidden_4 module
+    names = dir(hidden_4)
+
+    # Filter and sort names that don't start with '__'
+    filtered_names = [name for name in names if not name.startswith("__")]
+
+    # Print each name on a new line in alphabetical order
+    for name in sorted(filtered_names):
+        print(name)
+Steps to Execute:
+Download the hidden_4.pyc file:
+
+bash
+Copier le code
+curl -Lso "hidden_4.pyc" "https://github.com/hs-hq/0x02.py/raw/main/hidden_4.pyc"
+Run the script:
+
+Make sure your script is executable:
+bash
+Copier le code
+chmod +x /tmp/4-hidden_discovery.py
+Execute the script:
+bash
+Copier le code
+/tmp/4-hidden_discovery.py
+Output Example:
+bash
+Copier le code
+my_secret_santa
+print_hidden
+print_school
+This script will load the hidden_4 module, filter out names starting with __, sort them alphabetically, and print each name.
+
+
+
+
+
+
+Vous avez dit :
+quest ca que ça veut dire Write a program that prints all the names defined by the compiled module hidden_4.pyc (please download it locally in your sandbox using curl).
+ChatGPT a dit :
+ChatGPT
+La phrase « Write a program that prints all the names defined by the compiled module hidden_4.pyc (please download it locally in your sandbox using curl) » signifie que tu dois écrire un programme Python qui va lister et afficher tous les noms de fonctions, variables ou objets définis dans un fichier Python compilé (hidden_4.pyc).
+
+Voici une explication détaillée de chaque partie de la tâche :
+
+Prints all the names defined : Cela signifie que tu dois afficher les noms des éléments (fonctions, variables, etc.) définis dans un module Python. Cela inclut tout ce qui a été défini dans le fichier Python (.py), mais ici le fichier est compilé, donc son extension est .pyc.
+
+Compiled module hidden_4.pyc : Un fichier .pyc est un fichier Python compilé. Il s'agit d'une version binaire d'un fichier source Python qui peut être exécutée par l'interpréteur Python. Pour récupérer les noms définis dans ce fichier compilé, tu devras utiliser certaines fonctionnalités Python comme la fonction dir().
+
+Download it locally in your sandbox using curl : Tu dois télécharger ce fichier compilé hidden_4.pyc dans ton environnement local en utilisant l'outil curl. Curl est un outil en ligne de commande qui te permet de télécharger des fichiers depuis des URL.
+
+Par exemple, pour télécharger le fichier hidden_4.pyc, tu utiliserais cette commande :
+
+bash
+Copier le code
+curl -Lso "hidden_4.pyc" "https://github.com/hs-hq/0x02.py/raw/main/hidden_4.pyc"
+In your sandbox : Le terme "sandbox" fait référence à un environnement isolé où tu peux exécuter et tester du code sans affecter le reste de ton système. Ce pourrait être un dossier spécifique ou un conteneur virtuel dans lequel tu travailles.
+
+You should print only names that do not start with __ : Dans Python, les noms qui commencent par deux traits de soulignement (__) sont souvent utilisés pour des éléments internes (comme __init__ par exemple). Tu dois donc ignorer ces noms et ne montrer que ceux qui ne commencent pas par __.
+
+Sort alphabetically and print one name per line : Les noms que tu récupéreras doivent être triés dans l'ordre alphabétique et chaque nom doit être affiché sur une ligne distincte.
+
+En résumé, cette phrase te demande de télécharger un fichier compilé Python (hidden_4.pyc), de créer un programme qui va lister les noms définis dans ce fichier, d'ignorer ceux qui commencent par __, puis d'afficher les autres noms un par un dans l'ordre alphabétique.
+
+Si tu suis les étapes du script que j'ai fourni précédemment, tu seras en mesure d'accomplir cette tâche.
