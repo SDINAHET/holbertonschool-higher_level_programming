@@ -7,6 +7,7 @@ from calculator_1 import sub
 from calculator_1 import mul
 from calculator_1 import div
 
+
 def main():
     # Check if the number of arguments is exactly 3
     if len(sys.argv) != 4:
@@ -43,6 +44,7 @@ def main():
     result = operations[operator](a, b)
     print(f"{a} {operator} {b} = {result}")
     sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
