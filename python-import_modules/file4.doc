@@ -81,3 +81,21 @@ Sort alphabetically and print one name per line : Les noms que tu récupéreras 
 En résumé, cette phrase te demande de télécharger un fichier compilé Python (hidden_4.pyc), de créer un programme qui va lister les noms définis dans ce fichier, d'ignorer ceux qui commencent par __, puis d'afficher les autres noms un par un dans l'ordre alphabétique.
 
 Si tu suis les étapes du script que j'ai fourni précédemment, tu seras en mesure d'accomplir cette tâche.
+
+root@7520f5594eb94cea8ffb9b8ad2016b2d-2377118072:~# cd /tmp
+root@7520f5594eb94cea8ffb9b8ad2016b2d-2377118072:/tmp# ls
+root@7520f5594eb94cea8ffb9b8ad2016b2d-2377118072:/tmp# nano 4-hidden_discovery.py
+root@7520f5594eb94cea8ffb9b8ad2016b2d-2377118072:/tmp# curl -Lso "hidden_4.pyc" "https://github.com/hs-hq/0x02.py/raw/main/hidden_4.pyc"
+root@7520f5594eb94cea8ffb9b8ad2016b2d-2377118072:/tmp# chmod +x /tmp/4-hidden_discovery.py
+root@7520f5594eb94cea8ffb9b8ad2016b2d-2377118072:/tmp# /tmp/4-hidden_discovery.py
+my_secret_santa
+print_hidden
+print_school
+root@7520f5594eb94cea8ffb9b8ad2016b2d-2377118072:/tmp# git add.
+git: 'add.' is not a git command. See 'git --help'.
+
+The most similar command is
+        add
+root@7520f5594eb94cea8ffb9b8ad2016b2d-2377118072:/tmp# git add .
+fatal: not a git repository (or any of the parent directories): .git
+root@7520f5594eb94cea8ffb9b8ad2016b2d-2377118072:/tmp# 
