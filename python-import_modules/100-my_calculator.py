@@ -57,13 +57,15 @@ def main():
         print("Unknown operator. Available operators: +, -, * and /", end='\n')
         exit(1)
 
-    # Perform the calculation and print the result
-    if operator == '/' and b == 0:
-        print("Error: Division by zero", end='\n')
+    # Perform the calculation and handle division by zero
+    try:
+        result = operations[operator](a, b)
+        print("{} {} {} = {}".format(a, operator, b, result), end='\n')
+    except ZeroDivisionError:
+        print("Error: Division by zero")
         exit(1)
 
-    result = operations[operator](a, b)
-    print("{} {} {} = {}".format(a, operator, b, result), end='\n')
+    # Exit successfully
     exit(0)
 
 
