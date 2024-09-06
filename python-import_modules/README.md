@@ -139,6 +139,12 @@ The sys.stdout.write method writes directly to the standard output.
 \n ensures that a new line is added after #pythoniscool.
 This code meets the requirement of not using print, eval, open, or importing sys in the standard way, while still achieving the desired output.
 
+Explanation:
+import __import__: Imports the __import__ function which is a built-in function in Python used to import modules.
+__import__('sys'): Dynamically imports the sys module.
+.stdout.write("#pythoniscool\n"): Calls write() method of sys.stdout to print the string #pythoniscool followed by a newline.
+This approach adheres to the constraints and correctly prints the required output.
+
 102-magic_calculator.py
 
 To write the Python function magic_calculation that corresponds to the given bytecode, you need to understand what the bytecode does:
