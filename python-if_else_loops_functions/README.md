@@ -412,3 +412,31 @@ Exemple :
 ord('A') renvoie 65 (le code Unicode de 'A').
 chr(65) renvoie 'A' (le caractère dont le code est 65).
 Donc, ord() convertit un caractère en entier, tandis que chr() convertit un entier en caractère.
+
+100-print_tebahlpha.py
+
+Explanation:
+The range(122, 96, -1) starts from ASCII value 122 (which is 'z') and ends at 96 (just before 'a'), decrementing by 1.
+The chr(i) function converts the ASCII value i to the corresponding character.
+The if i % 2 == 0 condition alternates between lowercase and uppercase by checking if the ASCII value is even or odd. If it's even, it keeps the character lowercase (because 'z', 'x', etc. are even). If it's odd, it subtracts 32 (the difference between lowercase and uppercase letters in ASCII) to convert to uppercase.
+The end="" prevents a newline after printing.
+This way, the output will alternate between lowercase and uppercase letters in reverse order, as required.
+
+output:
+zYxWvUtSrQpOnMlKjIhGfEdCbAroot@UID7E:/mnt/c/Users/steph/
+
+101-remove_char_at.py
+Explanation:
+if n < 0 or n >= len(str) ensures that if n is negative or outside the range of the string, the function returns the original string unchanged.
+str[:n] + str[n+1:] constructs a new string by concatenating the part before the nth character (str[:n]) with the part after the nth character (str[n+1:]), effectively removing the character at position n.
+This way, the function works as expected without relying on Python's built-in list manipulation.
+
+output:
+root@UID7E:/mnt/c/Users/steph/Documents/holbertonschool-higher_level_programming/python-if_else_loops_functions#
+./101-main.py
+
+Bes School
+Chcago
+ is fun!
+School
+Python
