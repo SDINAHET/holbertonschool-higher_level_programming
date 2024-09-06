@@ -1,16 +1,9 @@
 #!/usr/bin/python3
+import sys
 
-def add(a, b):
-    return a + b
+# Importing all functions from calculator_1.py
+from calculator_1 import add, sub, mul, div
 
-def sub(a, b):
-    return a - b
-
-def mul(a, b):
-    return a * b
-
-def div(a, b):
-    return int(a / b)
 
 def main():
     """Main function to handle the calculator operations.
@@ -33,53 +26,47 @@ def main():
 
     Returns:
         None. The function prints the result of the arithmetic operation or
-        an error message to the standard output and exits with a status code.
+        an error message
+        to the standard output and exits with a status code.
     """
 
-    import sys
-
-    # List of valid operators
-    valid_operators = ['+', '-', '*', '/']
-    args = sys.argv[1:]
-
     # Check if the number of arguments is exactly 3
-    if len(args) != 3:
-        print("Usage: ./100-my_calculator.py <a> <operator> <b>")
-        sys.exit(1)
+    if len(sys.argv) != 4:
+        print("Usage: ./100-my_calculator.py <a> <operator> <b>", end='\n')
+        exit(1)
 
+    # Parse arguments
     try:
-        a = int(args[0])
-        operator = args[1]
-        b = int(args[2])
+        a = int(sys.argv[1])
+        operator = sys.argv[2]
+        b = int(sys.argv[3])
     except ValueError:
-        print("Usage: ./100-my_calculator.py <a> <operator> <b>")
-        sys.exit(1)
+        print("Usage: ./100-my_calculator.py <a> <operator> <b>", end='\n')
+        exit(1)
+
+    # Dictionary mapping operators to functions
+    operations = {
+        '+': add,
+        '-': sub,
+        '*': mul,
+        '/': div
+    }
 
     # Check if the operator is valid
-    if operator not in valid_operators:
-        print("Unknown operator. Available operators: +, -, * and /")
-        sys.exit(1)
+    if operator not in operations:
+        print("Unknown operator. Available operators: +, -, * and /", end='\n')
+        exit(1)
 
     # Perform the calculation and handle division by zero
     try:
-        if operator == '+':
-            result = add(a, b)
-        elif operator == '-':
-            result = sub(a, b)
-        elif operator == '*':
-            result = mul(a, b)
-        elif operator == '/':
-            if b == 0:
-                print("Error: Division by zero")
-                sys.exit(1)
-            result = div(a, b)
-        print(f"{a} {operator} {b} = {result}")
+        result = operations[operator](a, b)
+        print("{} {} {} = {}".format(a, operator, b, result), end='\n')
     except ZeroDivisionError:
         print("Error: Division by zero")
-        sys.exit(1)
+        exit(1)
 
     # Exit successfully
-    sys.exit(0)
+    exit(0)
 
 
 if __name__ == "__main__":
