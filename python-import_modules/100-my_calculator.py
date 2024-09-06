@@ -6,9 +6,11 @@ from calculator_1 import add, sub, mul, div
 
 
 def main():
+    """Main function to handle the calculator operations"""
+
     # Check if the number of arguments is exactly 3
     if len(sys.argv) != 4:
-        print("Usage: ./100-my_calculator.py <a> <operator> <b>")
+        print("Usage: ./100-my_calculator.py <a> <operator> <b>", end='\n')
         exit(1)
 
     # Parse arguments
