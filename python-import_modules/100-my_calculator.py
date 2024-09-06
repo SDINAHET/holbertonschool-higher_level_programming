@@ -1,8 +1,13 @@
 #!/usr/bin/python3
 import sys
-from calculator_1 import add, sub, mul, div
 
-if __name__ == "__main__":
+# Importing all functions from calculator_1.py
+from calculator_1 import add
+from calculator_1 import sub
+from calculator_1 import mul
+from calculator_1 import div
+
+def main():
     # Check if the number of arguments is exactly 3
     if len(sys.argv) != 4:
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
@@ -31,6 +36,13 @@ if __name__ == "__main__":
         sys.exit(1)
 
     # Perform the calculation and print the result
+    if operator == '/' and b == 0:
+        print("Error: Division by zero")
+        sys.exit(1)
+
     result = operations[operator](a, b)
     print(f"{a} {operator} {b} = {result}")
     sys.exit(0)
+
+if __name__ == "__main__":
+    main()
