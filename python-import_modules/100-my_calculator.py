@@ -6,7 +6,15 @@ from calculator_1 import add, sub, mul, div
 
 
 def main():
-    """Main function to handle the calculator operations"""
+    """Main function to handle the calculator operations.
+
+    This function processes command-line arguments to perform
+    basic arithmetic operations. It checks the number of arguments,
+    validates them, and performs the appropriate operation based on
+    the provided operator. It handles invalid arguments, unknown
+    operators, and division by zero errors.
+    """
+
 
     # Check if the number of arguments is exactly 3
     if len(sys.argv) != 4:
