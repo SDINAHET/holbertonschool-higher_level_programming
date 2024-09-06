@@ -13,8 +13,22 @@ def main():
     validates them, and performs the appropriate operation based on
     the provided operator. It handles invalid arguments, unknown
     operators, and division by zero errors.
-    """
+    Function Description:
+        - Checks if the number of command-line arguments is correct.
+        - Parses the command-line arguments to integers and operator.
+        - Validates the operator and performs the requested arithmetic
+        operation.
+        - Handles exceptions and errors such as invalid arguments or division
+        by zero.
 
+    Parameters:
+        None. The function uses command-line arguments passed to the script.
+
+    Returns:
+        None. The function prints the result of the arithmetic operation or
+        an error message
+        to the standard output and exits with a status code.
+    """
 
     # Check if the number of arguments is exactly 3
     if len(sys.argv) != 4:
