@@ -98,4 +98,30 @@ The most similar command is
         add
 root@7520f5594eb94cea8ffb9b8ad2016b2d-2377118072:/tmp# git add .
 fatal: not a git repository (or any of the parent directories): .git
-root@7520f5594eb94cea8ffb9b8ad2016b2d-2377118072:/tmp# 
+root@7520f5594eb94cea8ffb9b8ad2016b2d-2377118072:/tmp#
+
+Script: /tmp/4-hidden_discovery.py
+#!/usr/bin/python3
+import hidden_4
+
+if __name__ == "__main__":
+    # Get all names from the hidden_4 module
+    names = dir(hidden_4)
+
+    # Filter and sort names that don't start with '__'
+    filtered_names = [name for name in names if not name.startswith("__")]
+
+    # Print each name on a new line in alphabetical order
+    for name in sorted(filtered_names):
+        print(name)
+
+Download the hidden_4.pyc file:
+curl -Lso "hidden_4.pyc" "https://github.com/hs-hq/0x02.py/raw/main/hidden_4.pyc"
+
+chmod +x /tmp/4-hidden_discovery.py
+/tmp/4-hidden_discovery.py
+
+output
+my_secret_santa
+print_hidden
+print_school
