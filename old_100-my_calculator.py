@@ -17,7 +17,7 @@ def main():
         operator = sys.argv[2]
         b = int(sys.argv[3])
     except ValueError:
-        print("Usage: ./100-my_calculator.py <a> <operator> <b>", end='\n')
+        print("Usage: ./100-my_calculator.py <a> <operator> <b>")
         sys.exit(1)
 
     # Dictionary mapping operators to functions
@@ -30,16 +30,16 @@ def main():
 
     # Check if the operator is valid
     if operator not in operations:
-        print("Unknown operator. Available operators: +, -, * and /", end='\n')
+        print("Unknown operator. Available operators: +, -, * and /")
         sys.exit(1)
 
     # Perform the calculation and print the result
     if operator == '/' and b == 0:
-        print("Error: Division by zero", end='\n')
+        print("Error: Division by zero")
         sys.exit(1)
 
     result = operations[operator](a, b)
-    print("{} {} {} = {}".format(a, operator, b, result), end='\n')
+    print("{} {} {} = {}".format(a, operator, b, result))
     sys.exit(0)
 
 
