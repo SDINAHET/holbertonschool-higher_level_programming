@@ -9,7 +9,7 @@ def main():
     # Check if the number of arguments is exactly 3
     if len(sys.argv) != 4:
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
-        sys.exit(1)
+        exit(1)
 
     # Parse arguments
     try:
@@ -18,7 +18,7 @@ def main():
         b = int(sys.argv[3])
     except ValueError:
         print("Usage: ./100-my_calculator.py <a> <operator> <b>", end='\n')
-        sys.exit(1)
+        exit(1)
 
     # Dictionary mapping operators to functions
     operations = {
@@ -31,16 +31,16 @@ def main():
     # Check if the operator is valid
     if operator not in operations:
         print("Unknown operator. Available operators: +, -, * and /", end='\n')
-        sys.exit(1)
+        exit(1)
 
     # Perform the calculation and print the result
     if operator == '/' and b == 0:
         print("Error: Division by zero", end='\n')
-        sys.exit(1)
+        exit(1)
 
     result = operations[operator](a, b)
     print("{} {} {} = {}".format(a, operator, b, result), end='\n')
-    sys.exit(0)
+    exit(0)
 
 
 if __name__ == "__main__":
