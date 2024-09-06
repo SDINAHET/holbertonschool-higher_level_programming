@@ -130,6 +130,20 @@ calculator_1.py: command not found
 root@UID7E:/mnt/c/Users/steph/Documents/2ème trimestre holberton/projet2/h
 olbertonschool-higher_level_programming/python-import_modules#
 
+oot@UID7E:/mnt/c/Users/steph/Documents/2ème trimestre holberton/projet2/h
+olbertonschool-higher_level_programming/python-import_modules# ./100-my_calculator.py ; echo $?
+Usage: ./100-my_calculator.py <a> <operator> <b>
+1
+root@UID7E:/mnt/c/Users/steph/Documents/2ème trimestre holberton/projet2/h
+olbertonschool-higher_level_programming/python-import_modules# ./100-my_calculator.py 3 + 5 ; echo $?
+3 + 5 = 8
+0
+root@UID7E:/mnt/c/Users/steph/Documents/2ème trimestre holberton/projet2/h
+olbertonschool-higher_level_programming/python-import_modules# ./100-my_calculator.py 3 H 5 ; echo $?
+Unknown operator. Available operators: +, -, * and /
+1
+root@UID7E:/mnt/c/Users/steph/Documents/2ème trimestre holberton/projet2/h
+olbertonschool-higher_level_programming/python-import_modules#
 
 101-easy_print.py
 
