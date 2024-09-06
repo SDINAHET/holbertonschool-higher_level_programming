@@ -2,10 +2,7 @@
 import sys
 
 # Importing all functions from calculator_1.py
-from calculator_1 import add
-from calculator_1 import sub
-from calculator_1 import mul
-from calculator_1 import div
+from calculator_1 import add, sub, mul, div
 
 
 def main():
