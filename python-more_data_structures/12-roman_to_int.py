@@ -14,7 +14,8 @@ def roman_to_int(roman_string):
 
     for i in range(length):
         # If the current numeral is smaller than the next one, subtract it
-        if i < length - 1 and roman_dict[roman_string[i]] < roman_dict[roman_string[i + 1]]:
+        if i < length - 1 and
+        roman_dict[roman_string[i]] < roman_dict[roman_string[i + 1]]:
             total -= roman_dict[roman_string[i]]
         else:
             total += roman_dict[roman_string[i]]
