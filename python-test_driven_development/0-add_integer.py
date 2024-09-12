@@ -29,5 +29,11 @@ def add_integer(a, b=98):
     if isinstance(b, float) and b != b:  # NaN check
         raise ValueError("b cannot be NaN")
 
+    # Check for float overflow (values that cannot be represented as integers)
+    if isinstance(a, float) and (a > float('inf') or a < -float('inf')):
+        raise OverflowError("a is too large to be converted to an integer")
+    if isinstance(b, float) and (b > float('inf') or b < -float('inf')):
+        raise OverflowError("b is too large to be converted to an integer")
+
     # Convert to int after validating
     return int(a) + int(b)
