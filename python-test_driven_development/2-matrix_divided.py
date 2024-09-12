@@ -5,6 +5,7 @@ of a matrix by a given divisor, ensuring the matrix structure and handling
 exceptions like division by zero.
 """
 
+
 def matrix_divided(matrix, div):
     """Divides all elements of a matrix by a given divisor.
 
