@@ -24,9 +24,9 @@ def add_integer(a, b=98):
         raise TypeError("b must be an integer")
 
     # Check for NaN values
-    if isinstance(a, float) and (a != a):  # NaN check
+    if isinstance(a, float) and a != a:  # NaN check
         raise ValueError("a cannot be NaN")
-    if isinstance(b, float) and (b != b):  # NaN check
+    if isinstance(b, float) and b != b:  # NaN check
         raise ValueError("b cannot be NaN")
 
     # Convert to int after validating
