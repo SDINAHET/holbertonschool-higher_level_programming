@@ -16,3 +16,17 @@ TypeError: b must be an integer
 Traceback (most recent call last):
     ...
 TypeError: a must be an integer
+>>> add_integer(float('nan'), 1)
+Traceback (most recent call last):
+    ...
+ValueError: a cannot be NaN
+
+>>> add_integer(1, float('inf'))
+Traceback (most recent call last):
+    ...
+OverflowError: b is too large to be converted to an integer
+
+>>> add_integer(1e400, 1)  # Equivalent to inf
+Traceback (most recent call last):
+    ...
+OverflowError: a is too large to be converted to an integer
