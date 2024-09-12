@@ -3,6 +3,7 @@
 This module provides a function `add_integer` which adds two integers or
 floats, casting them to integers if necessary.
 """
+import sys  # Add this import statement to resolve the undefined variable error
 
 
 def add_integer(a, b=98):
@@ -18,9 +19,17 @@ def add_integer(a, b=98):
     Returns:
         int: The sum of `a` and `b` as an integer.
     """
-    if type(a) not in (int, float):
+    if not isinstance(a, (int, float)):
         raise TypeError("a must be an integer")
-    if type(b) not in (int, float):
+    if not isinstance(b, (int, float)):
         raise TypeError("b must be an integer")
+
+    # Check for float overflow
+    if isinstance(a, float):
+        if (a > sys.float_info.max or a < -sys.float_info.max):
+            raise OverflowError("a is too large to be converted to an integer")
+    if isinstance(b, float):
+        if (b > sys.float_info.max or b < -sys.float_info.max):
+            raise OverflowError("b is too large to be converted to an integer")
 
     return int(a) + int(b)
