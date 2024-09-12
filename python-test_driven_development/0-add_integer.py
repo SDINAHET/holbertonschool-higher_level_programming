@@ -4,6 +4,7 @@ This module provides a function `add_integer` which adds two integers or
 floats, casting them to integers if necessary.
 """
 
+
 def add_integer(a, b=98):
     """Adds two integers or floats, casting them to integers if necessary.
 
@@ -21,6 +22,12 @@ def add_integer(a, b=98):
         raise TypeError("a must be an integer")
     if not isinstance(b, (int, float)):
         raise TypeError("b must be an integer")
+
+    # Check for NaN values
+    if isinstance(a, float) and (a != a):  # NaN check
+        raise ValueError("a cannot be NaN")
+    if isinstance(b, float) and (b != b):  # NaN check
+        raise ValueError("b cannot be NaN")
 
     # Check for float overflow manually
     if isinstance(a, float):
