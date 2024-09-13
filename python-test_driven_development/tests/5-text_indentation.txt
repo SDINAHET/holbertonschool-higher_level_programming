@@ -1,4 +1,4 @@
->>> text_indentation = __import__('5-text_indentation').text_indentation
+>>> from 5-text_indentation import text_indentation
 
 # Test simple sans aucun caractère nécessitant un saut de ligne
 >>> text_indentation("Holberton School")
@@ -22,7 +22,7 @@ John
 
 # Test avec une chaîne vide
 >>> text_indentation("")
-(empty string)
+<BLANKLINE>
 
 # Test avec un type invalide (nombre au lieu de texte)
 >>> text_indentation(12)
@@ -31,7 +31,7 @@ Traceback (most recent call last):
 TypeError: text must be a string
 
 # Test avec une entrée sans espaces inutiles
->>> text_indentation("This. Is a test: Without  extra spaces.")
+>>> text_indentation("This. Is a test: Without extra spaces.")
 This.
 <BLANKLINE>
 Is a test:
