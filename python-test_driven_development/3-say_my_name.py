@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
 This module defines a function `say_my_name` that prints a formatted string
 containing the first and last name provided as input.
