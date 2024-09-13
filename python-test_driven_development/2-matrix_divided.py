@@ -5,7 +5,7 @@ of a matrix by a given divisor, ensuring the matrix structure and handling
 exceptions like division by zero.
 """
 
-import math
+#import math
 
 
 def matrix_divided(matrix, div):
