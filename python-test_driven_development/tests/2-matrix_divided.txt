@@ -59,3 +59,8 @@ TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' an
 Traceback (most recent call last):
     ...
 TypeError: matrix_divided() takes 2 positional arguments but 3 were given
+
+>>> matrix = [[1, 2], [3, 4]]
+>>> result = matrix_divided(matrix, float('inf'))
+>>> result
+[[0.0, 0.0], [0.0, 0.0]]
