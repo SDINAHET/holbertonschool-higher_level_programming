@@ -16,6 +16,9 @@ def print_square(size):
         and is less than 0.
         ValueError: If `size` is less than 0.
     """
+    if size is None:
+        raise TypeError("Missing argument: size must be provided")
+
     if isinstance(size, float):
         if size < 0:
             raise ValueError("size must be >= 0")

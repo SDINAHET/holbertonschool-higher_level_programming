@@ -21,3 +21,8 @@ size must be >= 0
 ...     print(e)
 size must be an integer
 >>> print_square(0)
+>>> try:
+...     print_square()
+... except Exception as e:
+...     print(e)
+Missing argument: size must be provided
