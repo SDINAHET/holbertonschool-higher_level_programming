@@ -5,6 +5,8 @@ of a matrix by a given divisor, ensuring the matrix structure and handling
 exceptions like division by zero.
 """
 
+import math
+
 
 def matrix_divided(matrix, div):
     """Divides all elements of a matrix by a given divisor.
@@ -48,4 +50,23 @@ def matrix_divided(matrix, div):
         raise ZeroDivisionError("division by zero")
 
     # Perform division and rounding
-    return [[round(elem / div, 2) for elem in row] for row in matrix]
+    divided_matrix = []
+    for row in matrix:
+        new_row = []
+        for elem in row:
+            # Handle float('inf') and float('nan') cases
+            if elem == float('inf'):
+                new_row.append(float('inf'))
+            elif elem != elem:  # Check for NaN
+                new_row.append(float('nan'))
+            else:
+                result = elem / div
+                if result == float('inf'):
+                    new_row.append(float('inf'))
+                elif result != result:  # Check for NaN
+                    new_row.append(float('nan'))
+                else:
+                    new_row.append(round(result, 2))
+        divided_matrix.append(new_row)
+
+    return divided_matrix
