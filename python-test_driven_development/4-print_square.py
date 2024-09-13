@@ -5,11 +5,11 @@ a square of a given size with the character '#'.
 """
 
 
-def print_square(size):
+def print_square(size=None):
     """Print a square with the character '#'.
 
     Args:
-        size (int): The size length of the square.
+        size (int): The size length of the square.  Defaults to None.
 
     Raises:
         TypeError: If `size` is not an integer or if `size` is a float
