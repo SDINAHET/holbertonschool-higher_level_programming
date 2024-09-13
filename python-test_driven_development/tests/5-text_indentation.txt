@@ -1,4 +1,4 @@
->>> from 5-text_indentation import text_indentation
+>>> from text_indentation import text_indentation
 
 
 # Test simple sans aucun caractère nécessitant un saut de ligne
