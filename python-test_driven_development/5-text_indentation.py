@@ -10,10 +10,15 @@ def text_indentation(text):
         raise TypeError("text must be a string")
 
     result = ""
+    skip_space = False
     for char in text:
-        result += char
-        if char in ".?:":
-            result += "\n\n"
+        if char in ['.', '?', ':']:
+            result += char + "\n\n"
+            skip_space = True
+        elif char == " " and skip_space:
+            continue
+        else:
+            result += char
+            skip_space = False
 
-    # Print the result, removing any leading or trailing spaces from each line
-    print("\n".join([line.strip() for line in result.split("\n")]))
+    print(result.strip(), end="")
