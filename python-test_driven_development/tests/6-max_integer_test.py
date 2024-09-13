@@ -41,7 +41,7 @@ class TestMaxInteger(unittest.TestCase):
         """Test when all elements in the list are the same"""
         self.assertEqual(max_integer([4, 4, 4, 4]), 4)
 
- ...def test_max_at_end(self):
+    def test_max_at_end(self):
         """Test max value when it's at the end of the list"""
         self.assertEqual(max_integer([1, 2, 3, 4]), 4)
 
