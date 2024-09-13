@@ -16,7 +16,7 @@ def say_my_name(first_name="", last_name=""):
         TypeError: If either `first_name` or `last_name` is not a string.
     """
     if first_name is None and last_name is None:
-        raise TypeError("say_my_name() missing 2 required positional arguments: 'first_name' and 'last_name'")
+        raise TypeError("say_my_name() missing 'first_name' and 'last_name'")
 
     if not isinstance(first_name, (str, type(None))):
         raise TypeError("first_name must be a string")
