@@ -1,4 +1,5 @@
->>> from matrix_divided import matrix_divided
+>>> from importlib import import_module
+>>> matrix_divided = import_module('2-matrix_divided').matrix_divided
 >>> matrix = [
 ...     [10, 20, 30],
 ...     [40, 50, 60]
