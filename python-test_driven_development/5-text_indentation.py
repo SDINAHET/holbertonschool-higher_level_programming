@@ -10,6 +10,11 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
+
+    if not text:
+        print("")
+        return
+
     result = ""
     skip_space = False
     for char in text:
