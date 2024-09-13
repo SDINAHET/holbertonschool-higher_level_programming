@@ -1,4 +1,5 @@
->>> from text_indentation import text_indentation
+>>> from importlib import import_module
+>>> text_indentation = import_module('5-text_indentation').text_indentation
 >>> text_indentation("Holberton School")
 Holberton School
 
