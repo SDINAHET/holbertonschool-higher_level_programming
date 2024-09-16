@@ -9,8 +9,10 @@ The Square class includes:
 - A method to print the square with the character `#`.
 """
 
+
 class Square:
-    """Defines a square with private instance attribute `size` and `position`."""
+    """Defines a square with private instance attribute `size` and
+    `position`."""
 
     def __init__(self, size=0, position=(0, 0)):
         """
@@ -23,7 +25,8 @@ class Square:
             TypeError: If size is not an integer.
             ValueError: If size is less than 0.
         """
-        self.size = size # This uses the setter method for validation
+
+        self.size = size  # This uses the setter method for validation
         self.position = position
 
     @property
@@ -88,6 +91,7 @@ class Square:
             # Print new lines for the vertical position (position{1])
             for _ in range(self.__position[1]):
                 print("")
-            # Print each row of the square with spaces for the horizontal position (position[0])
+            # Print each row of the square with spaces for the horizontal
+            # position (position[0])
             for _ in range(self.__size):
                 print(" " * self.__position[0] + "#" * self.__size)

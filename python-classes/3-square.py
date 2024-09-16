@@ -10,6 +10,7 @@ initialization.
 It also provides a method to calculate the area of the square.
 """
 
+
 class Square:
     """Defines a square by a private instance attribute `size`."""
 

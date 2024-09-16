@@ -10,6 +10,7 @@ initialization.
 It also provides a method to calculate the area of the square.
 """
 
+
 class Square:
     """Defines a square by a private instance attribute `size`."""
 
@@ -24,7 +25,8 @@ class Square:
             TypeError: If size is not an integer.
             ValueError: If size is less than 0.
         """
-        self.size = size # This uses the setter method for validation
+
+        self.size = size  # This uses the setter method for validation
 
     @property
     def size(self):
