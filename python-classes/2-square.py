@@ -1,4 +1,21 @@
 #!/usr/bin/python3
+"""
+This module defines the Square class.
+
+The Square class has a private instance attribute `size`, which is
+used to represent the size of the square. The class validates that
+the `size` is an integer and greater than or equal to 0 upon
+initialization.
+
+Example:
+    To create a square, you can use the following syntax:
+
+        my_square = Square(3)
+
+    This will create a square with size 3.
+"""
+
+
 class Square:
     """Defines a square by a private instance attribute size."""
 
