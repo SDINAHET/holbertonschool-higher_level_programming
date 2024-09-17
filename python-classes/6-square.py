@@ -5,24 +5,30 @@ This module defines the Square class.
 The Square class includes:
 - A private instance attribute `size`.
 - Property getter and setter for `size` to control access and validation.
+- A private instance attribute `position`.
+- Property getter and setter for `position` to control access and validation.
 - A method to calculate the square's area.
-- A method to print the square with the character `#`.
+- A method to print the square with the character `#`, taking into
+account position.
 """
 
 
 class Square:
-    """Defines a square with private instance attribute `size` and
+    """Defines a square with private instance attributes `size` and
     `position`."""
 
     def __init__(self, size=0, position=(0, 0)):
         """
-        Initialize the square with a private instance attribute size.
+        Initialize the square with a private instance attribute size
+        and position.
 
         Args:
-            size (int): The size of the square (defaults is 0).
+            size (int): The size of the square (default is 0).
+            position (tuple): The position of the square (default is (0, 0)).
 
         Raises:
-            TypeError: If size is not an integer.
+            TypeError: If size is not an integer or position is not a tuple
+            of 2 positive integers.
             ValueError: If size is less than 0.
         """
 
@@ -80,7 +86,7 @@ class Square:
 
     def my_print(self):
         """
-        Prints the square with the character `#` is stdout.
+        Prints the square with the character `#` in stdout.
 
         If size is 0, prints an empty line.
         The position is considered when printing the square.
