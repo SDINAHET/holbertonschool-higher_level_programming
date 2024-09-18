@@ -16,6 +16,9 @@ class Rectangle:
         height (int): The height of the rectangle (must be an integer >= 0).
     """
 
+    # Public class attribute to track the number of instances
+    number_of_instances = 0
+
     def __init__(self, width=0, height=0):
         """
         Initializes a new Rectangle instance with the given width and height.
@@ -30,6 +33,7 @@ class Rectangle:
         """
         self.width = width
         self.height = height
+        Rectangle.number_of_instances += 1  # Increment the number of instances
 
     @property
     def width(self):
@@ -86,3 +90,14 @@ class Rectangle:
             rect_str.append("#" * self.__width)
         return "\n".join(rect_str)
 
+    def __repr__(self):
+        """Returns a string representation of the rectangle that can recreate a new instance.
+
+        The format is: Rectangle(width, height)
+        """
+        return "Rectangle({}, {})".format(self.__width, self.__height)
+
+    def __del__(self):
+        """Prints a message when an instance of Rectangle is deleted."""
+        print("Bye rectangle...")
+        Rectangle.number_of_instances -= 1  # Decrement the number of instances
