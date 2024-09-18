@@ -87,7 +87,8 @@ class Rectangle:
         return "\n".join(rect_str)
 
     def __repr__(self):
-        """Returns a string representation of the rectangle that can recreate a new instance.
+        """Returns a string representation of the rectangle that can recreate
+        a new instance.
 
         The format is: Rectangle(width, height)
         """

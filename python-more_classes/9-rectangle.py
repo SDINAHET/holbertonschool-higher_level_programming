@@ -7,8 +7,9 @@ height, and methods to calculate the area and perimeter of the rectangle.
 
 class Rectangle:
     """
-    Class that defines a rectangle with private instance attributes for width and height,
-    and public class attributes to track the number of instances and print symbol.
+    Class that defines a rectangle with private instance attributes for width
+    and height, and public class attributes to track the number of instances
+    and print symbol.
     """
 
     # Public class attributes
@@ -17,7 +18,8 @@ class Rectangle:
 
     def __init__(self, width=0, height=0):
         """
-        Initializes the rectangle instance with optional width and height, and increments the instance count.
+        Initializes the rectangle instance with optional width and height,
+        and increments the instance count.
 
         Args:
             width (int): The width of the rectangle (default is 0).
@@ -64,24 +66,28 @@ class Rectangle:
         return self.__width * self.__height
 
     def perimeter(self):
-        """Returns the perimeter of the rectangle. If width or height is 0, returns 0."""
+        """Returns the perimeter of the rectangle. If width or height is 0,
+        returns 0."""
         if self.__width == 0 or self.__height == 0:
             return 0
         return 2 * (self.__width + self.__height)
 
     def __str__(self):
-        """Returns a string representation of the rectangle using the character(s) in print_symbol."""
+        """Returns a string representation of the rectangle using the
+        character(s) in print_symbol."""
         if self.__width == 0 or self.__height == 0:
             return ""
         rect = str(self.print_symbol) * self.__width
         return "\n".join([rect for _ in range(self.__height)])
 
     def __repr__(self):
-        """Returns a string representation that can recreate the instance using eval()."""
+        """Returns a string representation that can recreate the instance using
+        eval()."""
         return f"Rectangle({self.__width}, {self.__height})"
 
     def __del__(self):
-        """Prints a message when an instance of Rectangle is deleted and decrements the instance count."""
+        """Prints a message when an instance of Rectangle is deleted and
+        decrements the instance count."""
         print("Bye rectangle...")
         Rectangle.number_of_instances -= 1
 
@@ -95,10 +101,12 @@ class Rectangle:
             rect_2 (Rectangle): The second rectangle.
 
         Returns:
-            Rectangle: The rectangle with the bigger area, or rect_1 if both have the same area.
+            Rectangle: The rectangle with the bigger area, or rect_1 if both
+            have the same area.
 
         Raises:
-            TypeError: If either rect_1 or rect_2 is not an instance of Rectangle.
+            TypeError: If either rect_1 or rect_2 is not an instance of
+            Rectangle.
         """
         if not isinstance(rect_1, Rectangle):
             raise TypeError("rect_1 must be an instance of Rectangle")
@@ -112,7 +120,8 @@ class Rectangle:
     @classmethod
     def square(cls, size=0):
         """
-        Class method that returns a new Rectangle instance where width and height are equal to size.
+        Class method that returns a new Rectangle instance where width and
+        height are equal to size.
 
         Args:
             size (int): The size of the square's sides (default is 0).
