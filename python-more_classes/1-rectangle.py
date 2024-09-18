@@ -4,6 +4,7 @@ This module defines a Rectangle class with private attributes for width and
 height, along with property setters for validation.
 """
 
+
 class Rectangle:
     """
     Represents a rectangle with private instance attributes for width and
@@ -13,7 +14,6 @@ class Rectangle:
         width (int): The width of the rectangle (must be an integer >= 0).
         height (int): The height of the rectangle (must be an integer >= 0).
     """
-
 
     def __init__(self, width=0, height=0):
         """

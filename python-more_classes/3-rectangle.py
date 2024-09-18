@@ -4,6 +4,7 @@ This module defines a Rectangle class with private attributes for width and
 height, and methods to calculate the area and perimeter of the rectangle.
 """
 
+
 class Rectangle:
     """
     Represents a rectangle with private instance attributes for width and
@@ -84,4 +85,3 @@ class Rectangle:
         for _ in range(self.__height):
             rect_str.append("#" * self.__width)
         return "\n".join(rect_str)
-
