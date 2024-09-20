@@ -9,6 +9,7 @@ def print_solution(solution):
     """Prints the board configuration for a solution."""
     print(solution)
 
+
 def is_safe(board, row, col):
     """
     Checks if it's safe to place a queen at the board position (row, col).
@@ -20,6 +21,7 @@ def is_safe(board, row, col):
            board[i] + i == col + row:
             return False
     return True
+
 
 def solve_nqueens(board, row, n):
     """
@@ -35,6 +37,7 @@ def solve_nqueens(board, row, n):
             board[row] = col
             solve_nqueens(board, row + 1, n)
             # No need to undo assignment as we overwrite it on thenextiteration
+
 
 def main():
     """Main function to handle input and initiate solving the N queens
@@ -53,6 +56,7 @@ def main():
 
     board = [-1] * n
     solve_nqueens(board, 0, n)
+
 
 if __name__ == "__main__":
     main()
