@@ -4,6 +4,7 @@ Module 101-nqueens
 Solves the N queens problem using backtracking.
 """
 
+
 def print_solution(solution):
     """Prints the board configuration for a solution."""
     print(solution)
