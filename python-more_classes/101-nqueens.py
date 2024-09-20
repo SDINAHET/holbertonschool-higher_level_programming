@@ -4,6 +4,7 @@ Module 101-nqueens
 Solves the N queens problem using backtracking.
 """
 
+
 import sys
 
 def print_solution(solution):

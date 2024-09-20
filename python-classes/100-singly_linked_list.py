@@ -5,6 +5,7 @@ Defines classes Node and SinglyLinkedList for implementing
 a singly linked list.
 """
 
+
 class Node:
     """
     Class that defines a node of a singly linked list.
@@ -109,12 +110,21 @@ class SinglyLinkedList:
             value (int): The data to be inserted in the new node.
         """
         new_node = Node(value)
+
+        # Case: Insert at the head if the list is empty or value is smaller
+        # than the head's data
         if self.__head is None or self.__head.data >= value:
             new_node.next_node = self.__head
             self.__head = new_node
         else:
+            # Traverse the list to find the correct position
             current = self.__head
-            while current.next_node is not None and current.next_node.data < value:
+
+            # Break the while loop into two lines for better readability
+            while (current.next_node is not None and
+                    current.next_node.data < value):
                 current = current.next_node
+
+            # Insert the new node at the correct position
             new_node.next_node = current.next_node
             current.next_node = new_node

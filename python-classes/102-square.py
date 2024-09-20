@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """
 Module 102-square
-Defines a class Square that represents a square and allows comparison based on area.
+Defines a class Square that represents a square and allows comparison based
+on area.
 """
+
 
 class Square:
     """
