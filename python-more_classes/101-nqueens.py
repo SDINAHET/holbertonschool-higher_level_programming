@@ -5,8 +5,6 @@ Solves the N queens problem using backtracking.
 """
 
 
-import sys
-
 def print_solution(solution):
     """Prints the board configuration for a solution."""
     print(solution)
@@ -40,19 +38,17 @@ def solve_nqueens(board, row, n):
 
 def main():
     """Main function to handle input and initiate solving the N queens problem."""
-    if len(sys.argv) != 2:
-        print("Usage: nqueens N")
-        sys.exit(1)
+    n_str = input("Enter the value of N: ")
 
     try:
-        n = int(sys.argv[1])
+        n = int(n_str)
     except ValueError:
         print("N must be a number")
-        sys.exit(1)
+        return
 
     if n < 4:
         print("N must be at least 4")
-        sys.exit(1)
+        return
 
     board = [-1] * n
     solve_nqueens(board, 0, n)
