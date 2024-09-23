@@ -6,6 +6,7 @@ from importlib import import_module
 
 Rectangle = import_module('9-rectangle').Rectangle
 
+
 class Square(Rectangle):
     """A class representing a square that inherits from Rectangle."""
 

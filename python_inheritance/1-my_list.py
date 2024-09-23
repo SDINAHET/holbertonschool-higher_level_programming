@@ -4,7 +4,8 @@
 
 class MyList(list):
     """
-    A subclass of the built-in list that includes a method to print the list sorted in ascending order.
+    A subclass of the built-in list that includes a method to print the list
+    sorted in ascending order.
 
     Public Methods:
         - print_sorted(self): Prints the list sorted in ascending order.

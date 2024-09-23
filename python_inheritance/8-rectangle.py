@@ -6,6 +6,7 @@ from importlib import import_module
 
 BaseGeometry = import_module('7-base_geometry').BaseGeometry
 
+
 class Rectangle(BaseGeometry):
     """A class representing a rectangle that inherits from BaseGeometry."""
 
