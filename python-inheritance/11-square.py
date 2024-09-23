@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""module for class Square"""
+"""Module for class Square, inheriting from Rectangle."""
 
 
 from importlib import import_module
