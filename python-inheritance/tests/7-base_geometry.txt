@@ -1,0 +1,26 @@
+>>> from importlib import import_module
+>>> BaseGeometry = import_module('7-BaseGeometry').BaseGeometry
+
+>>> bg = BaseGeometry()
+>>> bg.area()
+Traceback (most recent call last):
+    ...
+Exception: area() is not implemented
+
+>>> bg.integer_validator("my_int", 12)  # Valid input, no output expected
+>>> bg.integer_validator("width", 89)  # Valid input, no output expected
+
+>>> bg.integer_validator("name", "John")
+Traceback (most recent call last):
+    ...
+TypeError: name must be an integer
+
+>>> bg.integer_validator("age", 0)
+Traceback (most recent call last):
+    ...
+ValueError: age must be greater than 0
+
+>>> bg.integer_validator("distance", -4)
+Traceback (most recent call last):
+    ...
+ValueError: distance must be greater than 0
