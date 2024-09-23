@@ -2,9 +2,10 @@
 """module for class Rectangle"""
 
 
-from importlib import import_module
+# from importlib import import_module
 
-BaseGeometry = import_module('7-base_geometry').BaseGeometry
+# BaseGeometry = import_module('7-base_geometry').BaseGeometry
+from 7_base_geometry import BaseGeometry
 
 
 class Rectangle(BaseGeometry):
