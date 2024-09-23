@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""module for class my_list"""
+
+
 class MyList(list):
     """
     A subclass of the built-in list that includes a method to print the list sorted in ascending order.

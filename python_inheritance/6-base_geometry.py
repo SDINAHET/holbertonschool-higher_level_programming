@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""module for class BaseGeometry"""
+
 
 class BaseGeometry:
     """A class representing base geometry."""

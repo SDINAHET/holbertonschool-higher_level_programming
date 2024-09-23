@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""module for class Rectangle"""
+
 
 from importlib import import_module
 

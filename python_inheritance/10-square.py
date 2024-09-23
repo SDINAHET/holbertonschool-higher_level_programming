@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""module for class Square"""
+
+
 from importlib import import_module
 
 Rectangle = import_module('9-rectangle').Rectangle
