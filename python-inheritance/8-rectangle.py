@@ -2,10 +2,9 @@
 """module for class Rectangle"""
 
 
-# from importlib import import_module
+from importlib import import_module
 
-# BaseGeometry = import_module('7-base_geometry').BaseGeometry
-from 7_base_geometry import BaseGeometry
+BaseGeometry = import_module('7-base_geometry').BaseGeometry
 
 
 class Rectangle(BaseGeometry):
@@ -32,6 +31,5 @@ class Rectangle(BaseGeometry):
         """Calculates the area of the rectangle."""
         return self.__width * self.__height
 
-    def __str__(self):
-        """Returns a string representation of the rectangle."""
-        return "[Rectangle] {}/{}".format(self.__width, self.__height)
+    # Remove the __str__ method to get the default representation of
+    # the object
