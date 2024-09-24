@@ -70,3 +70,14 @@ TypeError: number must be an integer
 Traceback (most recent call last):
     ...
 ValueError: age must be greater than 0
+
+>>> bg.integer_validator("distance", -4)
+Traceback (most recent call last):
+    ...
+ValueError: distance must be greater than 0
+
+# Test value of type list (invalid type)
+>>> bg.integer_validator("age", [3])
+Traceback (most recent call last):
+    ...
+TypeError: age must be an integer
