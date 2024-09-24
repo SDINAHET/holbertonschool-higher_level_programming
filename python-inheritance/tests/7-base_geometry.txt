@@ -104,3 +104,10 @@ TypeError: integer_validator() missing 1 required positional argument: 'value'
 Traceback (most recent call last):
     ...
 TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+# Test very large integers
+>>> bg.integer_validator("size", 1000000000)  # Valid input, no output expected
+>>> bg.integer_validator("size", -1000000000)  # Invalid: negative large number
+Traceback (most recent call last):
+    ...
+ValueError: size must be greater than 0
