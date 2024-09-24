@@ -14,7 +14,7 @@ class BaseGeometry:
         Validates the value as an integer greater than 0.
 
         Args:
-            name: The name of the variable (for error messages).
+            name: The name of the variable (for error messages --> string).
             value: The value to validate.
 
         Raises:
