@@ -44,3 +44,75 @@ TypeError: integer_validator() missing 2 required positional arguments: 'name' a
 Traceback (most recent call last):
     ...
 TypeError: age must be an integer
+
+# test en plus
+# Test valid integer values for integer_validator
+>>> bg.integer_validator("my_int", 12)  # Valid input, no output expected
+>>> bg.integer_validator("width", 1)  # Edge case: smallest positive integer
+
+# Test non-integer types
+>>> bg.integer_validator("height", 5.5)  # Float instead of integer
+Traceback (most recent call last):
+    ...
+TypeError: height must be an integer
+
+>>> bg.integer_validator("length", "string")
+Traceback (most recent call last):
+    ...
+TypeError: length must be an integer
+
+>>> bg.integer_validator("number", True)  # Boolean is not an integer
+Traceback (most recent call last):
+    ...
+TypeError: number must be an integer
+
+# Test values less than or equal to 0 (invalid cases)
+>>> bg.integer_validator("age", 0)
+Traceback (most recent call last):
+    ...
+ValueError: age must be greater than 0
+
+>>> bg.integer_validator("distance", -4)
+Traceback (most recent call last):
+    ...
+ValueError: distance must be greater than 0
+
+# Test value of type list (invalid type)
+>>> bg.integer_validator("age", [3])
+Traceback (most recent call last):
+    ...
+TypeError: age must be an integer
+
+# Test value of type dictionary (invalid type)
+>>> bg.integer_validator("age", {"value": 5})
+Traceback (most recent call last):
+    ...
+TypeError: age must be an integer
+
+# Test value of type None (invalid type)
+>>> bg.integer_validator("number", None)
+Traceback (most recent call last):
+    ...
+TypeError: number must be an integer
+
+# Test missing arguments
+>>> bg.integer_validator("age")
+Traceback (most recent call last):
+    ...
+TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+>>> bg.integer_validator()
+Traceback (most recent call last):
+    ...
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+# Test very large integers
+>>> bg.integer_validator("size", 1000000000)  # Valid input, no output expected
+>>> bg.integer_validator("size", -1000000000)  # Invalid: negative large number
+Traceback (most recent call last):
+    ...
+ValueError: size must be greater than 0
+
+# Test passing non-string as name
+>>> bg.integer_validator(123, 50)  # Assuming name should be string
+# No error expected because the problem assumes `name` is always valid string
