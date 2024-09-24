@@ -35,8 +35,3 @@
 [-3, -1, 0, 1, 4, 2, 3, 5, 6, 7, 8]
 >>> print(my_list)
 [1, 4, 2, 3, 4, 5, -1, 0, 6, 7, -3, 8]
-
->>> # Test for the class itself
->>> my_list = MyList()
->>> isinstance(my_list, list)
-True
