@@ -111,3 +111,23 @@ TypeError: integer_validator() missing 2 required positional arguments: 'name' a
 Traceback (most recent call last):
     ...
 ValueError: size must be greater than 0
+
+>>> bg.integer_validator("age", [3])
+Traceback (most recent call last):
+    ...
+TypeError: age must be an integer
+
+>>> bg.integer_validator("length", (1, 2))
+Traceback (most recent call last):
+    ...
+TypeError: length must be an integer
+
+>>> bg.integer_validator("number", {1: "one"})
+Traceback (most recent call last):
+    ...
+TypeError: number must be an integer
+
+>>> bg.integer_validator("items", {1, 2, 3})
+Traceback (most recent call last):
+    ...
+TypeError: items must be an integer
