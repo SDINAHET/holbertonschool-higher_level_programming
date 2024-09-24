@@ -1,5 +1,5 @@
-from importlib import import_module
-BaseGeometry = import_module('7-base_geometry').BaseGeometry
+>>> from importlib import import_module
+>>> BaseGeometry = import_module('7-base_geometry').BaseGeometry
 
 >>> bg = BaseGeometry()
 >>> bg.area()
