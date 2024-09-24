@@ -55,3 +55,43 @@ class Animal(ABC):
             subclass.
         """
         pass
+
+
+class Dog(Animal):
+    """
+    Dog Class
+
+    A subclass of the `Animal` abstract base class representing a dog.
+
+    Methods:
+        sound(): Returns the sound made by a dog, which is "Bark".
+    """
+
+    def sound(self):
+        """
+        Return the sound made by a dog.
+
+        Returns:
+            str: The string "Bark", representing the sound a dog makes.
+        """
+        return "Bark"
+
+
+class Cat(Animal):
+    """
+    Cat Class
+
+    A subclass of the `Animal` abstract base class representing a cat.
+
+    Methods:
+        sound(): Returns the sound made by a cat, which is "Meow".
+    """
+
+    def sound(self):
+        """
+        Return the sound made by a cat.
+
+        Returns:
+            str: The string "Meow", representing the sound a cat makes.
+        """
+        return "Meow"
