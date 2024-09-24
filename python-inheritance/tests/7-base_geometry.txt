@@ -45,7 +45,6 @@ Traceback (most recent call last):
     ...
 TypeError: age must be an integer
 
-# test en plus
 # Test valid integer values for integer_validator
 >>> bg.integer_validator("my_int", 12)  # Valid input, no output expected
 >>> bg.integer_validator("width", 1)  # Edge case: smallest positive integer
