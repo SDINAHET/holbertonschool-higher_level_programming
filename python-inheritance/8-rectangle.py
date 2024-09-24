@@ -1,4 +1,4 @@
-##!/usr/bin/python3
+#!/usr/bin/python3
 """
 This module defines the Rectangle class.
 The Rectangle class inherits from BaseGeometry and provides
