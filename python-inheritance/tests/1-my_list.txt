@@ -14,3 +14,24 @@
 [1, 2, 3, 4, 5]
 >>> print(my_list)
 [1, 4, 2, 3, 5]
+>>> my_list.clear()  # Clear the list
+>>> my_list.append(-1)
+>>> my_list.append(0)
+>>> my_list.append(5)
+>>> my_list.append(2)
+>>> my_list.print_sorted()
+[-1, 0, 2, 5]
+>>> print(my_list)
+[-1, 0, 5, 2]
+>>> my_list.append(-3)
+>>> my_list.append(3)
+>>> my_list.print_sorted()
+[-3, -1, 0, 2, 3, 5]
+>>> print(my_list)
+[-3, -1, 0, 5, 2, 3]
+
+>>> empty_list = MyList()
+>>> empty_list.print_sorted()  # Testing an empty list
+[]
+>>> print(empty_list)
+[]
