@@ -81,3 +81,26 @@ ValueError: distance must be greater than 0
 Traceback (most recent call last):
     ...
 TypeError: age must be an integer
+
+# Test value of type dictionary (invalid type)
+>>> bg.integer_validator("age", {"value": 5})
+Traceback (most recent call last):
+    ...
+TypeError: age must be an integer
+
+# Test value of type None (invalid type)
+>>> bg.integer_validator("number", None)
+Traceback (most recent call last):
+    ...
+TypeError: number must be an integer
+
+# Test missing arguments
+>>> bg.integer_validator("age")
+Traceback (most recent call last):
+    ...
+TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+>>> bg.integer_validator()
+Traceback (most recent call last):
+    ...
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
