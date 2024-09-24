@@ -78,7 +78,7 @@ class Circle(Shape):
 
     def perimeter(self):
         """Return the perimeter (circumference) of the circle."""
-        return 2 * math.pi * self.radius
+        return abs(2 * math.pi * self.radius) # 2*Pi*r en absolue
 
 
 class Rectangle(Shape):
