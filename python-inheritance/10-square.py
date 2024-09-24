@@ -2,8 +2,6 @@
 """Module for class Square, inheriting from Rectangle."""
 
 
-from importlib import import_module
-
 Rectangle = import_module('9-rectangle').Rectangle
 
 

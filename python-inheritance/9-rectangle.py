@@ -7,8 +7,6 @@ attributes and methods for handling rectangle shapes.
 """
 
 
-from importlib import import_module
-
 BaseGeometry = import_module('7-base_geometry').BaseGeometry
 
 
