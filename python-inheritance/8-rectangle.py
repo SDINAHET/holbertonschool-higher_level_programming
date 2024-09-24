@@ -6,10 +6,7 @@ The Rectangle class inherits from BaseGeometry and provides
 attributes and methods for handling rectangle shapes.
 """
 
-
-from importlib import import_module
-
-BaseGeometry = import_module('7-base_geometry').BaseGeometry
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 
 class Rectangle(BaseGeometry):
@@ -28,13 +25,6 @@ class Rectangle(BaseGeometry):
             ValueError: If width or height is less than or equal to 0.
         """
         self.integer_validator("width", width)
-        self.__width = width
         self.integer_validator("height", height)
+        self.__width = width
         self.__height = height
-
-    def area(self):
-        """Calculates the area of the rectangle."""
-        return self.__width * self.__height
-
-    # Remove the __str__ method to get the default representation of
-    # the object
