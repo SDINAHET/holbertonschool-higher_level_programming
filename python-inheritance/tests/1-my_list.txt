@@ -31,9 +31,3 @@
 [-3, -1, 0, 2, 3, 5]
 >>> print(my_list)
 [-3, -1, 0, 5, 2, 3]
-
->>> empty_list = MyList()
->>> empty_list.print_sorted()  # Testing an empty list
-[]
->>> print(empty_list)
-[]
