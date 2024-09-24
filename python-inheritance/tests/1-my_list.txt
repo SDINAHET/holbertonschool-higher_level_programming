@@ -43,6 +43,6 @@
 []
 
 >>> # Test for the class itself
->>> my_list2 = MyList()
->>> isinstance(my_list2, list)
+>>> my_list = MyList()
+>>> isinstance(my_list, list)
 True
