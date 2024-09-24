@@ -5,6 +5,7 @@ The Rectangle class inherits from BaseGeometry and provides
 attributes and methods for handling rectangle shapes.
 """
 
+
 BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 
