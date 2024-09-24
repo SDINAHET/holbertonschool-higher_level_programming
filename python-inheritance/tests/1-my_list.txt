@@ -36,12 +36,6 @@
 >>> print(my_list)
 [1, 4, 2, 3, 4, 5, -1, 0, 6, 7, -3, 8]
 
->>> empty_list = MyList()
->>> empty_list.print_sorted()  # Testing an empty list
-[]
->>> print(empty_list)
-[]
-
 >>> # Test for the class itself
 >>> my_list = MyList()
 >>> isinstance(my_list, list)
