@@ -54,3 +54,19 @@ TypeError: age must be an integer
 Traceback (most recent call last):
     ...
 TypeError: height must be an integer
+
+>>> bg.integer_validator("length", "string")
+Traceback (most recent call last):
+    ...
+TypeError: length must be an integer
+
+>>> bg.integer_validator("number", True)  # Boolean is not an integer
+Traceback (most recent call last):
+    ...
+TypeError: number must be an integer
+
+# Test values less than or equal to 0 (invalid cases)
+>>> bg.integer_validator("age", 0)
+Traceback (most recent call last):
+    ...
+ValueError: age must be greater than 0
