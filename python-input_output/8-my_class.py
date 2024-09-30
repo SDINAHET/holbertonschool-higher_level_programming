@@ -7,57 +7,89 @@ instances of the class and to represent those instances as strings.
 
 
 class MyClass:
-    """ MyClass represents a simple class with a name and a number.
-
-    Attributes:
-        name (str): The name of the instance.
-        number (int): The number associated with the instance,
-                      initialized to 0 by default.
-
-    Methods:
-        __init__(self, name):
-            Initializes a new instance of MyClass with the specified name.
-        __str__(self):
-            Returns a string representation of the instance in a formatted
-            manner.
+    """ My class representing a game entity with scoring capabilities.
     """
 
-    def __init__(self, name):
+    score = 0  # Class attribute to keep track of the score.
+
+    def __init__(self, name, number=4):
         """
         Initializes a new instance of MyClass.
 
         Args:
-            name (str): The name to associate with the instance.
-                        It should be a string value representing the
-                        desired name for this MyClass object.
+            name (str): The name of the player or team.
+            number (int, optional): An integer representing some numeric value
+            associated with the instance.
+            Defaults to 4.
+        """
+        self.__name = name  # A private attribute storing the name of the
+        # player or team.
+        self.number = number  # A public attribute storing a numeric value.
+        self.is_team_red = (self.number % 2) == 0  # Boolean indicating if the
+        # number is even.
 
-        Raises:
-            TypeError: If the provided name is not a string.
+    def win(self):
+        """
+        Increases the score by 1 to indicate a win.
+
+        This method is typically called when the instance wins a game or a
+        round, reflecting an increase in the score. The score is a class
+        attribute, meaning it is shared across all instances of MyClass.
 
         Example:
-            >>> obj = MyClass("John")
-            >>> print(obj.name)
-            John
+            >>> my_class_instance = MyClass("Team A")
+            >>> my_class_instance.win()
+            >>> my_class_instance.score
+            1
         """
-        if not isinstance(name, str):
-            raise TypeError("name must be a string")
-        self.name = name
-        self.number = 0  # The number is initialized to 0 by default.
+        self.score += 1  # Increment the score by 1.
+
+    def lose(self):
+        """
+        Decreases the score by 1 to indicate a loss.
+
+        This method is typically called when the instance loses a game or a
+        round, reflecting a decrease in the score. The score is a class
+        attribute, meaning it is shared across all instances of MyClass.
+
+        Example:
+            >>> my_class_instance = MyClass("Team A")
+            >>> my_class_instance.win()  # score becomes 1
+            >>> my_class_instance.lose()  # score becomes 0
+            >>> my_class_instance.score
+            0
+        """
+        self.score -= 1  # Decrement the score by 1.
 
     def __str__(self):
         """
         Returns a string representation of the MyClass instance.
 
-        This method formats the output to display the name and number
-        attributes of the instance in a readable format.
+        This string includes the name, number, and current score of the
+        instance, formatted for easy readability.
 
         Returns:
-            str: A string representation of the instance in the format:
-                 "[MyClass] <name> - <number>"
-
-        Example:
-            >>> obj = MyClass("Alice")
-            >>> print(obj)
-            [MyClass] Alice - 0
+            str: A formatted string describing the instance.
         """
-        return "[MyClass] {} - {:d}".format(self.name, self.number)
+        return "[MyClass] {} - {:d} => {:d}".format(
+            self.__name, self.number, self.score)
+
+def class_to_json(obj):
+    """
+    Returns the dictionary description with simple data structure
+    (list, dictionary, string, integer, and boolean) for JSON serialization
+    of an object. Ensures 'number' comes first in the dictionary.
+    """
+    # Extract the object's attributes as a dictionary
+    obj_dict = obj.__dict__
+
+    # Create a new dictionary with 'number' as the first key, if it exists
+    ordered_dict = {}
+    
+    if 'number' in obj_dict:
+        ordered_dict['number'] = obj_dict.pop('number')
+
+    # Add the remaining attributes
+    ordered_dict.update(obj_dict)
+
+    return ordered_dict
