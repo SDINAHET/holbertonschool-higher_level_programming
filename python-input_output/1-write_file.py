@@ -9,11 +9,14 @@ Functions:
 """
 
 def write_file(filename="", text=""):
-    """Writes a string to a text file (UTF8) and returns the number of characters written.
+    """Writes a string to a text file (UTF8) and returns the number of
+    characters written.
 
     Args:
-        filename (str): The name of the file to write to. Defaults to an empty string.
-        text (str): The string to write into the file. Defaults to an empty string.
+        filename (str): The name of the file to write to. Defaults to an empty
+        string.
+        text (str): The string to write into the file. Defaults to an empty
+        string.
 
     Description:
         - The function opens the file in write mode.
@@ -22,7 +25,8 @@ def write_file(filename="", text=""):
         - It returns the number of characters written into the file.
 
     Example:
-        >>> nb_characters = write_file("my_first_file.txt", "This School is so cool!\n")
+        >>> nb_characters = write_file("my_first_file.txt", "This School is so
+        cool!\n")
         >>> print(nb_characters)
         24
     """
