@@ -59,7 +59,7 @@ class CustomObject:
         try:
             with open(filename, 'wb') as f:
                 pickle.dump(self, f)
-            print(f"Object serialized and saved to '{filename}'.")
+            # print(f"Object serialized and saved to '{filename}'.")
         except Exception as e:
             print(f"Error serializing object: {e}")
 
@@ -79,7 +79,7 @@ class CustomObject:
         try:
             with open(filename, 'rb') as f:
                 obj = pickle.load(f)
-            print(f"Object deserialized from '{filename}'.")
+            # print(f"Object deserialized from '{filename}'.")
             return obj
         except (FileNotFoundError, pickle.UnpicklingError) as e:
             print(f"Error deserializing object: {e}")
