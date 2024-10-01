@@ -8,6 +8,7 @@ Class:
                   Provides methods to serialize and deserialize objects.
 """
 
+
 import pickle
 
 
@@ -58,8 +59,8 @@ class CustomObject:
         try:
             with open(filename, 'wb') as f:
                 pickle.dump(self, f)
-        except Exception:
-            pass  # Ignore any serialization errors
+        except Exception as e:
+            pass  # Use pass to avoid "Expected indented block" error
 
     @classmethod
     def deserialize(cls, filename):
@@ -76,6 +77,9 @@ class CustomObject:
         """
         try:
             with open(filename, 'rb') as f:
+                # obj = pickle.load(f)
                 return pickle.load(f)
-        except (FileNotFoundError, pickle.UnpicklingError):
+            # return obj
+        except (FileNotFoundError, pickle.UnpicklingError) as e:
+            pass  # Use pass to avoid "Expected indented block" error
             return None
