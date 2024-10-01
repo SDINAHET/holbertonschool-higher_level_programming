@@ -60,7 +60,7 @@ class CustomObject:
             with open(filename, 'wb') as f:
                 pickle.dump(self, f)
         except Exception as e:
-             pass  # Use pass to avoid "Expected indented block" error
+            pass  # Use pass to avoid "Expected indented block" error
 
     @classmethod
     def deserialize(cls, filename):
