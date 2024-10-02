@@ -55,18 +55,13 @@ class CustomObject:
             serialized.
 
         Returns:
-            CustomObject: The deserialized object, or None if there was an
-            error.
+            None
         """
-        if not os.path.exists(filename):
-            return None
-
         try:
             with open(filename, 'wb') as f:
                 pickle.dump(self, f)
         except (OSError, pickle.PicklingError) as e:
             # Handle file-related errors (OSError) or pickling errors
-            pass
             return None
 
     @classmethod
@@ -82,6 +77,9 @@ class CustomObject:
             CustomObject: The deserialized object, or None if there was an
             error.
         """
+        if not os.path.exists(filename):
+            return None
+
         try:
             with open(filename, 'rb') as f:
                 # obj = pickle.load(f)
@@ -89,5 +87,4 @@ class CustomObject:
             # return obj
         except (FileNotFoundError, pickle.UnpicklingError, OSError) as e:
             # Handle file not found, unpickling errors, and general I/O errors
-            pass
             return None
