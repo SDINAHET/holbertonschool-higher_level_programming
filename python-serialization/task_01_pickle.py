@@ -10,6 +10,7 @@ Class:
 
 
 import pickle
+import os
 
 
 class CustomObject:
@@ -54,8 +55,12 @@ class CustomObject:
             serialized.
 
         Returns:
-            None
+            CustomObject: The deserialized object, or None if there was an
+            error.
         """
+        if not os.path.exists(filename):
+            return None
+
         try:
             with open(filename, 'wb') as f:
                 pickle.dump(self, f)
