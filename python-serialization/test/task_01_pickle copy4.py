@@ -10,6 +10,7 @@ Class:
 
 
 import pickle
+import os
 
 
 class CustomObject:
@@ -59,7 +60,7 @@ class CustomObject:
         try:
             with open(filename, 'wb') as f:
                 pickle.dump(self, f)
-        except (pickle.PicklingError) as e:
+        except (OSError, pickle.PicklingError) as e:
             # Handle file-related errors (OSError) or pickling errors
             return None
 
@@ -76,12 +77,14 @@ class CustomObject:
             CustomObject: The deserialized object, or None if there was an
             error.
         """
+        if not os.path.exists(filename):
+            return None
 
         try:
             with open(filename, 'rb') as f:
                 # obj = pickle.load(f)
                 return pickle.load(f)
             # return obj
-        except (FileNotFoundError, pickle.UnpicklingError) as e:
+        except (FileNotFoundError, pickle.UnpicklingError, OSError) as e:
             # Handle file not found, unpickling errors, and general I/O errors
             return None
