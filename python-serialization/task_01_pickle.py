@@ -66,6 +66,7 @@ class CustomObject:
                 pickle.dump(self, f)
         except (OSError, pickle.PicklingError) as e:
             # Handle file-related errors (OSError) or pickling errors
+            pass
             return None
 
     @classmethod
@@ -88,4 +89,5 @@ class CustomObject:
             # return obj
         except (FileNotFoundError, pickle.UnpicklingError, OSError) as e:
             # Handle file not found, unpickling errors, and general I/O errors
+            pass
             return None
