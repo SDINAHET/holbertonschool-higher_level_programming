@@ -32,6 +32,17 @@ class CustomObject:
             age (int): The age of the person.
             is_student (bool): Whether the person is a student.
         """
+        # Vérification des types
+        if not isinstance(name, str):
+            raise TypeError(f"Name must be a string, not {type(
+                name).__name__}")
+        if not isinstance(age, int):
+            raise TypeError(f"Age must be an integer, not {type(
+                age).__name__}")
+        if not isinstance(is_student, bool):
+            raise TypeError(f"Is Student must be a boolean, not {type(
+                is_student).__name__}")
+
         self.name = name
         self.age = age
         self.is_student = is_student
@@ -56,7 +67,6 @@ class CustomObject:
         Returns:
             None
         """
-
         try:
             with open(filename, 'wb') as f:
                 pickle.dump(self, f)
