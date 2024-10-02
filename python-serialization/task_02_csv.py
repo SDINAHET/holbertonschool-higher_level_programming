@@ -3,7 +3,8 @@
 This module provides functionality to convert CSV data to JSON format.
 
 Functions:
-    convert_csv_to_json(filename): Reads data from a CSV file and writes it as JSON.
+    convert_csv_to_json(filename): Reads data from a CSV file and writes it as
+    JSON.
 """
 
 import csv
@@ -33,16 +34,9 @@ def convert_csv_to_json(filename):
             json.dump(
                 data_list,
                 json_file,
-                indent=4, # Adds indentation and newlines for readability
-                separators=(',', ': ') # Ensures a clean separation betwe items
+                indent=4,  # Adds indentation and newlines for readability
+                separators=(',', ': ')  # Ensures a clean separation betw items
             )
-
-        # Post-processing step: read the JSON and add newlines after commas separating objects
-        with open('data_02.json', 'r') as json_file:
-            json_data = json_file.read()
-
-        # Replace commas followed by a space and an opening curly brace with a comma and a newline
-        formatted_data = json_data.replace('}, {', '},\n    {')
 
         print(f"Data from {filename} has been converted to 'data_02.json'.")
         return True
