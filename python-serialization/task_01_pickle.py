@@ -101,9 +101,10 @@ class CustomObject:
             import pickle
             with open(filename, 'wb') as f:
                 pickle.dump(self, f)
+            return True
         except (pickle.PicklingError, IOError) as e:
             # Handle file-related errors (OSError) or pickling errors
-            return None
+            return False
 
     @classmethod
     def deserialize(cls, filename):
