@@ -30,12 +30,12 @@ def convert_csv_to_json(filename):
             # of dictionaries
 
         # Serialize the data list to JSON and write it to 'data.json'
-        with open('data_02.json', mode='w') as json_file:
+        with open('data.json', mode='w') as json_file:
             json.dump(
                 data_list,
                 json_file,
                 indent=4,  # Adds indentation and newlines for readability
-                separators=(',', ': ')  # Ensures a clean separation betw items
+                # separators=(',', ': ') Ensures a clean separation betw items
             )
 
         print(f"Data from {filename} has been converted to 'data_02.json'.")
