@@ -9,7 +9,7 @@ Class:
 """
 
 
-import pickle
+# import pickle
 
 
 class CustomObject:
@@ -98,6 +98,7 @@ class CustomObject:
             None
         """
         try:
+            import pickle
             with open(filename, 'wb') as f:
                 pickle.dump(self, f)
         except (pickle.PicklingError, IOError) as e:
