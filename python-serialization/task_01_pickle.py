@@ -47,6 +47,36 @@ class CustomObject:
         self.age = age
         self.is_student = is_student
 
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        if not isinstance(value, str):
+            raise TypeError("Name must be a string")
+        self._name = value
+
+    @property
+    def age(self):
+        return self._age
+
+    @age.setter
+    def age(self, value):
+        if not isinstance(value, int):
+            raise TypeError("Age must be an integer")
+        self._age = value
+
+    @property
+    def is_student(self):
+        return self._is_student
+
+    @is_student.setter
+    def is_student(self, value):
+        if not isinstance(value, bool):
+            raise TypeError("Is Student must be a boolean")
+        self._is_student = value
+
     def display(self):
         """
         Display the object's attributes in a formatted string.
