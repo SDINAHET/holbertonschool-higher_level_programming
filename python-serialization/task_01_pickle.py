@@ -56,6 +56,7 @@ class CustomObject:
         Returns:
             None
         """
+
         try:
             with open(filename, 'wb') as f:
                 pickle.dump(self, f)
@@ -76,7 +77,6 @@ class CustomObject:
             CustomObject: The deserialized object, or None if there was an
             error.
         """
-
         try:
             with open(filename, 'rb') as f:
                 # obj = pickle.load(f)
