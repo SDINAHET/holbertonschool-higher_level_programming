@@ -23,7 +23,7 @@ class CustomObject:
         is_student (bool): Whether the person is a student.
     """
 
-    def __init__(self, name, age, is_student):
+    def __init__(self, name: str, age: int, is_student: bool):
         """
         Initialize the CustomObject with name, age, and is_student.
 
