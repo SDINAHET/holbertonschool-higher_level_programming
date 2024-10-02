@@ -119,6 +119,7 @@ class CustomObject:
             error.
         """
         try:
+            import pickle
             with open(filename, 'rb') as f:
                 # obj = pickle.load(f)
                 return pickle.load(f)
