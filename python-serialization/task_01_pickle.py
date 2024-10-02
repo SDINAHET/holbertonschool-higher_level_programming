@@ -102,7 +102,7 @@ class CustomObject:
             with open(filename, 'wb') as f:
                 pickle.dump(self, f)
             return True
-        except (pickle.PicklingError, IOError) as e:
+        except (pickle.PickleError, IOError) as e:
             # Handle file-related errors (OSError) or pickling errors
             return False
 
@@ -125,6 +125,6 @@ class CustomObject:
                 # obj = pickle.load(f)
                 return pickle.load(f)
             # return obj
-        except (FileNotFoundError, pickle.UnpicklingError, IOError) as e:
+        except (FileNotFoundError, pickle.PickleError, IOError) as e:
             # Handle file not found, unpickling errors, and general I/O errors
             return None
