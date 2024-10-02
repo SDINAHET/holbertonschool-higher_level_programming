@@ -10,11 +10,11 @@ def main():
     }
 
     # Sérialiser les données en JSON et les sauvegarder dans un fichier
-    serialize_and_save_to_file(data_to_serialize, 'data.json')
+    serialize_and_save_to_file(data_to_serialize, 'data_00.json')
     print("Data serialized and saved to 'data.json'.")
 
     # Charger et désérialiser les données depuis le fichier JSON
-    deserialized_data = load_and_deserialize('data.json')
+    deserialized_data = load_and_deserialize('data_00.json')
 
     # Afficher les données désérialisées
     print("Deserialized Data:")

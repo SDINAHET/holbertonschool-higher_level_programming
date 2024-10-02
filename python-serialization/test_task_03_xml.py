@@ -8,7 +8,7 @@ def main():
         'city': 'New York'
     }
 
-    xml_file = "data.xml"
+    xml_file = "data_03.xml"
     serialize_to_xml(sample_dict, xml_file)
     print(f"Dictionary serialized to {xml_file}")
 

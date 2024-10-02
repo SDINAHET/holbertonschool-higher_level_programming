@@ -18,19 +18,33 @@ def convert_csv_to_json(filename):
         filename (str): The name of the input CSV file.
 
     Returns:
-        bool: True if the conversion was successful, False if an error occurred.
+        bool: True if the conversion was successful, False if an error
+        occurred.
     """
     try:
         # Open the CSV file and read its contents using DictReader
         with open(filename, mode='r', newline='') as csv_file:
             csv_reader = csv.DictReader(csv_file)
-            data_list = list(csv_reader)  # Convert the CSV rows into a list of dictionaries
+            data_list = list(csv_reader)  # Convert the CSV rows into a list
+            # of dictionaries
 
         # Serialize the data list to JSON and write it to 'data.json'
-        with open('data.json', mode='w') as json_file:
-            json.dump(data_list, json_file, indent=4)
+        with open('data_02.json', mode='w') as json_file:
+            json.dump(
+                data_list,
+                json_file,
+                indent=4, # Adds indentation and newlines for readability
+                separators=(',', ': ') # Ensures a clean separation betwe items
+            )
 
-        print(f"Data from {filename} has been converted to 'data.json'.")
+        # Post-processing step: read the JSON and add newlines after commas separating objects
+        with open('data_02.json', 'r') as json_file:
+            json_data = json_file.read()
+
+        # Replace commas followed by a space and an opening curly brace with a comma and a newline
+        formatted_data = json_data.replace('}, {', '},\n    {')
+
+        print(f"Data from {filename} has been converted to 'data_02.json'.")
         return True
 
     except FileNotFoundError:

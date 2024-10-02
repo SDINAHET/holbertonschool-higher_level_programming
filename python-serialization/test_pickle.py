@@ -7,9 +7,9 @@ print("Original Object:")
 obj.display()
 
 # Serialize the object
-obj.serialize("object.pkl")
+obj.serialize("object_01.pkl")
 
 # Deserialize the object into a new instance
-new_obj = CustomObject.deserialize("object.pkl")
+new_obj = CustomObject.deserialize("object_01.pkl")
 print("\nDeserialized Object:")
 new_obj.display()
