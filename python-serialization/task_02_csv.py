@@ -31,6 +31,7 @@ def convert_csv_to_json(filename):
 
         # Serialize the data list to JSON and write it to 'data.json'
         with open('data.json', mode='w') as json_file:
+        # for vscode test : with open('data_02.json', mode='w') as json_file:
             json.dump(
                 data_list,
                 json_file,
