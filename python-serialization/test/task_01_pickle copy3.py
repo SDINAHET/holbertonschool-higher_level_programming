@@ -59,8 +59,8 @@ class CustomObject:
         try:
             with open(filename, 'wb') as f:
                 pickle.dump(self, f)
-        except (OSError, pickle.PicklingError) as e:
-            # Handle file-related errors (OSError) or pickling errors
+        except Exception as e:
+            pass  # Use pass to avoid "Expected indented block" error
             return None
 
     @classmethod
@@ -81,6 +81,6 @@ class CustomObject:
                 # obj = pickle.load(f)
                 return pickle.load(f)
             # return obj
-        except (FileNotFoundError, pickle.UnpicklingError, OSError) as e:
-            # Handle file not found, unpickling errors, and general I/O errors
+        except (FileNotFoundError, pickle.UnpicklingError) as e:
+            pass  # Use pass to avoid "Expected indented block" error
             return None
