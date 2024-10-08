@@ -8,15 +8,15 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/':
             self.send_response(200)
-            self.send_header('Content-type', 'test/plain')
+            self.send_header('Content-type', 'text/plain')
             self.end_headers()
-            self.wfile.write(b'Hello,this is a simple API!')
+            self.wfile.write(b'Hello, this is a simple API!')
 
         elif self.path == '/data':
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            # Sample JSON dazta
+            # Sample JSON data
             data = {
                 "name": "John",
                 "age": 30,
@@ -27,16 +27,26 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         elif self.path == '/status':
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
-            self.end_header()
+            self.end_headers()
             status_data = {
                 "status": "OK"
             }
             self.wfile.write(json.dumps(status_data).encode('utf-8'))
 
+        elif self.path == '/info':
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            info_data = {
+                "version": "1.0",
+                "description": "A simple API built with http.server"
+            }
+            self.wfile.write(json.dumps(info_data).encode('utf-8'))
+
         else:
             self.send_response(404)
             self.send_header('Content-type', 'application/json')
-            self.end_header()
+            self.end_headers()
             error_data = {
                 "error": "Endpoint not found"
             }
