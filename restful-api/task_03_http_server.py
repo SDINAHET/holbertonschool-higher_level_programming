@@ -17,9 +17,11 @@ Functions:
         the specified port.
 """
 
-
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -31,6 +33,12 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         do_GET(self):
             Handles GET requests and routes them to specific endpoints.
     """
+
+    def set_headers(self, status_code, content_type):
+        """Set response headers."""
+        self.send_response(status_code)
+        self.send_header('Content-type', content_type)
+        self.end_headers()
 
     def do_GET(self):
         """
@@ -47,6 +55,8 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             - Any other path: Returns a 404 error with a JSON message
             indicating that the endpoint is not found.
         """
+        logging.info(f"Request path: {self.path}")
+
         if self.path == '/':
             self.send_response(200)
             self.send_header('Content-type', 'text/plain')
@@ -114,8 +124,12 @@ def run(
     """
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
-    print(f'Starting http server on port {port}...')
-    httpd.serve_forever()
+    logging.info(f'Starting http server on port {port}...')
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        logging.info("Server is shutting down.")
+        httpd.server_close()
 
 
 if __name__ == "__main__":
