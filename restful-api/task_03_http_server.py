@@ -1,256 +1,127 @@
 #!/usr/bin/python3
 """
-Simple HTTP Server
+Simple HTTP Server Module
 
-This script sets up a basic HTTP server using the http.server module.
-It handles different endpoints and serves text or JSON responses depending
-on the path requested by the client, as well as static files from the
-current directory.
+Ce module implémente un serveur HTTP simple en utilisant le module http.server de la bibliothèque standard de Python.
+Le serveur gère différents points de terminaison (endpoints) et répond en fonction du chemin demandé par le client.
+Il sert également des fichiers statiques depuis le répertoire courant.
+
+Fonctionnalités :
+- Répond à des requêtes GET sur différents endpoints.
+- Sert des réponses en texte brut ou en JSON selon le chemin demandé.
+- Gère les erreurs pour les endpoints non définis avec un statut 404.
+
+Usage :
+    python3 task_03_http_server.py
+
+Endpoints disponibles :
+- `/` : Retourne un message de bienvenue en texte brut.
+- `/data` : Retourne un objet JSON contenant des informations de base.
+- `/status` : Retourne l'état de l'API.
+- Toute autre route : Retourne une erreur 404 avec un message approprié.
 """
 
-import http.server
-import socketserver
+
+from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 import logging
-
-logging.basicConfig(level=logging.INFO)
-
-PORT = 8000
-Handler = http.server.SimpleHTTPRequestHandler
+from urllib.parse import urlparse
 
 
-class CustomHTTPRequestHandler(Handler):
+# Configuration du logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     """
-    A custom HTTP request handler that extends SimpleHTTPRequestHandler
-    to handle specific endpoints.
-    """
+    Gestionnaire de requêtes HTTP personnalisé.
 
-    def set_headers(self, status_code, content_type):
-        """Set response headers."""
-        self.send_response(status_code)
-        self.send_header('Content-type', content_type)
-        self.end_headers()
+    Cette classe gère les requêtes HTTP entrantes et répond en fonction du chemin demandé.
+    Elle hérite de BaseHTTPRequestHandler et surcharge la méthode do_GET pour traiter les requêtes GET.
+    """
 
     def do_GET(self):
-        """Handles GET requests and returns different responses based on the
-        requested path."""
-        logging.info(f"Request path: {self.path}")
+        """
+        Gère les requêtes GET.
 
-        if self.path == '/':
-            self.set_headers(200, 'text/plain')
-            self.wfile.write(b'Hello, this is a simple API!')
+        En fonction du chemin de la requête, cette méthode répond avec :
+        - Un message de bienvenue en texte brut pour la racine (`/`).
+        - Un objet JSON avec des données spécifiques pour `/data`.
+        - Un message de statut pour `/status`.
+        - Une erreur 404 pour les chemins non définis.
+        """
+        logging.info(f"Requête GET reçue pour le chemin : {self.path}")
 
-        elif self.path == '/data':
-            self.set_headers(200, 'application/json')
+        # Analyse du chemin de la requête
+        parsed_path = urlparse(self.path)
+        path = parsed_path.path
+
+        if path == '/':
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/plain')
+            self.end_headers()
+            response = 'Hello, this is a simple API!'
+            self.wfile.write(response.encode('utf-8'))
+            logging.info("Réponse envoyée : message de bienvenue.")
+
+        elif path == '/data':
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.end_headers()
             data = {
                 "name": "John",
                 "age": 30,
                 "city": "New York"
             }
-            self.wfile.write(json.dumps(data).encode('utf-8'))
+            response = json.dumps(data)
+            self.wfile.write(response.encode('utf-8'))
+            logging.info("Réponse envoyée : données JSON.")
 
-        elif self.path == '/status':
-            self.set_headers(200, 'application/json')
-            status_data = {
-                "status": "OK"
-            }
-            self.wfile.write(json.dumps(status_data).encode('utf-8'))
-
-        elif self.path == '/info':
-            self.set_headers(200, 'application/json')
-            info_data = {
-                "version": "1.0",
-                "description": "A simple API built with http.server"
-            }
-            self.wfile.write(json.dumps(info_data).encode('utf-8'))
+        elif path == '/status':
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/plain')
+            self.end_headers()
+            response = 'OK'
+            self.wfile.write(response.encode('utf-8'))
+            logging.info("Réponse envoyée : statut OK.")
 
         else:
-            # Gestion des erreurs pour les endpoints non définis
-            self.set_headers(404, 'application/json')
-            error_data = {
-                "error": "Endpoint not found"
-            }
-            self.wfile.write(json.dumps(error_data).encode('utf-8'))
-
-    def do_POST(self):
-        """Handle POST requests."""
-        logging.info(f"POST request for path: {self.path}")
-        path, _ = self.parse_path()
-
-        if path == '/items':
-            content_length = int(self.headers.get('Content-Length', 0))
-            post_data = self.rfile.read(content_length)
-            try:
-                item = json.loads(post_data)
-                if 'id' not in item:
-                    self.set_headers(400)
-                    self.wfile.write(json.dumps(
-                        {"error": "Item must have an 'id' field"})
-                                     .encode('utf-8'))
-                    return
-                self.data_store['items'].append(item)
-                self.set_headers(201)
-                self.wfile.write(json.dumps(
-                    {"message": "Item created", "item": item}).encode('utf-8'))
-            except json.JSONDecodeError:
-                self.set_headers(400)
-                self.wfile.write(json.dumps({"error": "Invalid JSON data"})
-                                 .encode('utf-8'))
-        else:
-            self.set_headers(404)
-            self.wfile.write(json.dumps({"error": "Endpoint not found"})
-                             .encode('utf-8'))
-
-    def do_PUT(self):
-        """Handle PUT requests."""
-        logging.info(f"PUT request for path: {self.path}")
-        path, _ = self.parse_path()
-
-        if path.startswith('/items/'):
-            item_id = path.split('/')[-1]
-            content_length = int(self.headers.get('Content-Length', 0))
-            put_data = self.rfile.read(content_length)
-            try:
-                new_item = json.loads(put_data)
-                for idx, item in enumerate(self.data_store['items']):
-                    if item['id'] == item_id:
-                        self.data_store['items'][idx] = new_item
-                        self.set_headers(200)
-                        self.wfile.write(json.dumps(
-                            {"message": "Item updated", "item": new_item})
-                                         .encode('utf-8'))
-                        return
-                # If item not found, create it
-                self.data_store['items'].append(new_item)
-                self.set_headers(201)
-                self.wfile.write(json.dumps(
-                    {"message": "Item created", "item": new_item})
-                                 .encode('utf-8'))
-            except json.JSONDecodeError:
-                self.set_headers(400)
-                self.wfile.write(json.dumps({"error": "Invalid JSON data"})
-                                 .encode('utf-8'))
-        else:
-            self.set_headers(404)
-            self.wfile.write(json.dumps({"error": "Endpoint not found"})
-                             .encode('utf-8'))
-
-    def do_PATCH(self):
-        """Handle PATCH requests."""
-        logging.info(f"PATCH request for path: {self.path}")
-        path, _ = self.parse_path()
-
-        if path.startswith('/items/'):
-            item_id = path.split('/')[-1]
-            content_length = int(self.headers.get('Content-Length', 0))
-            patch_data = self.rfile.read(content_length)
-            try:
-                updates = json.loads(patch_data)
-                for item in self.data_store['items']:
-                    if item['id'] == item_id:
-                        item.update(updates)
-                        self.set_headers(200)
-                        self.wfile.write(json.dumps(
-                            {"message": "Item updated", "item": item})
-                                         .encode('utf-8'))
-                        return
-                self.set_headers(404)
-                self.wfile.write(json.dumps(
-                    {"error": "Item not found"}).encode('utf-8'))
-            except json.JSONDecodeError:
-                self.set_headers(400)
-                self.wfile.write(json.dumps(
-                    {"error": "Invalid JSON data"}).encode('utf-8'))
-        else:
-            self.set_headers(404)
-            self.wfile.write(json.dumps(
-                {"error": "Endpoint not found"}).encode('utf-8'))
-
-    def do_DELETE(self):
-        """Handle DELETE requests."""
-        logging.info(f"DELETE request for path: {self.path}")
-        path, _ = self.parse_path()
-
-        if path.startswith('/items/'):
-            item_id = path.split('/')[-1]
-            for idx, item in enumerate(self.data_store['items']):
-                if item['id'] == item_id:
-                    del self.data_store['items'][idx]
-                    self.set_headers(200)
-                    self.wfile.write(json.dumps(
-                        {"message": "Item deleted"}).encode('utf-8'))
-                    return
-            self.set_headers(404)
-            self.wfile.write(json.dumps(
-                {"error": "Item not found"}).encode('utf-8'))
-        else:
-            self.set_headers(404)
-            self.wfile.write(json.dumps(
-                {"error": "Endpoint not found"}).encode('utf-8'))
-
-    def do_HEAD(self):
-        """Handle HEAD requests."""
-        logging.info(f"HEAD request for path: {self.path}")
-        path, _ = self.parse_path()
-
-        if path == '/':
-            self.set_headers(200, 'text/plain')
-        elif path == '/items':
-            self.set_headers(200)
-        elif path.startswith('/items/'):
-            self.set_headers(200)
-        else:
-            self.set_headers(404)
-
-    def do_OPTIONS(self):
-        """Handle OPTIONS requests."""
-        logging.info(f"OPTIONS request for path: {self.path}")
-        self.send_response(200)
-        self.send_header(
-            'Allow',
-            'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS, CONNECT, TRACE'
-            )
-        self.send_header('Content-Length', '0')
-        self.end_headers()
-
-    def do_CONNECT(self):
-        """Handle CONNECT requests."""
-        logging.info(f"CONNECT request for path: {self.path}")
-        # Pour des raisons de sécurité, on ne supporte pas CONNECT
-        self.set_headers(501, 'text/plain')
-        self.wfile.write(b"CONNECT method not implemented.\n")
-
-    def do_TRACE(self):
-        """Handle TRACE requests."""
-        logging.info(f"TRACE request for path: {self.path}")
-        # Echo back the received request
-        self.set_headers(200, 'message/http')
-        self.wfile.write(self.requestline.encode('utf-8'))
-        for header in self.headers:
-            header_line = f"{header}: {self.headers[header]}"
-            self.wfile.write(header_line.encode('utf-8') + b'\r\n')
-        self.wfile.write(b'\r\n')
+            # Gestion des endpoints non définis
+            self.send_response(404)
+            self.send_header('Content-Type', 'text/plain')
+            self.end_headers()
+            response = 'Endpoint not found'
+            self.wfile.write(response.encode('utf-8'))
+            logging.warning(f"Réponse envoyée : {response}.")
 
     def log_message(self, format, *args):
-        """Override to prevent default logging."""
-        logging.info("%s - - [%s] %s\n" % (
-                    self.client_address[0], self.log_date_time_string(),
-                    format % args))
+        """
+        Override de la méthode de logging par défaut pour utiliser le module logging.
 
+        Cela permet de contrôler la manière dont les messages de log sont affichés.
+        """
+        logging.info("%s - - [%s] %s" %
+                     (self.client_address[0],
+                      self.log_date_time_string(),
+                      format % args))
 
-def run(
-        server_class=http.server.HTTPServer,
-        handler_class=CustomHTTPRequestHandler
-        ):
-    """Starts the HTTP server."""
-    server_address = ('', PORT)
+def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler, port=8000):
+    """
+    Démarre le serveur HTTP.
+
+    Args:
+        server_class (HTTPServer, optional): Classe du serveur à utiliser. Par défaut, HTTPServer.
+        handler_class (BaseHTTPRequestHandler, optional): Classe du gestionnaire de requêtes. Par défaut, SimpleHTTPRequestHandler.
+        port (int, optional): Port sur lequel le serveur écoutera. Par défaut, 8000.
+    """
+    server_address = ('', port)
     httpd = server_class(server_address, handler_class)
-    logging.info(f'Starting http server on port {PORT}...')
+    logging.info(f'Serveur HTTP démarré sur le port {port}...')
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
-        logging.info("Server is shutting down.")
-        httpd.server_close()
+        pass
+    httpd.server_close()
+    logging.info('Serveur HTTP arrêté.')
 
 
 if __name__ == "__main__":
