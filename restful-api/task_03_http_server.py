@@ -18,6 +18,7 @@ Endpoints disponibles :
 - `/` : Retourne un message de bienvenue en texte brut.
 - `/data` : Retourne un objet JSON contenant des informations de base.
 - `/status` : Retourne l'état de l'API.
+- `/info`: Retourne la version
 - Toute autre route : Retourne une erreur 404 avec un message approprié.
 """
 
