@@ -1,0 +1,16 @@
+root@UID7E:/mnt/c/Users/steph/Documents/2ème trimestre holberton/projet2/holbertonschool-higher_level_programming/restful-api# ./task_03_http_server.py
+2024-10-09 10:18:05,802 - INFO - Serveur HTTP démarré sur le port 8000...
+2024-10-09 10:18:11,323 - INFO - Requête GET reçue pour le chemin : /data
+2024-10-09 10:18:11,323 - INFO - 127.0.0.1 - - [09/Oct/2024 10:18:11] "GET /data HTTP/1.1" 200 -
+2024-10-09 10:18:11,324 - INFO - Réponse envoyée : données JSON.
+2024-10-09 10:18:13,493 - INFO - Requête GET reçue pour le chemin : /info
+2024-10-09 10:18:13,493 - INFO - 127.0.0.1 - - [09/Oct/2024 10:18:13] "GET /info HTTP/1.1" 200 -
+2024-10-09 10:18:13,493 - INFO - Response sent: info.
+2024-10-09 10:18:15,233 - INFO - Requête GET reçue pour le chemin : /inf8
+2024-10-09 10:18:15,233 - INFO - 127.0.0.1 - - [09/Oct/2024 10:18:15] "GET /inf8 HTTP/1.1" 404 -
+2024-10-09 10:18:15,233 - WARNING - Réponse envoyée : Endpoint not found.
+2024-10-09 10:18:18,149 - INFO - Requête GET reçue pour le chemin : /
+2024-10-09 10:18:18,149 - INFO - 127.0.0.1 - - [09/Oct/2024 10:18:18] "GET / HTTP/1.1" 200 -
+2024-10-09 10:18:18,149 - INFO - Réponse envoyée : message de bienvenue.
+^C2024-10-09 10:39:15,261 - INFO - Serveur HTTP arrêté.
+root@UID7E:/mnt/c/Users/steph/Documents/2ème trimestre holberton/projet2/holbertonschool-higher_level_programming/restful-api#
