@@ -84,6 +84,14 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(response.encode('utf-8'))
             logging.info("Réponse envoyée : statut OK.")
 
+        elif path == '/info':
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/plain')
+            self.end_headers()
+            response = {"version": "1.0", "description": "A simple API built with http.server"}
+            self.wfile.write(json.dumps(response).encode('utf-8'))
+            logging.info("Response sent: info.")
+
         else:
             # Gestion des endpoints non définis
             self.send_response(404)
