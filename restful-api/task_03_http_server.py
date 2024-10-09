@@ -104,7 +104,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                       self.log_date_time_string(),
                       format % args))
 
-def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler, port=8000):
+def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler, port=8000):
     """
     Démarre le serveur HTTP.
 
