@@ -11,10 +11,11 @@ PORT = 5000 # 2.Creating Your First Endpoint / Visit http://localhost:5000 in yo
 # In-memory storage for users / dictionary / This should return a list of all the usernames stored in the API.
 # 3.Serving JSON Data / Users will be stored in memory using a dictionary with username as the key and the whole object (dictionary) as the value.
 # 5.Handling POST Requests/ Parse the incoming JSON data.
-users = {
-    "jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"},
-    "john": {"username": "john", "name": "John", "age": 30, "city": "New York"},
-}
+users = {}
+# users = {
+#    "jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"},
+#    "john": {"username": "john", "name": "John", "age": 30, "city": "New York"},
+# }
 
 @app.route("/") # decorator, followed by a function that returns the desired response for that route.
 def home(): # 2.Creating Your First Endpoint / Define a route for the root URL (“/”) and create a function
