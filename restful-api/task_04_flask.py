@@ -51,17 +51,6 @@ def add_user():
     if username in users:
         return jsonify({"error": "User already exists"}), 400
 
-# Dynamic route example
-@app.route("/user/<username>")
-def show_user_profile(username):
-    # A dictionary response using the dynamic content captured in the route
-    return jsonify({"username": username, "message": f"Hello, {username}!"})
-
-# Another dynamic route with an integer
-@app.route("/post/<int:post_id>")
-def show_post(post_id):
-    return jsonify({"post_id": post_id, "content": f"This is the content of post {post_id}."})
-
     # Add user to the dictionary  5.Handling POST Requests/Parse the incoming JSON
     users[username] = {
         "username": username,
@@ -73,7 +62,18 @@ def show_post(post_id):
     return jsonify({ # Add the new user to the users dictionary using username as the key
         "message": "User added",
         "user": users[username]
-    }) # 5.Handling POST Requests/ Return a confirmation message with the added user’s data.
+    }), 201 # 5.Handling POST Requests/ Return a confirmation message with the added user’s data.
+
+# Dynamic route example
+@app.route("/user/<username>")
+def show_user_profile(username):
+    # A dictionary response using the dynamic content captured in the route
+    return jsonify({"username": username, "message": f"Hello, {username}!"})
+
+# Another dynamic route with an integer
+@app.route("/post/<int:post_id>")
+def show_post(post_id):
+    return jsonify({"post_id": post_id, "content": f"This is the content of post {post_id}."})
 
 if __name__ == "__main__": # 2.Creating Your First Endpoint / Run the Flask development server
     app.run(port=5000, debug=False)
