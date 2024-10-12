@@ -54,7 +54,7 @@ def login():
         # Create a JWT token including the user role
         access_token = create_access_token(identity={'username': username, 'role': user['role']})
 #        return jsonify({"access_token": "<JWT_TOKEN>"})  # access_token
-        return jsonify({access_token=access_token})  # access_token
+        return jsonify({"access_token":access_token})  # access_token
     return jsonify({"error": "Invalid credentials"}), 401
 
 # JWT Protected Route 3b
@@ -97,6 +97,6 @@ def handle_needs_fresh_token_error(jwt_header, jwt_payload):
 
 
 if __name__ == '__main__':
-#    app.run(port=5000, debug=False)
+#     app.run(port=5000, debug=False)
     app.run()
 
