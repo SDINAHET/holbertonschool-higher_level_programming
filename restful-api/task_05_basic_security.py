@@ -54,8 +54,8 @@ def login():
     if user and check_password_hash(user['password'], password):
         # Create a JWT token including the user role
         access_token = create_access_token(identity={'username': username, 'role': user['role']})
-#        return jsonify({"access_token": "<JWT_TOKEN>"})  # access_token
-        return jsonify({"access_token": access_token}), 200  # access_token
+#        return jsonify({"access_token": "<JWT_TOKEN>"})  # access_token 7 check sur 11
+        return jsonify({"access_token": access_token}), 200  # access_token 11 check sur 11
     return jsonify({"error": "Invalid credentials"}), 401
 
 # JWT Protected Route 3b
