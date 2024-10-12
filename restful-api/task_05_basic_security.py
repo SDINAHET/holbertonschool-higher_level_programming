@@ -8,19 +8,19 @@ from werkzeug.security import generate_password_hash, check_password_hash # 2
 # 2a
 
 app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = "super-secret"  # Change this! 2b
+app.config['JWT_SECRET_KEY'] = 'super-secret'  # Change this! 2b
 
 auth = HTTPBasicAuth()
 jwt = JWTManager(app)
 
-PORT = 5000 # http://localhost:5000/
+# PORT = 5000 # http://localhost:5000/
 
 # In-memory user data 2a
-users = {}
-# users = {
-#      "user1": {"username": "user1", "password": "<hashed_password>", "role": "user"},
-#      "admin1": {"username": "admin1", "password": "<hashed_password>", "role": "admin"}
-#}
+# users = {}
+users = {
+      "user1": {"username": "user1", "password": "<hashed_password>", "role": "user"},
+      "admin1": {"username": "admin1", "password": "<hashed_password>", "role": "admin"}
+}
 
 # Basic Authentication 3a
 @auth.verify_password
@@ -85,4 +85,6 @@ def handle_needs_fresh_token_error(jwt_header, jwt_payload):
     return jsonify({"error": "Fresh token required"}), 401
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=False)
+#    app.run(port=5000, debug=False)
+    app.run(debug=True)
+
