@@ -16,11 +16,11 @@ jwt = JWTManager(app)
 PORT = 5000 # http://localhost:5000/
 
 # In-memory user data 2a
-# users = {}
-users = {
-      "user1": {"username": "user1", "password": "<hashed_password>", "role": "user"},
-      "admin1": {"username": "admin1", "password": "<hashed_password>", "role": "admin"}
-}
+users = {}
+# users = {
+#      "user1": {"username": "user1", "password": "<hashed_password>", "role": "user"},
+#      "admin1": {"username": "admin1", "password": "<hashed_password>", "role": "admin"}
+# }
 
 # Basic Authentication 3a
 @auth.verify_password
