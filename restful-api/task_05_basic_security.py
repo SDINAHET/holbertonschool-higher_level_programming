@@ -26,8 +26,8 @@ users = {
 @auth.verify_password
 def verify_password(username, password):
     user = users.get(username)
-    if users and check_password_hash(users[username]['password'], password):
-        return users
+    if user and check_password_hash(users[username]['password'], password):
+        return user
     return None
 
 @app.route('/basic-protected', methods=['GET']) # 3a
