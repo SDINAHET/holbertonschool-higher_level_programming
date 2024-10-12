@@ -8,7 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash # 2
 # 2a
 
 app = Flask(__name__)
-# app.config['SECRET_KEY'] = 'super_secret'  # Change this! 2b
+app.config['SECRET_KEY'] = 'super_secret'  # Change this! 2b
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'
 auth = HTTPBasicAuth()
 jwt = JWTManager(app)
@@ -47,10 +47,10 @@ def basic_protected():
 # JWT Authentication - Login Route 2b
 @app.route('/login', methods=['POST'])
 def login():
-    data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
-    user = users.get(username)
+    data = request.get_json() # Récupère le JSON payload de la requête
+    username = data.get('username')  # Extrait le nom d'utilisateur
+    password = data.get('password')  # Extrait le mot de passe
+    user = users.get(username) # ... (vérification des identifiants et génération du token JWT)
     if user and check_password_hash(user['password'], password):
         # Create a JWT token including the user role
         access_token = create_access_token(identity={'username': username, 'role': user['role']})
