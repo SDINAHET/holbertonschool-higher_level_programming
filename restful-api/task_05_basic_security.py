@@ -17,8 +17,15 @@ jwt = JWTManager(app)
 # In-memory user data 2a
 # users = {}
 users = {
-    "user1": {"username": "user1", "password": "<hashed_password>", "role": "user"},
-    "admin1": {"username": "admin1", "password": "<hashed_password>", "role": "admin"}
+    "user1": {
+        "username": "user1",
+        "password": "<hashed_password>",
+        "role": "user"
+    },
+    "admin1": {
+        "username": "admin1",
+        "password": "<hashed_password>",
+        "role": "admin"}
 }
 
 # Basic Authentication 3a
