@@ -25,7 +25,8 @@ users = {
     "admin1": {
         "username": "admin1",
         "password": "<hashed_password>",
-        "role": "admin"}
+        "role": "admin"
+    }
 }
 
 # Basic Authentication 3a
