@@ -55,7 +55,7 @@ def login():
         # Create a JWT token including the user role
         access_token = create_access_token(identity={'username': username, 'role': user['role']})
 #        return jsonify({"access_token": "<JWT_TOKEN>"})  # access_token
-        return jsonify({"access_token": "<JWT_TOKEN>"}), 200  # access_token
+        return jsonify({"access_token": access_token}), 200  # access_token
     return jsonify({"error": "Invalid credentials"}), 401
 
 # JWT Protected Route 3b
