@@ -1,35 +1,40 @@
 #!/usr/bin/python3
 
-from flask import Flask, jsonify, request
-from flask_httpauth import HTTPBasicAuth
+from flask import Flask, jsonify, request #
+from flask_httpauth import HTTPBasicAuth #
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
-from werkzeug.security import generate_password_hash, check_password_hash
+# 1b
+from werkzeug.security import generate_password_hash, check_password_hash # 2
+# 2a
 
 app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = 'your-secret-key'  # Use a strong secret key
+app.config['JWT_SECRET_KEY'] = "super-secret"  # Change this! 2b
 
 auth = HTTPBasicAuth()
 jwt = JWTManager(app)
 
-# In-memory user data
+PORT = 5000 # http://localhost:5000/
+
+# In-memory user data 2a
+# users = {}
 users = {
-    "user1": {"username": "user1", "password": generate_password_hash("password1"), "role": "user"},
-    "admin1": {"username": "admin1", "password": generate_password_hash("password2"), "role": "admin"}
+      "user1": {"username": "user1", "password": "<hashed_password>", "role": "user"},
+      "admin1": {"username": "admin1", "password": "<hashed_password>", "role": "admin"}
 }
 
-# Basic Authentication
+# Basic Authentication 3a
 @auth.verify_password
 def verify_password(username, password):
     if username in users and check_password_hash(users[username]['password'], password):
         return users[username]
     return None
 
-@app.route('/basic-protected', methods=['GET'])
+@app.route('/basic-protected', methods=['GET']) # 3a
 @auth.login_required
 def basic_protected():
     return jsonify({"message": "Basic Auth: Access Granted"})
 
-# JWT Authentication - Login Route
+# JWT Authentication - Login Route 2b
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -40,16 +45,16 @@ def login():
     if user and check_password_hash(user['password'], password):
         # Create a JWT token including the user role
         access_token = create_access_token(identity={"username": user["username"], "role": user["role"]})
-        return jsonify({"access_token": access_token})
+        return jsonify({"access_token":"<JWT_TOKEN>"})  # access_token
     return jsonify({"error": "Invalid credentials"}), 401
 
-# JWT Protected Route
+# JWT Protected Route 3b
 @app.route('/jwt-protected', methods=['GET'])
 @jwt_required()
 def jwt_protected():
     return jsonify({"message": "JWT Auth: Access Granted"})
 
-# Role-based JWT Route for Admin Only
+# Role-based JWT Route for Admin Only 4b
 @app.route('/admin-only', methods=['GET'])
 @jwt_required()
 def admin_only():
@@ -80,4 +85,4 @@ def handle_needs_fresh_token_error(jwt_header, jwt_payload):
     return jsonify({"error": "Fresh token required"}), 401
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5000, debug=False)
