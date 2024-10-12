@@ -33,7 +33,8 @@ def verify_password(username, password):
 @app.route('/basic-protected', methods=['GET']) # 3a
 @auth.login_required
 def basic_protected():
-    return jsonify({"message": "Basic Auth: Access Granted"})
+#    return jsonify({"message": "Basic Auth: Access Granted"})
+    return "Basic Auth: Access Granted"
 
 # JWT Authentication - Login Route 2b
 @app.route('/login', methods=['POST'])
@@ -53,7 +54,8 @@ def login():
 @app.route('/jwt-protected', methods=['GET'])
 @jwt_required()
 def jwt_protected():
-    return jsonify({"message": "JWT Auth: Access Granted"})
+#    return jsonify({"message": "JWT Auth: Access Granted"})
+    return "JWT Auth: Access Granted"
 
 # Role-based JWT Route for Admin Only 4b
 @app.route('/admin-only', methods=['GET'])
@@ -62,7 +64,8 @@ def admin_only():
     current_user = get_jwt_identity()
     if current_user['role'] != 'admin':
         return jsonify({"error": "Admin access only"}), 403
-    return jsonify({"message": "Admin Access: Granted"})
+#    return jsonify({"message": "Admin Access: Granted"})
+    return "Admin Access: Granted"
 
 # Error Handlers for JWT Authentication
 @jwt.unauthorized_loader
@@ -87,5 +90,5 @@ def handle_needs_fresh_token_error(jwt_header, jwt_payload):
 
 if __name__ == '__main__':
 #    app.run(port=5000, debug=False)
-    app.run(debug=True)
+    app.run()
 
