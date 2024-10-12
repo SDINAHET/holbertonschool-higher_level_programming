@@ -53,7 +53,7 @@ def login():
 @app.route('/jwt-protected', methods=['GET'])
 @jwt_required()
 def jwt_protected():
-#    return jsonify({"message": "JWT Auth: Access Granted"})
+#     return jsonify({"message": "JWT Auth: Access Granted"})
     return "JWT Auth: Access Granted"
 
 # Role-based JWT Route for Admin Only 4b
@@ -62,8 +62,8 @@ def jwt_protected():
 def admin_only():
     current_user = get_jwt_identity()
     if current_user['role'] != 'admin':
-        return jsonify({"error": "Admin access only"}), 403
-#    return jsonify({"message": "Admin Access: Granted"})
+        return jsonify({"error": "Admin access required"}), 403
+#     return jsonify({"message": "Admin Access: Granted"})
     return "Admin Access: Granted"
 
 # Error Handlers for JWT Authentication
@@ -86,6 +86,7 @@ def handle_revoked_token_error(jwt_header, jwt_payload):
 @jwt.needs_fresh_token_loader
 def handle_needs_fresh_token_error(jwt_header, jwt_payload):
     return jsonify({"error": "Fresh token required"}), 401
+
 
 if __name__ == '__main__':
 #    app.run(port=5000, debug=False)
