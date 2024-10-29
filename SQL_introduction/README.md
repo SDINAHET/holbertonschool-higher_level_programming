@@ -1,6 +1,6 @@
 # SQL - Introduction
 
-![Project badge](https://img.shields.io/badge/Progress-100%25-red)
+![Project badge](https://img.shields.io/badge/Progress-100%25-green)
 
 ## Project Overview
 
