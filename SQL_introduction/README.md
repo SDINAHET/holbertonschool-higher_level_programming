@@ -25,6 +25,99 @@ In this project, you will learn the following:
 - Understanding `subqueries`
 - How to use MySQL functions
 
+###  Describe Concepts
+Here's a concise introduction to each of these database concepts:
+
+1. What’s a `Database`?
+
+- A database is an organized collection of data that can be easily `accessed`, `managed`, and `updated`. `Databases store data in tables, rows, and columns to facilitate efficient retrieval and manipulation`.
+
+2. What’s a `Relational Database`?
+
+- A relational database stores data in tables with `rows` and `columns`, where `each table represents an entity`, and `each row represents a record`. `Relationships` between tables (like `foreign keys`) help organize and link related data. This structure `allows data` to be `queried using SQL`.
+
+3. What Does `SQL` Stand For?
+
+- `SQL` stands for `Structured Query Language`. It's a programming language specifically designed for managing and manipulating relational databases.
+
+4. What’s `MySQL`?
+
+- MySQL is an open-source relational database management system (`RDBMS`) that uses SQL for data operations. It's widely used in web applications and known for its `reliability`, `performance`, and `ease of use`.
+
+5. How to Create a Database in `MySQL`:
+
+- Use the following `SQL` command:
+```sql
+CREATE  DATABASE database_name;
+```
+- Replace `database_name` with your chosen name for the database.
+
+6. What Do `DDL` and `DML` Stand For?
+
+- `DDL` (`Data Definition Language`): Commands that `define` or `alter` the `structure` of the database and tables, such as `CREATE`, `ALTER`, `DROP`.
+- `DML` (`Data Manipulation Language`): Commands that `manipulate the data` in `tables`, such as `SELECT`, `INSERT`, `UPDATE`, `DELETE`.
+
+7. How to `CREATE` or `ALTER a Table`
+
+- `CREATE TABLE`: Creates a new table.
+```sql
+CREATE TABLE table_name (
+  column1 datatype,
+  column2 datatype,
+  ...
+);
+```
+- `ALTER TABLE`: Modifies an existing table
+```sql
+ALTER TABLE table_name
+ADD column_name datatype;
+```
+
+8. How to `SELECT Data` from a `Table`
+
+- Use the `SELECT` statement to `retrieve data`:
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+
+9. How to `INSERT`, `UPDATE`, or `DELETE Data`
+
+- `INSERT`: Adds new data to a table
+```sql
+INSERT INTO table_name (column1, column2, ...)
+VALUES (value1, value2, ...);
+```
+- `UPDATE`: Modifies existing data in a table.
+```sql
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+```
+- `DELETE`: Removes data from a table
+```sql
+DELETE FROM table_name
+WHERE condition;
+```
+
+10. What are Subqueries?
+
+- A subquery is a query nested within another query. It can be used in `SELECT`, `INSERT`, `UPDATE`, and `DELETE` statements to provide a value or condition.
+```sql
+SELECT column1
+FROM table_name
+WHERE column2 = (SELECT column2 FROM another_table WHERE condition);
+```
+
+11. How to Use `MySQL Functions`
+
+- `MySQL` includes built-in functions for operations on data, such as:
+	- `Aggregate functions` like `SUM()`, `COUNT()`, `AVG()`, `MIN()`, and `MAX()` for calculations on data sets.
+	- `String functions` like `CONCAT()`, `LENGTH()`, `UPPER()`, and `LOWER()` for string manipulation.
+	- `Date functions` like `NOW()`, `CURDATE()`, `YEAR()`, and `MONTH()` for handling date and time values.
+
+
 ### Learning Objectives
 By the end of this project, you should be able to explain the following concepts without assistance:
 
