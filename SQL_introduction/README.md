@@ -138,7 +138,7 @@ GitHub repository: `holbertonschool-higher_level_programming`
 Directory: `SQL_introduction`
 
 ## 0. List databases
-**mandatory**
+***mandatory***
 
 Write a script that lists all databases of your MySQL server.
 
@@ -168,7 +168,7 @@ SHOW DATABASES;
 
 
 ## 1. Create a database
-**mandatory**
+***mandatory***
 
 Write a script that creates the database `hbtn_0c_0` in your MySQL server.
 
@@ -205,7 +205,7 @@ CREATE DATABASE IF NOT EXISTS hbtn_0c_0;
 
 
 ## 2. Delete a database
-**mandatory**
+***mandatory***
 
 Write a script that deletes the database `hbtn_0c_0` in your MySQL server.
 
@@ -248,7 +248,7 @@ DROP DATABASE IF EXISTS hbtn_0c_0;
 
 
 ## 3. List tables
-**mandatory**
+***mandatory***
 
 Write a script that lists all the tables of a database in your MySQL server.
 
@@ -311,7 +311,7 @@ SHOW TABLES;
 
 
 ## 4. First table
-**mandatory**
+***mandatory***
 
 Write a script that creates a table called `first_table` in the current database in your MySQL server.
 
@@ -351,7 +351,7 @@ CREATE TABLE IF NOT EXISTS first_table (
 
 
 ## 5. Full description
-**mandatory**
+***mandatory***
 
 Write a script that prints the following description of the table `first_table` from the database `hbtn_0c_0` in your MySQL server.
 
@@ -380,7 +380,7 @@ SHOW CREATE TABLE first_table;
 ```
 
 6. List all in table
-**mandatory**
+***mandatory***
 
 Write a script that lists all rows of the table `first_table` from the database `hbtn_0c_0` in your MySQL server.
 
@@ -408,7 +408,7 @@ SELECT * FROM first_table;
 
 
 ## 7. First add
-**mandatory**
+***mandatory***
 
 Write a script that inserts a new row in the table `first_table` (database `hbtn_0c_0`) in your MySQL server.
 
@@ -453,7 +453,7 @@ INSERT INTO first_table (id, name) VALUES (89, 'Best School');
 
 
 ## 8. Count 89
-**mandatory**
+***mandatory***
 
 Write a script that displays the number of records with `id = 89` in the table `first_table` of the database `hbtn_0c_0` in your MySQL server.
 
@@ -481,7 +481,7 @@ SELECT COUNT(*) FROM first_table WHERE id = 89;
 
 
 ## 9. Full creation
-**mandatory**
+***mandatory***
 
 Write a script that creates a table `second_table` in the database `hbtn_0c_0` in your MySQL server and adds multiple rows.
 
@@ -531,7 +531,7 @@ INSERT INTO second_table (id, name, score) VALUES
 
 
 ## 10. List by best
-**mandatory**
+***mandatory***
 
 Write a script that lists all records of the table `second_table` of the database `hbtn_0c_0` in your MySQL server.
 
@@ -568,7 +568,7 @@ ORDER BY score DESC;
 
 
 ## 11. Select the best
-**mandatory**
+***mandatory***
 
 Write a script that lists all records with a `score >= 10` in the table `second_table` of the database `hbtn_0c_0` in your MySQL server.
 - Results should display both the score and the name (in this order).
@@ -602,7 +602,7 @@ ORDER BY score DESC;
 
 
 ## 12. Cheating is bad
-**mandatory**
+***mandatory***
 
 Write a script that updates the score of Bob to `10` in the table `second_table`.
 - You are not allowed to use Bob’s id value, only the `name` field.
@@ -638,7 +638,7 @@ WHERE name = 'Bob';
 
 
 ## 13. Score too low
-**mandatory**
+***mandatory***
 
 Write a script that removes all records with a `score <= 5` in the table `second_table` of the database `hbtn_0c_0` in your MySQL server.
 - The database name will be passed as an argument of the `mysql` command.
@@ -671,7 +671,7 @@ WHERE score <= 5;
 
 
 ## 14. Average
-**mandatory**
+***mandatory***
 
 Write a script that computes the score average of all records in the table `second_table` of the database `hbtn_0c_0` in your MySQL server.
 - The result column name should be `average`.
@@ -701,7 +701,7 @@ FROM second_table;
 
 
 ## 15. Number by score
-**mandatory**
+***mandatory***
 
 Write a script that lists the number of records with the same score in the table `second_table` of the database `hbtn_0c_0` in your MySQL server.
 
@@ -738,7 +738,7 @@ ORDER BY number DESC;
 
 
 ## 16. Say my name
-**mandatory**
+***mandatory***
 
 Write a script that lists all records of the table `second_table` of the database `hbtn_0c_0` in your MySQL server.
 - Don’t list rows without a `name` value.
