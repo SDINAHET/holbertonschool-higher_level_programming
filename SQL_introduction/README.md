@@ -1,6 +1,6 @@
 # SQL - Introduction
 
-![Project badge](https://img.shields.io/badge/Progress-0%25-red)
+![Project badge](https://img.shields.io/badge/Progress-100%25-red)
 
 ## Project Overview
 
@@ -98,23 +98,40 @@ $
 ```
 
 Tasks
-`0.List databases`: Write a script that lists all databases in your MySQL server.
-`1.Create a database`: Create the database hbtn_0c_0.
-`2.Delete a database`: Delete the database hbtn_0c_0.
-`3.List tables`: List all tables in a specified database.
-`4.First table`: Create a table called first_table in the current database.
-`5.Full description`: Print the description of the first_table.
-`6.List all in table`: List all rows in the first_table.
-`7.First add`: Insert a new row in the first_table.
-`8.Count 89`: Display the number of records with id = 89.
-`9.Full creation`: Create a second_table and insert multiple rows.
-`10.List by best`: List records from second_table ordered by score.
-`11.Select the best`: List records with a score >= 10.
+
+`-0.List databases`: Write a script that lists all databases in your MySQL server.
+
+`-1.Create a database`: Create the database hbtn_0c_0.
+
+`-2.Delete a database`: Delete the database hbtn_0c_0.
+
+`-3.List tables`: List all tables in a specified database.
+
+`-4.First table`: Create a table called first_table in the current database.
+
+`-5.Full description`: Print the description of the first_table.
+
+`-6.List all in table`: List all rows in the first_table.
+
+`-7.First add`: Insert a new row in the first_table.
+
+`-8.Count 89`: Display the number of records with id = 89.
+
+`-9.Full creation`: Create a second_table and insert multiple rows.
+
+`-10.List by best`: List records from second_table ordered by score.
+
+`-11.Select the best`: List records with a score >= 10.
+
 `12.Cheating is bad`: Update Bob's score to 10.
-`13.Score too low`: Remove records with a score <= 5.
-`14.Average`: Compute the average score.
-`15.Number by score`: List the number of records per score.
-`16.Say my name`: List records in second_table with a name value.
+
+`-13.Score too low`: Remove records with a score <= 5.
+
+`-14.Average`: Compute the average score.
+
+`-15.Number by score`: List the number of records per score.
+
+`-16.Say my name`: List records in second_table with a name value.
 
 Repo
 GitHub repository: `holbertonschool-higher_level_programming`
@@ -136,9 +153,18 @@ sys
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `0-list_databases.sql`
+
+
+```sql
+-- Task 0: List all databases
+SHOW DATABASES;
+```
 
 
 ## 1. Create a database
@@ -164,9 +190,18 @@ Enter password:
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `1-create_database_if_missing.sql`
+
+
+```sql
+-- Task 1: Create a database hbtn_0c_0 if it does not exist
+CREATE DATABASE IF NOT EXISTS hbtn_0c_0;
+```
 
 
 ## 2. Delete a database
@@ -198,9 +233,18 @@ sys
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `2-remove_database.sql`
+
+
+```sql
+-- Task 2: Delete the database hbtn_0c_0 if it exists
+DROP DATABASE IF EXISTS hbtn_0c_0;
+```
 
 
 ## 3. List tables
@@ -252,9 +296,18 @@ user
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `3-list_tables.sql`
+
+
+```sql
+-- Task 3: List all tables of a database
+SHOW TABLES;
+```
 
 
 ## 4. First table
@@ -280,9 +333,21 @@ first_table
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `4-first_table.sql`
+
+
+```sql
+-- Task 4: Create a table called first_table in the current database
+CREATE TABLE IF NOT EXISTS first_table (
+    id INT,
+    name VARCHAR(256)
+);
+```
 
 
 ## 5. Full description
@@ -301,12 +366,20 @@ first_table     CREATE TABLE `first_table` (\n  `id` int DEFAULT NULL,\n  `name`
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `5-full_table.sql`
 
 
-## 6. List all in table
+```sql
+-- Task 5: Print the full description of the table first_table
+SHOW CREATE TABLE first_table;
+```
+
+6. List all in table
 **mandatory**
 
 Write a script that lists all rows of the table `first_table` from the database `hbtn_0c_0` in your MySQL server.
@@ -320,9 +393,18 @@ Enter password:
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `6-list_values.sql`
+
+
+```sql
+-- Task 6: List all rows of the table first_table
+SELECT * FROM first_table;
+```
 
 
 ## 7. First add
@@ -356,9 +438,18 @@ id  name
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `7-insert_value.sql`
+
+
+```sql
+-- Task 7: Insert a new row in the table first_table
+INSERT INTO first_table (id, name) VALUES (89, 'Best School');
+```
 
 
 ## 8. Count 89
@@ -375,9 +466,18 @@ Enter password:
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `8-count_89.sql`
+
+
+```sql
+-- Task 8: Display the number of records with id = 89 in the table first_table
+SELECT COUNT(*) FROM first_table WHERE id = 89;
+```
 
 
 ## 9. Full creation
@@ -406,9 +506,28 @@ Enter password:
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `9-full_creation.sql`
+
+
+```sql
+-- Task 9: Create a table second_table and add multiple rows
+CREATE TABLE IF NOT EXISTS second_table (
+    id INT,
+    name VARCHAR(256),
+    score INT
+);
+
+INSERT INTO second_table (id, name, score) VALUES
+(1, 'John', 10),
+(2, 'Alex', 3),
+(3, 'Bob', 14),
+(4, 'George', 8);
+```
 
 
 ## 10. List by best
@@ -432,9 +551,20 @@ score   name
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `10-top_score.sql`
+
+
+```sql
+-- Task 10: List all records of the table second_table ordered by score
+SELECT score, name
+FROM second_table
+ORDER BY score DESC;
+```
 
 
 ## 11. Select the best
@@ -454,9 +584,21 @@ score   name
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `11-best_score.sql`
+
+
+```sql
+-- Task 11: List all records with a score >= 10
+SELECT score, name
+FROM second_table
+WHERE score >= 10
+ORDER BY score DESC;
+```
 
 
 ## 12. Cheating is bad
@@ -479,9 +621,21 @@ score   name
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `12-no_cheating.sql`
+
+
+```sql
+-- Task 12: Update the score of Bob to 10 in the second_tableUPDATE second_table
+UPDATE second_table
+SET score = 10
+WHERE name = 'Bob';
+```
+
 
 ## 13. Score too low
 **mandatory**
@@ -501,9 +655,19 @@ score   name
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `13-change_class.sql`
+
+
+```sql
+-- Task 13: Remove all records with a score <= 5 in the second_table
+DELETE FROM second_table
+WHERE score <= 5;
+```
 
 
 ## 14. Average
@@ -521,9 +685,19 @@ average
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `14-average.sql`
+
+
+```sql
+-- Task 14: Compute the score average of all records in the second_table
+SELECT AVG(score) AS average
+FROM second_table;
+```
 
 
 ## 15. Number by score
@@ -546,9 +720,21 @@ score   number
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `15-groups.sql`
+
+
+```sql
+-- Task 15: List the number of records with the same score in the second_table
+SELECT score, COUNT(*) AS number
+FROM second_table
+GROUP BY score
+ORDER BY number DESC;
+```
 
 
 ## 16. Say my name
@@ -573,6 +759,19 @@ score   name
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
+
 File: `16-no_link.sql`
+
+
+```sql
+-- Task 16: List all records with a name value in the second_table
+SELECT score, name
+FROM second_table
+WHERE name IS NOT NULL AND name != ''
+ORDER BY score DESC;
+```
+
