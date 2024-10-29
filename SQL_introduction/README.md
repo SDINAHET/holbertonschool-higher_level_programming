@@ -133,8 +133,10 @@ Tasks
 
 `-16.Say my name`: List records in second_table with a name value.
 
-Repo
+***Repo:***
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_introduction`
 
 ## 0. List databases
@@ -152,7 +154,7 @@ performance_schema
 sys
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -189,7 +191,7 @@ guillaume@ubuntu:~/$ cat 1-create_database_if_missing.sql | mysql -hlocalhost -u
 Enter password:
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -232,7 +234,7 @@ performance_schema
 sys
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -295,7 +297,7 @@ time_zone_transition_type
 user
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -332,7 +334,7 @@ Tables_in_hbtn_0c_0
 first_table
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -365,7 +367,7 @@ Table   Create Table
 first_table     CREATE TABLE `first_table` (\n  `id` int DEFAULT NULL,\n  `name` varchar(256) DEFAULT NULL\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -379,7 +381,7 @@ File: `5-full_table.sql`
 SHOW CREATE TABLE first_table;
 ```
 
-6. List all in table
+## 6. List all in table
 ***mandatory***
 
 Write a script that lists all rows of the table `first_table` from the database `hbtn_0c_0` in your MySQL server.
@@ -392,7 +394,7 @@ guillaume@ubuntu:~/$ cat 6-list_values.sql | mysql -hlocalhost -uroot -p hbtn_0c
 Enter password:
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -437,7 +439,7 @@ id  name
 89  Best School
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -465,7 +467,7 @@ Enter password:
 3
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -505,7 +507,7 @@ guillaume@ubuntu:~/$ cat 9-full_creation.sql | mysql -hlocalhost -uroot -p hbtn_
 Enter password:
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -550,7 +552,7 @@ score   name
 3   Alex
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -583,7 +585,7 @@ score   name
 10  John
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -620,7 +622,7 @@ score   name
 3   Alex
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -654,7 +656,7 @@ score   name
 8   George
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -684,7 +686,7 @@ average
 9.3333
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -719,7 +721,7 @@ score   number
 8   1
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -758,7 +760,7 @@ score   name
 10  Bob
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
