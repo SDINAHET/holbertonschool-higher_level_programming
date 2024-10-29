@@ -1,11 +1,10 @@
 # SQL - More Queries
 
-![Project badge]
+![Project badge](https://img.shields.io/badge/Progress-0%25-red)
 
 ## Project Overview
 
 - **Level**: Amateur
-- **Author**: Guillaume
 - **Weight**: 1
 - **Your score will be updated as you progress.**
 - **Manual QA review must be done (request it when you are done with the project).**

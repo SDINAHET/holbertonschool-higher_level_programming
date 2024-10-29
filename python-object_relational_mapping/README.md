@@ -1,3 +1,13 @@
+# SQL - Python Object Relational Mapping
+
+![Project badge](https://img.shields.io/badge/Progress-0%25-red)
+
+## Project Overview
+
+- **Level**: Amateur
+- **Weight**: 1
+- **Your score will be updated as you progress.**
+
 ## Before you start…
 
 Please make sure your MySQL server is in 8.0.
@@ -750,6 +760,9 @@ guillaume@ubuntu:~/$
 No test cases needed
 
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `python-object_relational_mapping`
+
 File:` model_city.py`, `14-model_city_fetch_by_state.py`
