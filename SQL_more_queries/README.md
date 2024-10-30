@@ -46,6 +46,131 @@ By the end of this project, you should be able to explain the following concepts
 - What subqueries are
 - What JOIN and UNION operations are
 
+### Describe concept:
+Here’s an overview of these `MySQL concepts and operations`:
+
+1. How to Create a `New MySQL User`
+
+- To create a new user in MySQL, use the following command
+```sql
+CREATE USER 'username'@'hostname' IDENTIFIED BY 'password';
+```
+- Replace `username` with the desired username, `hostname` with the server (usually `localhost`), and `password` with the user’s password. You can replace localhost with `%` to allow access from any host.
+
+2. How to `Manage Privileges` for a User to a Database or Table
+
+- Use the `GRANT` command to assign specific privileges to a user:
+```sql
+GRANT ALL PRIVILEGES ON database_name.* TO 'username'@'hostname';
+```
+- Replace `database_name` with the name of the database and username with the MySQL username. To apply changes:
+```sql
+FLUSH PRIVILEGES;
+```
+
+3. What’s a `PRIMARY KEY`?
+
+- `A primary key is a column (or combination of columns) in a table that uniquely identifies each row in that table`. It cannot contain `NULL` values and must be unique across the table.
+
+   - PRIMARY KEY:
+
+      - A primary key uniquely identifies each record in a table. It ensures that each row in the table is unique and does not allow NULL values.
+Example:
+```sql
+CREATE TABLE employees (
+  employee_id INT PRIMARY KEY,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50)
+);
+```
+   - Here, employee_id is the primary key, uniquely identifying each employee.
+
+4. What’s a `FOREIGN KEY`?
+
+- `A foreign key is a column (or combination of columns) that links records in one table to the primary key in another table, establishing a relationship between the two tables`. It enforces referential integrity.
+
+   - FOREIGN KEY:
+
+      - A foreign key in one table links to a primary key in another table. This establishes a relationship between the two tables, enforcing referential integrity (i.e., it ensures that a value in the foreign key column exists in the primary key column of the related table).
+
+      - Example:
+```sql
+CREATE TABLE departments (
+  department_id INT PRIMARY KEY,
+  department_name VARCHAR(50)
+);
+
+CREATE TABLE employees (
+  employee_id INT PRIMARY KEY,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  department_id INT,
+  FOREIGN KEY (department_id) REFERENCES departments(department_id)
+);
+```
+      - Here, the department_id in the employees table is a foreign key that links to the department
+
+5. How to Use `NOT NULL` and `UNIQUE` Constraints
+
+- `NOT NULL`: Ensures a column cannot contain `NULL` values
+```sql
+CREATE TABLE example (
+  column1 INT NOT NULL
+);
+```
+
+- `UNIQUE`: Ensures all values in a column are unique.
+```sql
+CREATE TABLE example (
+  column1 INT UNIQUE
+);
+```
+
+6. How to Retrieve `Data from Multiple Tables` in One Request
+
+- You can retrieve data from multiple tables using `JOIN` statements (`INNER JOIN`, `LEFT JOIN`, `RIGHT JOIN`) to combine rows based on related columns.
+- Example with `INNER JOIN`
+```sql
+SELECT a.column1, b.column2
+FROM table1 a
+INNER JOIN table2 b ON a.common_column = b.common_column;
+```
+
+7. What are `Subqueries`?
+
+- A `subquery is a query within another query`, used to return data that will be used by the main query.
+```sql
+SELECT column1
+FROM table1
+WHERE column2 = (SELECT column2 FROM table2 WHERE condition);
+```
+
+8. What are `JOIN` and `UNION`?
+
+- `JOIN`: Combines rows from two or more tables based on a related column. Types of joins include:
+
+   - `INNER JOIN`: Returns rows with matching values in both tables.
+
+   - `LEFT JOIN`: Returns all rows from the left table and matching rows from the right table (or `NULL` if no match).
+
+   - `RIGHT JOIN`: Returns all rows from the right table and matching rows from the left table (or `NULL` if no match).
+
+   - `FULL OUTER JOIN`: Returns rows when there’s a match in either table (not always supported in MySQL).
+- Exemple
+```sql
+SELECT a.column1, b.column2
+FROM table1 a
+LEFT JOIN table2 b ON a.common_column = b.common_column;
+```
+
+- `UNION`: Combines the results of two or more `SELECT` statements, returning all distinct rows.
+
+```sql
+SELECT column1 FROM table1
+UNION
+SELECT column1 FROM table2;
+```
+
 ## Requirements
 ### General
 - Allowed editors: `vi`, `vim`, `emacs`
@@ -93,6 +218,8 @@ $ echo "CREATE DATABASE hbtn_0d_tvshows;" | mysql -uroot -p
 $ curl "https://s3.eu-west-3.amazonaws.com/hbtn.intranet.project.files/holbertonschool-higher-level_programming+/274/hbtn_0d_tvshows.sql" -s | mysql -uroot -p hbtn_0d_tvshows
 $ echo "SELECT * FROM tv_genres" | mysql -uroot -p hbtn_0d_tvshows
 ```
+
+![alt text](image.png)
 
 ### Tasks
 0. **My Privileges!**
@@ -170,9 +297,29 @@ ERROR 1141 (42000) at line 4: There is no such grant defined for user 'user_0d_2
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_more_queries`
+
 File: `0-privileges.sql`
+
+
+```sql
+-- Task0:
+-- Create users if they do not exist
+CREATE USER IF NOT EXISTS 'user_0d_1'@'localhost';
+CREATE USER IF NOT EXISTS 'user_0d_2'@'localhost';
+
+-- Grant privileges to each user if they don't have any (adjust privileges if necessary)
+GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'localhost';
+GRANT ALL PRIVILEGES ON *.* TO 'user_0d_2'@'localhost';
+
+-- Show privileges for each user
+SHOW GRANTS FOR 'user_0d_1'@'localhost';
+SHOW GRANTS FOR 'user_0d_2'@'localhost';
+```
+
 
 ## 1. Root user
 
@@ -195,9 +342,25 @@ guillaume@ubuntu:~/$
 ```
 
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_more_queries`
+
 File: `1-create_user.sql`
+
+
+```sql
+-- Task 1:
+-- Create user 'user_0d_1' with the specified password if it does not exist
+CREATE USER IF NOT EXISTS 'user_0d_1'@'localhost' IDENTIFIED BY 'user_0d_1_pwd';
+
+-- Grant all privileges to 'user_0d_1' on all databases
+GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'localhost';
+
+-- Apply the changes
+FLUSH PRIVILEGES;
+```
 
 
 ## 2. Read user
@@ -223,9 +386,30 @@ GRANT SELECT ON `hbtn_0d_2`.* TO `user_0d_2`@`localhost`
 guillaume@ubuntu:~/$
 ```
 Repo:
+
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_more_queries`
+
 File: `2-create_read_user.sql`
+
+
+```sql
+-- Task 2:
+-- Create the database 'hbtn_0d_2' if it does not exist
+CREATE DATABASE IF NOT EXISTS hbtn_0d_2;
+
+-- Create user 'user_0d_2' with the specified password if it does not exist
+CREATE USER IF NOT EXISTS 'user_0d_2'@'localhost' IDENTIFIED BY 'user_0d_2_pwd';
+
+-- Grant only SELECT privilege on the 'hbtn_0d_2' database to 'user_0d_2'
+GRANT SELECT ON hbtn_0d_2.* TO 'user_0d_2'@'localhost';
+
+-- Apply the changes
+FLUSH PRIVILEGES;
+```
+
 
 ### 3. Always a name
 
@@ -255,9 +439,22 @@ id  name
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_more_queries`
+
 File: `3-force_name.sql`
+
+
+```sql
+-- Task 3:
+-- Create the table 'force_name' if it does not exist
+CREATE TABLE IF NOT EXISTS force_name (
+    id INT,
+    name VARCHAR(256) NOT NULL
+);
+```
 
 
 ## 4. ID can't be null
@@ -287,9 +484,23 @@ id  name
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_more_queries`
+
 File: `4-never_empty.sql`
+
+
+```sql
+-- Task 4:
+-- Create the table 'id_not_null' if it does not exist
+CREATE TABLE IF NOT EXISTS id_not_null (
+    id INT DEFAULT 1,
+    name VARCHAR(256)
+);
+
+```
 
 
 ## 5. Unique ID
@@ -319,9 +530,23 @@ id  name
 guillaume@ubuntu:~/$
 ```
 Repo:
-GitHub repository: holbertonschool-higher_level_programming
-Directory: SQL_more_queries
-File: 5-unique_id.sql
+
+GitHub repository:
+`holbertonschool-higher_level_programming`
+
+Directory: `SQL_more_queries`
+
+File: `5-unique_id.sql`
+
+
+```sql
+-- Task 5:
+-- Create the table 'unique_id' if it does not exist
+CREATE TABLE IF NOT EXISTS unique_id (
+    id INT DEFAULT 1 UNIQUE,
+    name VARCHAR(256)
+);
+```
 
 
 ## 6. States table
@@ -346,9 +571,29 @@ id  name
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_more_queries`
+
 File: `6-states.sql`
+
+
+```sql
+-- Task 6:
+-- Create the database if it does not exist
+CREATE DATABASE IF NOT EXISTS hbtn_0d_usa;
+
+-- Use the newly created or existing database
+USE hbtn_0d_usa;
+
+-- Create the table 'states' if it does not exist
+CREATE TABLE IF NOT EXISTS states (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(256) NOT NULL,
+    PRIMARY KEY (id)
+);
+```
 
 
 ## 7. Cities table
@@ -379,9 +624,40 @@ id  state_id    name
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_more_queries`
+
 File: `7-cities.sql`
+
+
+```sql
+-- Task 7:
+-- Create the database if it does not exist
+CREATE DATABASE IF NOT EXISTS hbtn_0d_usa;
+
+-- Use the newly created or existing database
+USE hbtn_0d_usa;
+
+-- Create the 'states' table if it doesn't exist to avoid foreign key constraint issues
+CREATE TABLE IF NOT EXISTS states (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(256) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+-- Create the 'cities' table if it does not exist
+CREATE TABLE IF NOT EXISTS cities (
+    id INT NOT NULL AUTO_INCREMENT,
+    state_id INT NOT NULL,
+    name VARCHAR(256) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (state_id) REFERENCES states(id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+```
+
 
 ## 8. Cities of California
 
@@ -415,9 +691,23 @@ id  name
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_more_queries`
+
 File: `8-cities_of_california_subquery.sql`
+
+
+```sql
+-- Task 8:
+-- Select cities in California from the cities table based on the state_id of California from the states table
+SELECT id, name
+FROM cities
+WHERE state_id = (SELECT id FROM states WHERE name = 'California')
+ORDER BY id ASC;
+```
+
 
 ## 9. Cities by States
 
@@ -455,9 +745,22 @@ id  name    name
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_more_queries`
+
 File: `9-cities_by_state_join.sql`
+
+
+```sql
+-- Task 9:
+-- Select cities with their states from the cities and states tables using a JOIN on state_id
+SELECT cities.id, cities.name, states.name
+FROM cities
+JOIN states ON cities.state_id = states.id
+ORDER BY cities.id ASC;
+```
 
 
 ## 10 Genre ID by show
@@ -495,9 +798,22 @@ The Last Man on Earth   5
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: ``SQL_more_queries`
+
 File: `10-genre_id_by_show.sql`
+
+
+```sql
+-- Task 10:
+-- Select titles and genre IDs for shows that have linked genres
+SELECT tv_shows.title, tv_show_genres.genre_id
+FROM tv_shows
+JOIN tv_show_genres ON tv_shows.id = tv_show_genres.show_id
+ORDER BY tv_shows.title ASC, tv_show_genres.genre_id ASC;
+```
 
 
 ## 11. Genre ID for all shows
@@ -538,9 +854,22 @@ The Last Man on Earth   5
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_more_queries`
+
 File: `11-genre_id_all_shows.sql`
+
+
+```sql
+-- Task 11:
+-- Select titles and genre IDs for all shows, displaying NULL for shows without genres
+SELECT tv_shows.title, tv_show_genres.genre_id
+FROM tv_shows
+LEFT JOIN tv_show_genres ON tv_shows.id = tv_show_genres.show_id
+ORDER BY tv_shows.title ASC, tv_show_genres.genre_id ASC;
+```
 
 
 ## 12. No genre
@@ -560,9 +889,23 @@ Homeland    NULL
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_more_queries`
+
 File: `12-no_genre.sql`
+
+
+```sql
+-- Task 12:
+-- Select titles of shows without a linked genre
+SELECT tv_shows.title, tv_show_genres.genre_id
+FROM tv_shows
+LEFT JOIN tv_show_genres ON tv_shows.id = tv_show_genres.show_id
+WHERE tv_show_genres.genre_id IS NULL
+ORDER BY tv_shows.title ASC;
+```
 
 
 ## 13. Number of shows by genre
@@ -592,9 +935,24 @@ Fantasy 1
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_more_queries`
+
 File: `13-count_shows_by_genre.sql`
+
+
+```sql
+-- Task 13:
+-- Count the number of shows linked to each genre
+SELECT tv_genres.name AS genre, COUNT(tv_show_genres.show_id) AS number_of_shows
+FROM tv_genres
+JOIN tv_show_genres ON tv_genres.id = tv_show_genres.genre_id
+GROUP BY tv_genres.name
+HAVING number_of_shows > 0
+ORDER BY number_of_shows DESC;
+```
 
 
 ## 14. My genres
@@ -619,9 +977,24 @@ Thriller
 guillaume@ubuntu:~/$
 ```
 Repo:
-GitHub repository: holbertonschool-higher_level_programming
-Directory: SQL_more_queries
-File: 14-my_genres.sql
+
+GitHub repository: `holbertonschool-higher_level_programming`
+
+Directory: `SQL_more_queries`
+
+File: `14-my_genres.sql`
+
+
+```sql
+-- Task 14:
+-- List all genres of the show 'Dexter'
+SELECT tv_genres.name
+FROM tv_shows
+JOIN tv_show_genres ON tv_shows.id = tv_show_genres.show_id
+JOIN tv_genres ON tv_show_genres.genre_id = tv_genres.id
+WHERE tv_shows.title = 'Dexter'
+ORDER BY tv_genres.name ASC;
+```
 
 
 ## 15. Only Comedy
@@ -645,9 +1018,25 @@ The Last Man on Earth
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_more_queries`
+
 File: `15-comedy_only.sql`
+
+
+```sql
+-- Task 15:
+-- List all Comedy shows
+SELECT tv_shows.title
+FROM tv_shows
+JOIN tv_show_genres ON tv_shows.id = tv_show_genres.show_id
+JOIN tv_genres ON tv_show_genres.genre_id = tv_genres.id
+WHERE tv_genres.name = 'Comedy'
+ORDER BY tv_shows.title ASC;
+```
+
 
 ## 16. List shows and genres
 
@@ -688,6 +1077,21 @@ The Last Man on Earth   Drama
 guillaume@ubuntu:~/$
 ```
 Repo:
+
 GitHub repository: `holbertonschool-higher_level_programming`
+
 Directory: `SQL_more_queries`
+
 File: `16-shows_by_genre.sql`
+
+
+```sql
+-- Task 16:
+-- List all shows with their linked genres
+SELECT tv_shows.title, tv_genres.name
+FROM tv_shows
+LEFT JOIN tv_show_genres ON tv_shows.id = tv_show_genres.show_id
+LEFT JOIN tv_genres ON tv_show_genres.genre_id = tv_genres.id
+ORDER BY tv_shows.title ASC, tv_genres.name ASC;
+```
+
