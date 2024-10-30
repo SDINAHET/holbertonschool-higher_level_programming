@@ -309,7 +309,7 @@ File: `0-privileges.sql`
 -- Task0:
 -- Create users if they do not exist
 CREATE USER IF NOT EXISTS 'user_0d_1'@'localhost';
--- CREATE USER IF NOT EXISTS 'user_0d_2'@'localhost';
+CREATE USER IF NOT EXISTS 'user_0d_2'@'localhost';
 -- CREATE USER 'user_0d_1'@'localhost';
 -- CREATE USER 'user_0d_2'@'localhost';
 
