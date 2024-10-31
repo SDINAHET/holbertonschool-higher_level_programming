@@ -7,8 +7,8 @@ CREATE USER IF NOT EXISTS 'user_0d_2'@'localhost';
 
 -- Grant privileges to each user if they don't have any (adjust privileges if necessary)
 -- GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'localhost';
-GRANT ALL PRIVILEGES ON *.* TO 'user_0d_2'@'localhost';
--- GRANT SELECT ON *.* TO 'user_0d_2'@'localhost'; -- Adjust as necessary
+-- GRANT ALL PRIVILEGES ON *.* TO 'user_0d_2'@'localhost';
+GRANT SELECT ON *.* TO 'user_0d_2'@'localhost'; -- Adjust as necessary
 
 -- Apply the changes
 FLUSH PRIVILEGES;
