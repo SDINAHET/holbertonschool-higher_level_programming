@@ -296,7 +296,7 @@ GRANT APPLICATION_PASSWORD_ADMIN,AUDIT...,XA_RECOVER_ADMIN ON *.* TO `user_0d_1`
 ERROR 1141 (42000) at line 4: There is no such grant defined for user 'user_0d_2' on host 'localhost'
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -349,7 +349,7 @@ ERROR 1141 (42000) at line 4: There is no such grant defined for user 'user_0d_2
 guillaume@ubuntu:~/$
 ```
 
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -393,7 +393,7 @@ GRANT USAGE ON *.* TO `user_0d_2`@`localhost`
 GRANT SELECT ON `hbtn_0d_2`.* TO `user_0d_2`@`localhost`
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 
 GitHub repository: `holbertonschool-higher_level_programming`
@@ -446,7 +446,7 @@ id  name
 89  Best School
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -491,7 +491,7 @@ id  name
 1   Best
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -537,7 +537,7 @@ id  name
 89  Best School
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository:
 `holbertonschool-higher_level_programming`
@@ -578,7 +578,7 @@ id  name
 3   Texas
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -631,7 +631,7 @@ id  state_id    name
 1   1   San Francisco
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -698,7 +698,7 @@ id  name
 2   San Jose
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -752,7 +752,7 @@ id  name    name
 8   Dallas  Texas
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -805,7 +805,7 @@ The Last Man on Earth   1
 The Last Man on Earth   5
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -861,7 +861,7 @@ The Last Man on Earth   1
 The Last Man on Earth   5
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -896,7 +896,7 @@ Better Call Saul    NULL
 Homeland    NULL
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -942,7 +942,7 @@ Adventure   1
 Fantasy 1
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -984,7 +984,7 @@ Suspense
 Thriller
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -1025,7 +1025,7 @@ The Big Bang Theory
 The Last Man on Earth
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
@@ -1084,7 +1084,7 @@ The Last Man on Earth   Comedy
 The Last Man on Earth   Drama
 guillaume@ubuntu:~/$
 ```
-Repo:
+***Repo:***
 
 GitHub repository: `holbertonschool-higher_level_programming`
 
