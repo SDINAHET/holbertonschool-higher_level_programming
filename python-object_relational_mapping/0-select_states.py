@@ -1,4 +1,21 @@
 #!/usr/bin/python3
+"""
+Module 0-select_states
+This script connects to a MySQL database and lists all states from the
+database `hbtn_0e_0_usa`.
+
+The script takes three command-line arguments:
+1. MySQL username
+2. MySQL password
+3. Database name
+
+It connects to a MySQL server running on `localhost` at port `3306`,
+executes a query to select all states sorted by their `id` in ascending order,
+and prints each row retrieved.
+
+Example usage:
+    ./0-select_states.py <mysql_username> <mysql_password> <database_name>
+"""
 
 import MySQLdb
 import sys
