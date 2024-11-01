@@ -277,6 +277,7 @@ $ echo "SELECT * FROM tv_genres" | mysql -uroot -p hbtn_0d_tvshows
 # Tasks
 
 ## 0. My Privileges!
+***mandatory***
 
 Write a script that lists all privileges of the MySQL users `user_0d_1` and `user_0d_2` on your server (in localhost).
 ```bash
@@ -330,6 +331,7 @@ SHOW GRANTS FOR 'user_0d_2'@'localhost';
 
 
 ## 1. Root user
+***mandatory***
 
 Write a script that creates the MySQL server user `user_0d_1`.
 
@@ -372,6 +374,7 @@ FLUSH PRIVILEGES;
 
 
 ## 2. Read user
+***mandatory***
 
 Write a script that creates the database `hbtn_0d_2` and the `user user_0d_2`.
 
@@ -420,6 +423,7 @@ FLUSH PRIVILEGES;
 
 
 ### 3. Always a name
+***mandatory***
 
 Write a script that creates the table `force_name` on your MySQL server.
 - `force_name` description:
@@ -466,6 +470,8 @@ CREATE TABLE IF NOT EXISTS force_name (
 
 
 ## 4. ID can't be null
+***mandatory***
+
 Write a script that creates the table `id_not_null` on your MySQL server.
 - `id_not_null` description:
 	- `id` INT with the default value `1`
@@ -512,6 +518,7 @@ CREATE TABLE IF NOT EXISTS id_not_null (
 
 
 ## 5. Unique ID
+***mandatory***
 
 Write a script that creates the table `unique_id` on your MySQL server.
 - `unique_id` description:
@@ -558,6 +565,7 @@ CREATE TABLE IF NOT EXISTS unique_id (
 
 
 ## 6. States table
+***mandatory***
 
 Write a script that creates the database `hbtn_0d_usa` and the table `states` (in the database `hbtn_0d_usa`) on your MySQL server.
 - `states` description:
@@ -605,6 +613,7 @@ CREATE TABLE IF NOT EXISTS states (
 
 
 ## 7. Cities table
+***mandatory***
 
 Write a script that creates the database `hbtn_0d_usa` and the table `cities` (in the database `hbtn_0d_usa`) on your MySQL server.
 - `cities` description:
@@ -668,6 +677,7 @@ CREATE TABLE IF NOT EXISTS cities (
 
 
 ## 8. Cities of California
+***mandatory***
 
 Write a script that lists all the cities of California that can be found in the database `hbtn_0d_usa`.
 - The `states` table contains only one record where `name = California` (but the `id` can be different, as per the example)
@@ -718,6 +728,7 @@ ORDER BY id ASC;
 
 
 ## 9. Cities by States
+***mandatory***
 
 Write a script that lists all cities contained in the database `hbtn_0d_usa`.
 - Each record should display: `cities.id` - `cities.name` - `states.name`
@@ -772,6 +783,7 @@ ORDER BY cities.id ASC;
 
 
 ## 10 Genre ID by show
+***mandatory***
 
 Import the database dump from `hbtn_0d_tvshows` to your MySQL server: `download` --> https://s3.eu-west-3.amazonaws.com/hbtn.intranet.project.files/holbertonschool-higher-level_programming+/274/hbtn_0d_tvshows.sql
 
@@ -825,6 +837,7 @@ ORDER BY tv_shows.title ASC, tv_show_genres.genre_id ASC;
 
 
 ## 11. Genre ID for all shows
+***mandatory***
 
 Import the database dump of `hbtn_0d_tvshows` to your MySQL server: `download` (same as `10-genre_id_by_show.sql`)
 
@@ -881,6 +894,7 @@ ORDER BY tv_shows.title ASC, tv_show_genres.genre_id ASC;
 
 
 ## 12. No genre
+***mandatory***
 
 Import the database dump from `hbtn_0d_tvshows` to your MySQL server: `download` (same as `11-genre_id_all_shows.sql` --> https://s3.eu-west-3.amazonaws.com/hbtn.intranet.project.files/holbertonschool-higher-level_programming+/274/hbtn_0d_tvshows.sql)
 Write a script that lists all shows contained in `hbtn_0d_tvshows` without a genre linked.
@@ -917,6 +931,7 @@ ORDER BY tv_shows.title ASC;
 
 
 ## 13. Number of shows by genre
+***mandatory***
 
 Import the database dump from `hbtn_0d_tvshows` to your MySQL server: `download` (same as `12-no_genre.sql` --> https://s3.eu-west-3.amazonaws.com/hbtn.intranet.project.files/holbertonschool-higher-level_programming+/274/hbtn_0d_tvshows.sql)
 
@@ -964,6 +979,7 @@ ORDER BY number_of_shows DESC;
 
 
 ## 14. My genres
+***mandatory***
 
 Import the database dump from `hbtn_0d_tvshows` to your MySQL server: `download` (same as `13-count_shows_by_genre.sql`)
 
@@ -1006,6 +1022,7 @@ ORDER BY tv_genres.name ASC;
 
 
 ## 15. Only Comedy
+***mandatory***
 
 Import the database dump from `hbtn_0d_tvshows` to your MySQL server: `download` (same as `14-my_genres.sql`)
 
@@ -1047,6 +1064,7 @@ ORDER BY tv_shows.title ASC;
 
 
 ## 16. List shows and genres
+***mandatory***
 
 Import the database dump from `hbtn_0d_tvshows` to your MySQL server: `download` (same as `15-comedy_only.sql`)
 
