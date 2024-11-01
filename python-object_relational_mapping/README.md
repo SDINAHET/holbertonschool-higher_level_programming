@@ -449,7 +449,7 @@ if __name__ == "__main__":
 ```
 
 Usage
-Make sure to set the executable permission:
+Make sure to set the executable permission and doctring:
 
 ```bash
 chmod +x 0-select_states.py
@@ -517,7 +517,12 @@ File: `1-filter_states.py`
 import MySQLdb
 import sys
 
-if __name__ == "__main__":
+
+def main():
+    """
+    Connects to the MySQL database and retrieves all states starting with 'N'.
+    Results are sorted in ascending order by states.id.
+    """
     # Get MySQL username, password, and database name from command line arguments
     username = sys.argv[1]
     password = sys.argv[2]
@@ -537,10 +542,14 @@ if __name__ == "__main__":
     # Close cursor and database connection
     cursor.close()
     db.close()
+
+
+if __name__ == "__main__":
+    main()
 ```
 
 Usage
-Make sure to set the executable permission:
+Make sure to set the executable permission and doctring:
 
 ```bash
 chmod +x 1-filter_states.py
@@ -588,11 +597,67 @@ File: `2-my_filter_states.py`
 
 
 ```python
+#!/usr/bin/python3
+import MySQLdb
+import sys
 
+
+def main():
+    """
+    Connects to the MySQL database and retrieves states that match the provided name.
+    Results are sorted in ascending order by states.id.
+    """
+    # Get MySQL username, password, database name, and state name from command line arguments
+    username = sys.argv[1]
+    password = sys.argv[2]
+    dbname = sys.argv[3]
+    state_name = sys.argv[4]
+
+    # Connect to MySQL server on localhost at port 3306
+    db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=dbname)
+    cursor = db.cursor()
+
+    # Execute SQL query to select states where the name matches the argument
+    query = "SELECT * FROM states WHERE name LIKE BINARY '{}' ORDER BY id ASC".format(state_name)
+    cursor.execute(query)
+
+    # Fetch and print the results
+    for row in cursor.fetchall():
+        print(row)
+
+    # Close cursor and database connection
+    cursor.close()
+    db.close()
+
+
+if __name__ == "__main__":
+    main()
+```
+
+
+Rules pycodstyle:
+```python
+ # Execute SQL query to select states where the name matches the argument
+    query = "SELECT * FROM states WHERE name LIKE BINARY '{}' ORDER BY id ASC".format(state_name)
+    cursor.execute(query)
+```
+to
+```python
+    # Execute SQL query to select states where the name matches the given argument
+    query = (
+        "SELECT * FROM states WHERE name LIKE BINARY '{}' ORDER BY id ASC"
+        .format(state_name)
+    )
+    cursor.execute(query)
+```
+
+```python
+query = "SELECT * FROM states WHERE name LIKE BINARY %s ORDER BY id ASC"
+cursor.execute(query, (state_name,))
 ```
 
 Usage
-Make sure to set the executable permission:
+Make sure to set the executable permission and doctring:
 
 ```bash
 chmod +x 2-my_filter_states.py
@@ -610,7 +675,7 @@ guillaume@ubuntu:~/$
 ```
 What? Empty?
 
-Yes, it’s an `SQL injection` to delete all records of a table…
+Yes, it’s an `SQL injection` to delete all records of a table… https://en.wikipedia.org/wiki/SQL_injection
 
 Once again, write a script that takes in arguments and displays all values in the `states` table of `hbtn_0e_0_usa` where `name` matches the argument. But this time, write one that is safe from MySQL injections!
 
@@ -650,11 +715,47 @@ File: `3-my_safe_filter_states.py`
 
 
 ```python
+#!/usr/bin/python3
 
+import MySQLdb
+import sys
+
+
+def main():
+    """
+    Connects to the MySQL database, retrieves and displays states with names
+    matching a provided argument. Results are sorted by `states.id`.
+    """
+    # Fetch MySQL credentials and state name from command-line arguments
+    username = sys.argv[1]
+    password = sys.argv[2]
+    db_name = sys.argv[3]
+    state_name = sys.argv[4]
+
+    # Connect to MySQL server on localhost at port 3306
+    db = MySQLdb.connect(host="localhost", port=3306,
+                         user=username, passwd=password, db=db_name)
+    cursor = db.cursor()
+
+    # Execute the SQL query using parameterized query to prevent SQL injection
+    query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
+    cursor.execute(query, (state_name,))
+
+    # Fetch and print the results
+    for row in cursor.fetchall():
+        print(row)
+
+    # Close the cursor and the database connection
+    cursor.close()
+    db.close()
+
+
+if __name__ == "__main__":
+    main()
 ```
 
 Usage
-Make sure to set the executable permission:
+Make sure to set the executable permission and doctring:
 
 ```bash
 chmod +x 3-my_safe_filter_states.py
@@ -729,11 +830,80 @@ File: `4-cities_by_state.py`
 
 
 ```python
+#!/usr/bin/python3
+"""
+Module: 4-cities_by_state
 
+This script connects to a MySQL database and lists all cities in the `cities` table
+of `hbtn_0e_4_usa`, along with their corresponding state names.
+
+Usage:
+    ./4-cities_by_state.py <mysql_username> <mysql_password> <database_name>
+
+Positional Arguments:
+    mysql_username    -- MySQL username
+    mysql_password    -- MySQL password
+    database_name     -- Name of the MySQL database
+
+Requirements:
+    - MySQLdb module (import MySQLdb) for MySQL connectivity
+    - MySQL server must be running on localhost at port 3306
+
+Example:
+    To list all cities with state names:
+        $ ./4-cities_by_state.py root root hbtn_0e_4_usa
+    Output:
+        (1, 'San Francisco', 'California')
+        (2, 'San Jose', 'California')
+        ...
+
+Functionality:
+    - Establishes a connection to a local MySQL database
+    - Executes a single SQL query to fetch city names, city ids, and their associated state names
+    - Sorts and displays results by `cities.id` in ascending order
+"""
+import MySQLdb
+import sys
+
+
+def main():
+    """
+    Connects to the MySQL database and lists all cities with their respective state names,
+    sorted by `cities.id`.
+    """
+    # Get MySQL username, password, and database name from command-line arguments
+    username = sys.argv[1]
+    password = sys.argv[2]
+    dbname = sys.argv[3]
+
+    # Connect to MySQL server on localhost at port 3306
+    db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=dbname)
+    cursor = db.cursor()
+
+    # Execute the SQL query to fetch city details and their associated state names
+    query = """
+        SELECT cities.id, cities.name, states.name
+        FROM cities
+        JOIN states ON cities.state_id = states.id
+        ORDER BY cities.id ASC
+    """
+    cursor.execute(query)
+
+    # Fetch and print the results
+    for row in cursor.fetchall():
+        print(row)
+
+    # Close cursor and database connection
+    cursor.close()
+    db.close()
+
+
+if __name__ == "__main__":
+    main()
 ```
 
 Usage
-Make sure to set the executable permission:
+Make sure to set the executable permission and doctring:
 
 ```bash
 chmod +x 4-cities_by_state.py
@@ -798,15 +968,87 @@ File: `5-filter_cities.py`
 
 
 ```python
+#!/usr/bin/python3
+"""
+Module: 5-filter_cities
+
+This script connects to a MySQL database and lists all cities in a specified
+state from the `cities` table of `hbtn_0e_4_usa`.
+
+Usage:
+    ./5-filter_cities.py <mysql_username> <mysql_password> <database_name> <state_name>
+
+Positional Arguments:
+    mysql_username    -- MySQL username
+    mysql_password    -- MySQL password
+    database_name     -- Name of the MySQL database
+    state_name        -- Name of the state to filter cities by (SQL injection free)
+
+Requirements:
+    - MySQLdb module (import MySQLdb) for MySQL connectivity
+    - MySQL server must be running on localhost at port 3306
+
+Example:
+    To list all cities in the state of Texas:
+        $ ./5-filter_cities.py root root hbtn_0e_4_usa Texas
+    Output:
+        Dallas, Houston, Austin
+"""
+import MySQLdb
+import sys
+
+
+def main():
+    """
+    Connects to the MySQL database and lists all cities of a specified state,
+    sorted by `cities.id`.
+    """
+    # Get MySQL username, password, database name, and state name from command-line arguments
+    username = sys.argv[1]
+    password = sys.argv[2]
+    dbname = sys.argv[3]
+    state_name = sys.argv[4]
+
+    # Connect to MySQL server on localhost at port 3306
+    db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=dbname)
+    cursor = db.cursor()
+
+    # Execute the SQL query to fetch city names for the given state name, safe from SQL injection
+    query = """
+        SELECT cities.name
+        FROM cities
+        JOIN states ON cities.state_id = states.id
+        WHERE states.name = %s
+        ORDER BY cities.id ASC
+    """
+    cursor.execute(query, (state_name,))
+
+    # Fetch and print the results as a comma-separated list
+    cities = [row[0] for row in cursor.fetchall()]
+    print(", ".join(cities))
+
+    # Close cursor and database connection
+    cursor.close()
+    db.close()
+
+
+if __name__ == "__main__":
+    main()
 
 ```
 
 Usage
-Make sure to set the executable permission:
+Make sure to set the executable permission and doctring:
 
 ```bash
 chmod +x 5-filter_cities.py
 ```
+
+Explanation:
+1. SQL Injection Prevention: The execute() method uses %s as a placeholder for state_name in the query, protecting against SQL injection.
+2. Query Execution: The query fetches all cities belonging to the specified state_name by joining the cities and states tables.
+3. Formatting: The city names are printed as a comma-separated list.
+4. Execution Guard: The if __name__ == "__main__": block ensures the script only executes if run directly.
 
 ## 6.First state model
 ***mandatory***
@@ -863,11 +1105,12 @@ File: `model_state.py`
 
 
 ```python
+#!/usr/bin/python3
 
 ```
 
 Usage
-Make sure to set the executable permission:
+Make sure to set the executable permission and doctring:
 
 ```bash
 chmod +x model_state.py
@@ -912,11 +1155,12 @@ File: `7-model_state_fetch_all.py`
 
 
 ```python
+#!/usr/bin/python3
 
 ```
 
 Usage
-Make sure to set the executable permission:
+Make sure to set the executable permission and doctring:
 
 ```bash
 chmod +x 7-model_state_fetch_all.py
@@ -953,11 +1197,12 @@ File: `8-model_state_fetch_first.py`
 
 
 ```python
+#!/usr/bin/python3
 
 ```
 
 Usage
-Make sure to set the executable permission:
+Make sure to set the executable permission and doctring:
 
 ```bash
 chmod +x 8-model_state_fetch_first.py
@@ -995,11 +1240,12 @@ File: `9-model_state_filter_a.py`
 
 
 ```python
+#!/usr/bin/python3
 
 ```
 
 Usage
-Make sure to set the executable permission:
+Make sure to set the executable permission and doctring:
 
 ```bash
 chmod +x 9-model_state_filter_a.py
@@ -1037,11 +1283,12 @@ File: `10-model_state_my_get.py`
 
 
 ```python
+#!/usr/bin/python3
 
 ```
 
 Usage
-Make sure to set the executable permission:
+Make sure to set the executable permission and doctring:
 
 ```bash
 chmod +x 10-model_state_my_get.py
@@ -1082,11 +1329,12 @@ File: `11-model_state_insert.py`
 
 
 ```python
+#!/usr/bin/python3
 
 ```
 
 Usage
-Make sure to set the executable permission:
+Make sure to set the executable permission and doctring:
 
 ```bash
 chmod +x 11-model_state_insert.py
@@ -1126,11 +1374,12 @@ File: `12-model_state_update_id_2.py`
 
 
 ```python
+#!/usr/bin/python3
 
 ```
 
 Usage
-Make sure to set the executable permission:
+Make sure to set the executable permission and doctring:
 
 ```bash
 chmod +x 12-model_state_update_id_2.py
@@ -1165,11 +1414,12 @@ File: `13-model_state_delete_a.py`
 
 
 ```python
+#!/usr/bin/python3
 
 ```
 
 Usage
-Make sure to set the executable permission:
+Make sure to set the executable permission and doctring:
 
 ```bash
 chmod +x 13-model_state_delete_a.py
@@ -1254,11 +1504,12 @@ File:` model_city.py`, `14-model_city_fetch_by_state.py`
 
 
 ```python
+#!/usr/bin/python3
 
 ```
 
 Usage
-Make sure to set the executable permission:
+Make sure to set the executable permission and doctring:
 
 ```bash
 chmod +x 14-model_city_fetch_by_state.py
