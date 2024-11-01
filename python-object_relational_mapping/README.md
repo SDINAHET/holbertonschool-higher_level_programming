@@ -1056,7 +1056,7 @@ Explanation:
 Write a python file that contains the class definition of a `State` and an instance `Base = declarative_base()`:
 
 `State` class:
-	inherits from `Base` `Tips`--> https://intranet.hbtn.io/rltoken/62tIVCmGm735_tJWLxtJrQ
+	inherits from `Base` `Tips`--> https://intranet.hbtn.io/rltoken/62tIVCmGm735_tJWLxtJrQ / https://docs.sqlalchemy.org/en/13/orm/extensions/declarative/basic_use.html
 	links to the MySQL table `states`
 	class attribute `id` that represents a column of an auto-generated, unique integer, can’t be null and is a primary key
 	class attribute `name` that represents a column of a string with maximum 128 characters and can’t be null
@@ -1106,7 +1106,26 @@ File: `model_state.py`
 
 ```python
 #!/usr/bin/python3
+"""Defines a State class linked to the states table in the MySQL database."""
 
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+
+# Create a base class for the declarative model
+Base = declarative_base()
+
+class State(Base):
+    """Represents a state for a MySQL database.
+
+    Attributes:
+        id (int): The state's id, primary key, auto-incremented, non-nullable.
+        name (str): The state's name, string with max 128 characters,
+        non-nullable.
+    """
+    __tablename__ = 'states'
+
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    name = Column(String(128), nullable=False)
 ```
 
 Usage
@@ -1115,6 +1134,44 @@ Make sure to set the executable permission and doctring:
 ```bash
 chmod +x model_state.py
 ```
+
+Explanation
+
+`Base = declarative_base()`: This initializes a base class for the SQLAlchemy models.
+
+`State` class:
+
+    - `__tablename__`: Specifies the table name as `states`.
+
+    - Columns:
+
+        - `id`: An auto-incrementing integer column that serves as the primary key.
+
+        - `name`: A string column with a maximum length of 128 characters and cannot be `NULL`.
+
+Example Usage to Create the Table
+You can use the following code to connect to the database and create the `states` table by running this script. Make sure to replace `sys.argv[1]`, `sys.argv[2]`, and `sys.argv[3]` with your MySQL username, password, and database name.
+
+```python
+#!/usr/bin/python3
+"""Start link class to table in database."""
+import sys
+from model_state import Base, State
+from sqlalchemy import create_engine
+
+if __name__ == "__main__":
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+    Base.metadata.create_all(engine)
+```
+
+Running the Script
+To create the `states` table, execute this script from the command line:
+
+```bash
+$ ./6-model_state.py root root hbtn_0e_6_usa
+```
+
+This will create the `states` table in your database `hbtn_0e_6_usa` if it does not already exist.
 
 ## 7.All states via SQLAlchemy
 ***mandatory***
