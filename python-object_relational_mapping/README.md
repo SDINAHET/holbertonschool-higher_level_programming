@@ -309,7 +309,7 @@ moved in a future release.")
 ```
 You can ignore it.
 
-## Instalation Problem: Install MySQLdb module version 2.0.x
+## Installation Problem: Install MySQLdb module version 2.0.x
 
 It appears that pkg-config is missing, which is required to compile mysqlclient. Here's how you can resolve this on Ubuntu:
 
@@ -409,9 +409,67 @@ File: `0-select_states.py`
 
 
 ```python
+#!/usr/bin/python3
 
+import MySQLdb
+import sys
+
+if __name__ == "__main__":
+    # Fetch MySQL username, password, and database name from command line
+    # arguments
+    username = sys.argv[1]
+    password = sys.argv[2]
+    db_name = sys.argv[3]
+
+    # Connect to MySQL server on localhost at port 3306
+    db = MySQLdb.connect(
+        host="localhost",
+        port=3306,
+        user=username,
+        passwd=password,
+        db=db_name
+        )
+
+    # Create a cursor object to execute SQL queries
+    cursor = db.cursor()
+
+    # Execute SQL query to select all states sorted by id
+    cursor.execute("SELECT * FROM states ORDER BY id ASC")
+
+    # Fetch all rows from the result of the query
+    states = cursor.fetchall()
+
+    # Print each row
+    for state in states:
+        print(state)
+
+    # Close cursor and database connection
+    cursor.close()
+    db.close()
 ```
 
+Usage
+Make sure to set the executable permission:
+
+```bash
+chmod +x 0-select_states.py
+```
+
+Both commands execute SQL commands from the file 0-select_states.sql in MySQL, but there’s a slight difference in how they work:
+
+1. `cat 0-select_states.sql | mysql -uroot -p`:
+
+- This command uses cat to output the contents of 0-select_states.sql and pipes it (|) into MySQL.
+- Here, mysql -uroot -p receives the SQL commands from standard input (STDIN).
+- This approach is often used for chaining commands or when additional processing on the file contents is needed before passing it to MySQL.
+
+2. `mysql -uroot -p < 0-select_states.sql`:
+
+- This command directly redirects the content of 0-select_states.sql into MySQL using <.
+- It achieves the same result, running the commands from the file in MySQL, but is more efficient as it doesn’t require cat to first output the file contents.
+- This is often the preferred method for simplicity and efficiency.
+
+In most cases, both commands will yield the same result, but mysql -uroot -p < 0-select_states.sql is slightly more efficient since it doesn’t involve an extra process (cat).
 
 
 ## Filter states
@@ -458,7 +516,12 @@ File: `1-filter_states.py`
 
 ```
 
+Usage
+Make sure to set the executable permission:
 
+```bash
+chmod +x 1-filter_states.py
+```
 
 ## 2. Filter states by user input
 ***mandatory***
@@ -505,7 +568,12 @@ File: `2-my_filter_states.py`
 
 ```
 
+Usage
+Make sure to set the executable permission:
 
+```bash
+chmod +x 2-my_filter_states.py
+```
 
 ## 3. SQL Injection...
 ***mandatory***
@@ -562,7 +630,12 @@ File: `3-my_safe_filter_states.py`
 
 ```
 
+Usage
+Make sure to set the executable permission:
 
+```bash
+chmod +x 3-my_safe_filter_states.py
+```
 
 ## 4. Cities by states
 ***mandatory***
@@ -636,7 +709,12 @@ File: `4-cities_by_state.py`
 
 ```
 
+Usage
+Make sure to set the executable permission:
 
+```bash
+chmod +x 4-cities_by_state.py
+```
 
 ## 5. All cities by state
 ***mandatory***
@@ -700,7 +778,12 @@ File: `5-filter_cities.py`
 
 ```
 
+Usage
+Make sure to set the executable permission:
 
+```bash
+chmod +x 5-filter_cities.py
+```
 
 ## 6.First state model
 ***mandatory***
@@ -760,7 +843,12 @@ File: `model_state.py`
 
 ```
 
+Usage
+Make sure to set the executable permission:
 
+```bash
+chmod +x model_state.py
+```
 
 ## 7.All states via SQLAlchemy
 ***mandatory***
@@ -804,7 +892,12 @@ File: `7-model_state_fetch_all.py`
 
 ```
 
+Usage
+Make sure to set the executable permission:
 
+```bash
+chmod +x 7-model_state_fetch_all.py
+```
 
 ## 8.First state
 ***mandatory***
@@ -840,7 +933,12 @@ File: `8-model_state_fetch_first.py`
 
 ```
 
+Usage
+Make sure to set the executable permission:
 
+```bash
+chmod +x 8-model_state_fetch_first.py
+```
 
 ## 9.Contains 'a'
 ***mandatory***
@@ -877,7 +975,12 @@ File: `9-model_state_filter_a.py`
 
 ```
 
+Usage
+Make sure to set the executable permission:
 
+```bash
+chmod +x 9-model_state_filter_a.py
+```
 
 ## 10.get a state
 ***mandatory***
@@ -914,7 +1017,12 @@ File: `10-model_state_my_get.py`
 
 ```
 
+Usage
+Make sure to set the executable permission:
 
+```bash
+chmod +x 10-model_state_my_get.py
+```
 
 ## 11. Add a new state
 ***mandatory***
@@ -954,7 +1062,12 @@ File: `11-model_state_insert.py`
 
 ```
 
+Usage
+Make sure to set the executable permission:
 
+```bash
+chmod +x 11-model_state_insert.py
+```
 
 ## 12. Update a state
 ***mandatory***
@@ -993,7 +1106,12 @@ File: `12-model_state_update_id_2.py`
 
 ```
 
+Usage
+Make sure to set the executable permission:
 
+```bash
+chmod +x 12-model_state_update_id_2.py
+```
 
 ## 13. Delete states
 ***mandatory***
@@ -1027,7 +1145,12 @@ File: `13-model_state_delete_a.py`
 
 ```
 
+Usage
+Make sure to set the executable permission:
 
+```bash
+chmod +x 13-model_state_delete_a.py
+```
 
 ## 14. Cities in state
 ***mandatory***
@@ -1109,4 +1232,11 @@ File:` model_city.py`, `14-model_city_fetch_by_state.py`
 
 ```python
 
+```
+
+Usage
+Make sure to set the executable permission:
+
+```bash
+chmod +x 14-model_city_fetch_by_state.py
 ```
