@@ -5,7 +5,8 @@ Module 12-model_state_update_id_2.py
 Changes the name of the State where id = 2 to "New Mexico" in the database.
 
 Usage:
-    ./12-model_state_update_id_2.py <mysql_username> <mysql_password> <database_name>
+    ./12-model_state_update_id_2.py <mysql_username> <mysql_password>
+    <database_name>
 
 Args:
     mysql_username (str): The MySQL username.

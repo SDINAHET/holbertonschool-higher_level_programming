@@ -23,7 +23,10 @@ if __name__ == "__main__":
     session = Session()
 
     # Query for all cities with their associated state names
-    results = session.query(State, City).filter(State.id == City.state_id).order_by(City.id).all()
+    results = (session.query(State, City)
+                      .filter(State.id == City.state_id)
+                      .order_by(City.id)
+                      .all())
 
     # Display the results in the specified format
     for state, city in results:

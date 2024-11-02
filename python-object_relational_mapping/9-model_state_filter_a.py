@@ -6,7 +6,8 @@ Lists all State objects from the database hbtn_0e_6_usa that contain
 the letter 'a' in their name.
 
 Usage:
-    ./9-model_state_filter_a.py <mysql_username> <mysql_password> <database_name>
+    ./9-model_state_filter_a.py <mysql_username> <mysql_password>
+    <database_name>
 
 Example:
     ./9-model_state_filter_a.py root root hbtn_0e_6_usa
@@ -39,7 +40,10 @@ if __name__ == "__main__":
     session = Session()
 
     # Query for State objects containing the letter 'a'
-    states_with_a = session.query(State).filter(State.name.like('%a%')).order_by(State.id).all()
+    states_with_a = (
+        session.query(State).filter(State.name.like('%a%'))
+        .order_by(State.id).all()
+    )
 
     # Display each state that matches the query
     for state in states_with_a:
