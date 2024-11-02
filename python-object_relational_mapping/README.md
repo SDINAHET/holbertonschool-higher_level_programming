@@ -1213,7 +1213,56 @@ File: `7-model_state_fetch_all.py`
 
 ```python
 #!/usr/bin/python3
+"""
+Module 7-model_state_fetch_all.py
 
+Lists all State objects from the database hbtn_0e_6_usa.
+
+This script connects to a MySQL database using SQLAlchemy and retrieves all
+State objects, displaying them in ascending order by their id.
+
+Usage:
+    ./7-model_state_fetch_all.py <mysql_username> <mysql_password> <database_name>
+
+Example:
+    ./7-model_state_fetch_all.py root root hbtn_0e_6_usa
+
+Args:
+    mysql_username (str): The MySQL username.
+    mysql_password (str): The MySQL password.
+    database_name (str): The database name.
+
+Output:
+    Displays each state's id and name in the format "<id>: <name>"
+"""
+
+import sys
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from model_state import Base, State
+
+
+if __name__ == "__main__":
+    # Connect to the MySQL database
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
+        sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+
+    # Bind engine to Base metadata
+    Base.metadata.create_all(engine)
+
+    # Create a new session
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    # Query all State objects, ordered by id
+    states = session.query(State).order_by(State.id).all()
+
+    # Display each state's id and name
+    for state in states:
+        print(f"{state.id}: {state.name}")
+
+    # Close session
+    session.close()
 ```
 
 Usage
@@ -1255,7 +1304,59 @@ File: `8-model_state_fetch_first.py`
 
 ```python
 #!/usr/bin/python3
+"""
+Module 8-model_state_fetch_first.py
 
+Prints the first State object from the database hbtn_0e_6_usa.
+
+This script connects to a MySQL database using SQLAlchemy and retrieves the
+first State object, displaying it in the format "<id>: <name>". If the table
+states is empty, it prints "Nothing".
+
+Usage:
+    ./8-model_state_fetch_first.py <mysql_username> <mysql_password> <database_name>
+
+Example:
+    ./8-model_state_fetch_first.py root root hbtn_0e_6_usa
+
+Args:
+    mysql_username (str): The MySQL username.
+    mysql_password (str): The MySQL password.
+    database_name (str): The database name.
+
+Output:
+    Displays the first state's id and name or "Nothing" if there are no states.
+"""
+
+import sys
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from model_state import Base, State
+
+
+if __name__ == "__main__":
+    # Connect to the MySQL database
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
+        sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+
+    # Bind engine to Base metadata
+    Base.metadata.create_all(engine)
+
+    # Create a new session
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    # Query for the first State object
+    first_state = session.query(State).order_by(State.id).first()
+
+    # Display the result
+    if first_state:
+        print(f"{first_state.id}: {first_state.name}")
+    else:
+        print("Nothing")
+
+    # Close the session
+    session.close()
 ```
 
 Usage
@@ -1298,7 +1399,54 @@ File: `9-model_state_filter_a.py`
 
 ```python
 #!/usr/bin/python3
+"""
+Module 9-model_state_filter_a.py
 
+Lists all State objects from the database hbtn_0e_6_usa that contain
+the letter 'a' in their name.
+
+Usage:
+    ./9-model_state_filter_a.py <mysql_username> <mysql_password> <database_name>
+
+Example:
+    ./9-model_state_filter_a.py root root hbtn_0e_6_usa
+
+Args:
+    mysql_username (str): The MySQL username.
+    mysql_password (str): The MySQL password.
+    database_name (str): The database name.
+
+Output:
+    Displays each state's id and name that contains the letter 'a', sorted by id.
+"""
+
+import sys
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from model_state import Base, State
+
+
+if __name__ == "__main__":
+    # Connect to the MySQL database
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
+        sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+
+    # Bind engine to Base metadata
+    Base.metadata.create_all(engine)
+
+    # Create a new session
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    # Query for State objects containing the letter 'a'
+    states_with_a = session.query(State).filter(State.name.like('%a%')).order_by(State.id).all()
+
+    # Display each state that matches the query
+    for state in states_with_a:
+        print(f"{state.id}: {state.name}")
+
+    # Close the session
+    session.close()
 ```
 
 Usage
@@ -1341,7 +1489,60 @@ File: `10-model_state_my_get.py`
 
 ```python
 #!/usr/bin/python3
+"""
+Module 10-model_state_my_get.py
 
+Prints the State object with the name passed as an argument from the
+database hbtn_0e_6_usa.
+
+Usage:
+    ./10-model_state_my_get.py <mysql_username> <mysql_password> <database_name> <state_name>
+
+Example:
+    ./10-model_state_my_get.py root root hbtn_0e_6_usa Texas
+
+Args:
+    mysql_username (str): The MySQL username.
+    mysql_password (str): The MySQL password.
+    database_name (str): The database name.
+    state_name (str): The name of the state to search.
+
+Output:
+    Prints the state id if found; otherwise, "Not found".
+"""
+
+import sys
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from model_state import Base, State
+
+
+if __name__ == "__main__":
+    # Connect to the MySQL database
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
+        sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+
+    # Bind engine to Base metadata
+    Base.metadata.create_all(engine)
+
+    # Create a new session
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    # Get the state name to search
+    state_name = sys.argv[4]
+
+    # Query for State object with the specified name using parameterized query
+    state = session.query(State).filter(State.name == state_name).first()
+
+    # Display result
+    if state:
+        print(f"{state.id}")
+    else:
+        print("Not found")
+
+    # Close the session
+    session.close()
 ```
 
 Usage
@@ -1387,7 +1588,51 @@ File: `11-model_state_insert.py`
 
 ```python
 #!/usr/bin/python3
+"""
+Module 11-model_state_insert.py
 
+Adds the State object “Louisiana” to the database hbtn_0e_6_usa.
+
+Usage:
+    ./11-model_state_insert.py <mysql_username> <mysql_password> <database_name>
+
+Args:
+    mysql_username (str): The MySQL username.
+    mysql_password (str): The MySQL password.
+    database_name (str): The database name.
+
+Output:
+    Prints the id of the newly created state.
+"""
+
+import sys
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from model_state import Base, State
+
+
+if __name__ == "__main__":
+    # Connect to the MySQL database
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
+        sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+
+    # Bind engine to Base metadata
+    Base.metadata.create_all(engine)
+
+    # Create a new session
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    # Create new State object for "Louisiana" and add it to the session
+    new_state = State(name="Louisiana")
+    session.add(new_state)
+    session.commit()
+
+    # Print the id of the new State object
+    print(f"{new_state.id}")
+
+    # Close the session
+    session.close()
 ```
 
 Usage
@@ -1432,7 +1677,46 @@ File: `12-model_state_update_id_2.py`
 
 ```python
 #!/usr/bin/python3
+"""
+Module 12-model_state_update_id_2.py
 
+Changes the name of the State where id = 2 to "New Mexico" in the database.
+
+Usage:
+    ./12-model_state_update_id_2.py <mysql_username> <mysql_password> <database_name>
+
+Args:
+    mysql_username (str): The MySQL username.
+    mysql_password (str): The MySQL password.
+    database_name (str): The database name.
+"""
+
+import sys
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from model_state import Base, State
+
+
+if __name__ == "__main__":
+    # Connect to the MySQL database
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
+        sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+
+    # Bind engine to Base metadata
+    Base.metadata.create_all(engine)
+
+    # Create a new session
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    # Query for the state with id = 2 and update its name
+    state_to_update = session.query(State).filter_by(id=2).first()
+    if state_to_update:
+        state_to_update.name = "New Mexico"
+        session.commit()
+
+    # Close the session
+    session.close()
 ```
 
 Usage
@@ -1472,7 +1756,47 @@ File: `13-model_state_delete_a.py`
 
 ```python
 #!/usr/bin/python3
+"""
+Module 13-model_state_delete_a.py
 
+Deletes all State objects with a name containing the letter 'a'
+from the database.
+
+Usage:
+    ./13-model_state_delete_a.py <mysql_username> <mysql_password> <database_name>
+
+Args:
+    mysql_username (str): The MySQL username.
+    mysql_password (str): The MySQL password.
+    database_name (str): The database name.
+"""
+
+import sys
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from model_state import Base, State
+
+
+if __name__ == "__main__":
+    # Connect to the MySQL database
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
+        sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+
+    # Bind engine to Base metadata
+    Base.metadata.create_all(engine)
+
+    # Create a new session
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    # Query and delete all states with 'a' in their name
+    states_to_delete = session.query(State).filter(State.name.like('%a%')).all()
+    for state in states_to_delete:
+        session.delete(state)
+    session.commit()
+
+    # Close the session
+    session.close()
 ```
 
 Usage
@@ -1557,12 +1881,64 @@ GitHub repository: `holbertonschool-higher_level_programming`
 
 Directory: `python-object_relational_mapping`
 
-File:` model_city.py`, `14-model_city_fetch_by_state.py`
+File:`model_city.py`, `14-model_city_fetch_by_state.py`
 
-
+`model_city.py
 ```python
 #!/usr/bin/python3
+"""
+Defines a City class for use with SQLAlchemy
+"""
 
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.ext.declarative import declarative_base
+from model_state import Base
+
+class City(Base):
+    """Represents a city for a MySQL database"""
+    __tablename__ = 'cities'
+
+    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    name = Column(String(128), nullable=False)
+    state_id = Column(Integer, ForeignKey('states.id'), nullable=False)
+```
+
+
+`14-model_city_fetch_by_state.py`
+```python
+#!/usr/bin/python3
+"""
+Lists all City objects from the database along with their State names
+"""
+
+import sys
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from model_state import Base, State
+from model_city import City
+
+
+if __name__ == "__main__":
+    # Create a connection to the MySQL database
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
+        sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+
+    # Bind the engine to the Base metadata
+    Base.metadata.create_all(engine)
+
+    # Start a session
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    # Query for all cities with their associated state names
+    results = session.query(State, City).filter(State.id == City.state_id).order_by(City.id).all()
+
+    # Display the results in the specified format
+    for state, city in results:
+        print(f"{state.name}: ({city.id}) {city.name}")
+
+    # Close the session
+    session.close()
 ```
 
 Usage
