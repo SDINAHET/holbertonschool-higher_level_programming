@@ -1,6 +1,6 @@
 # SQL - Python Object Relational Mapping
 
-![Project badge](https://img.shields.io/badge/Progress-0%25-red)
+![Project badge](https://img.shields.io/badge/Progress-80%25-orange)
 
 ## Project Overview
 
