@@ -410,9 +410,344 @@ No items found.
 }
 
 ## Task3:
+Here's how you can set up this task in Flask to display data from either a JSON or CSV file based on a query parameter, with filtering and error handling.
+
+Step 1: Create Data Files
+Create products.json in your project directory:
+
+json
+Copier le code
+[
+    {"id": 1, "name": "Laptop", "category": "Electronics", "price": 799.99},
+    {"id": 2, "name": "Coffee Mug", "category": "Home Goods", "price": 15.99}
+]
+Create products.csv in your project directory:
+
+csv
+Copier le code
+id,name,category,price
+1,Laptop,Electronics,799.99
+2,Coffee Mug,Home Goods,15.99
+Step 2: Create product_display.html Template
+In your templates folder, create product_display.html to display the data in a table. It will handle the display of products and any error messages.
+
+html
+Copier le code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Display</title>
+</head>
+<body>
+    <h1>Product Display</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% else %}
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+            {% for product in products %}
+            <tr>
+                <td>{{ product["name"] }}</td>
+                <td>{{ product["category"] }}</td>
+                <td>{{ product["price"] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
+Step 3: Implement Flask Application in task_03_files.py
+In task_03_files.py, create the Flask app with the necessary route and file-reading logic.
+
+python
+Copier le code
+from flask import Flask, render_template, request
+import json
+import csv
+
+app = Flask(__name__)
+
+def read_json_file(filename):
+    with open(filename, 'r') as file:
+        return json.load(file)
+
+def read_csv_file(filename):
+    products = []
+    with open(filename, 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            row['id'] = int(row['id'])  # Convert id to int for consistency
+            row['price'] = float(row['price'])  # Convert price to float
+            products.append(row)
+    return products
+
+@app.route('/products')
+def display_products():
+    source = request.args.get('source')
+    product_id = request.args.get('id', type=int)
+    products = []
+    error = None
+
+    # Read data from JSON or CSV based on the source parameter
+    if source == 'json':
+        try:
+            products = read_json_file('products.json')
+        except FileNotFoundError:
+            error = "JSON file not found."
+    elif source == 'csv':
+        try:
+            products = read_csv_file('products.csv')
+        except FileNotFoundError:
+            error = "CSV file not found."
+    else:
+        error = "Wrong source. Please specify 'json' or 'csv'."
+
+    # Filter products by ID if provided
+    if not error and product_id:
+        products = [product for product in products if product.get("id") == product_id]
+        if not products:
+            error = "Product not found."
+
+    return render_template("product_display.html", products=products, error=error)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+Step 4: Test Your Application
+Run the Flask app and test with various URLs:
+
+Display all products from JSON:
+
+bash
+Copier le code
+http://127.0.0.1:5000/products?source=json
+Display all products from CSV:
+
+bash
+Copier le code
+http://127.0.0.1:5000/products?source=csv
+Display a specific product by ID (e.g., id=1) from JSON:
+
+bash
+Copier le code
+http://127.0.0.1:5000/products?source=json&id=1
+Display a product with a nonexistent ID:
+
+bash
+Copier le code
+http://127.0.0.1:5000/products?source=json&id=999
+Display with an invalid source:
+
+bash
+Copier le code
+http://127.0.0.1:5000/products?source=xml
+The app should render the data correctly in the template, and display error messages for any missing files, incorrect sources, or unfound product IDs.
+
+Let me know if you encounter any issues or need further assistance!
+
+## Task4
+Here’s how to extend your Flask application to include SQLite as an additional data source:
+
+Step 1: Set Up the SQLite Database
+Create a script to initialize your SQLite database (products.db) and populate it with some sample data.
+
+Create and Run initialize_db.py:
+
+python
+Copier le code
+import sqlite3
+
+def create_database():
+    conn = sqlite3.connect('products.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS Products (
+            id INTEGER PRIMARY KEY,
+            name TEXT NOT NULL,
+            category TEXT NOT NULL,
+            price REAL NOT NULL
+        )
+    ''')
+    cursor.execute('''
+        INSERT OR IGNORE INTO Products (id, name, category, price)
+        VALUES
+            (1, 'Laptop', 'Electronics', 799.99),
+            (2, 'Coffee Mug', 'Home Goods', 15.99)
+    ''')
+    conn.commit()
+    conn.close()
+
+if __name__ == '__main__':
+    create_database()
+Run this script to create products.db and populate it with sample data.
+
+bash
+Copier le code
+python initialize_db.py
+Step 2: Update the Flask Application (task_04_db.py)
+Add a function to fetch data from the SQLite database and integrate it with the existing Flask application.
+
+task_04_db.py:
+
+python
+Copier le code
+from flask import Flask, render_template, request
+import json
+import csv
+import sqlite3
+
+app = Flask(__name__)
+
+# Function to read from JSON file
+def read_json_file(filename):
+    with open(filename, 'r') as file:
+        return json.load(file)
+
+# Function to read from CSV file
+def read_csv_file(filename):
+    products = []
+    with open(filename, 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            row['id'] = int(row['id'])  # Convert id to int for consistency
+            row['price'] = float(row['price'])  # Convert price to float
+            products.append(row)
+    return products
+
+# Function to read from SQLite database
+def read_sqlite_db():
+    products = []
+    try:
+        conn = sqlite3.connect('products.db')
+        cursor = conn.cursor()
+        cursor.execute("SELECT id, name, category, price FROM Products")
+        rows = cursor.fetchall()
+        for row in rows:
+            product = {
+                "id": row[0],
+                "name": row[1],
+                "category": row[2],
+                "price": row[3]
+            }
+            products.append(product)
+    except sqlite3.Error as e:
+        print("Database error:", e)
+    finally:
+        conn.close()
+    return products
+
+@app.route('/products')
+def display_products():
+    source = request.args.get('source')
+    product_id = request.args.get('id', type=int)
+    products = []
+    error = None
+
+    # Choose data source based on the 'source' query parameter
+    if source == 'json':
+        try:
+            products = read_json_file('products.json')
+        except FileNotFoundError:
+            error = "JSON file not found."
+    elif source == 'csv':
+        try:
+            products = read_csv_file('products.csv')
+        except FileNotFoundError:
+            error = "CSV file not found."
+    elif source == 'sql':
+        products = read_sqlite_db()
+        if not products:
+            error = "Database error or no data found."
+    else:
+        error = "Wrong source. Please specify 'json', 'csv', or 'sql'."
+
+    # Filter products by ID if provided
+    if not error and product_id:
+        products = [product for product in products if product.get("id") == product_id]
+        if not products:
+            error = "Product not found."
+
+    return render_template("product_display.html", products=products, error=error)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+Step 3: Test Your Application
+Start the Flask server:
+
+bash
+Copier le code
+python task_04_db.py
+Test URLs:
+
+Display all products from JSON:
+
+bash
+Copier le code
+http://127.0.0.1:5000/products?source=json
+
+j'ai
+http://127.0.0.1:5000/products?source=json
+Product Display
+JSON file not found.
 
 
+Display all products from CSV:
 
+bash
+Copier le code
+http://127.0.0.1:5000/products?source=csv
 
+j'ai
+http://127.0.0.1:5000/products?source=csv
+Product Display
+CSV file not found.
 
+Display all products from SQLite:
 
+bash
+Copier le code
+http://127.0.0.1:5000/products?source=sql
+
+j'ai
+http://127.0.0.1:5000/products?source=sql
+Product Display
+Wrong source. Please specify 'json' or 'csv'.
+
+Display a specific product by ID (e.g., id=1) from SQLite:
+
+bash
+Copier le code
+http://127.0.0.1:5000/products?source=sql&id=1
+
+j'ai
+http://127.0.0.1:5000/products?source=sql&id=1
+Product Display
+Wrong source. Please specify 'json' or 'csv'.
+
+Display with an invalid source:
+
+bash
+Copier le code
+http://127.0.0.1:5000/products?source=xml
+Explanation of Code Changes
+
+SQLite Database Handling:
+
+The read_sqlite_db function connects to products.db, fetches all rows from the Products table, and formats them into dictionaries that can be passed to the template.
+Error Handling:
+
+If the source is invalid, an error message is displayed.
+If the SQLite database encounters an error or lacks data, the function handles this gracefully and informs the user.
+Template Rendering:
+
+The same template, product_display.html, is used for all sources to maintain consistency.
+This completes the integration of SQLite with JSON and CSV sources. Let me know if you have questions or encounter any issues!
+
+j'ai
+http://127.0.0.1:5000/products?source=xml
+Product Display
+Wrong source. Please specify 'json' or 'csv'.
