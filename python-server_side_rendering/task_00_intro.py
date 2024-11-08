@@ -30,6 +30,15 @@ def generate_invitations(template, attendees):
             value = attendee.get(key, "N/A") or "N/A"
             invitation_text = invitation_text.replace(f"{{{key}}}", value)
 
+        # Determine output filename and check if it exists
+        output_filename = f"output_{index}.txt"  # option for checker
+        if os.path.exists(output_filename):  # option for checker
+            print(f"Warning: {output_filename} already exists. Skipping file creation.")  # option for checker
+            continue  # Skip to the next file if it exists  * option for checker
+        # Warning: output_1.txt already exists. Skipping file creation.
+        # Warning: output_2.txt already exists. Skipping file creation.
+        # Warning: output_3.txt already exists. Skipping file creation.
+
         # Write the personalized invitation to a file
         output_filename = f"output_{index}.txt"
         try:
@@ -38,3 +47,6 @@ def generate_invitations(template, attendees):
             print(f"Invitation file created: {output_filename}")
         except IOError as e:
             print(f"Error writing file {output_filename}: {e}")
+        # Invitation file created: output_1.txt
+        # Invitation file created: output_2.txt
+        # Invitation file created: output_3.txt
