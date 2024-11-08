@@ -3,7 +3,7 @@ Python-server_side_rendering
 ## Task0:
 To create this templating program, let's break down the requirements step-by-step. We will use Python's string manipulation and file handling capabilities to read a template, process data for multiple attendees, and output personalized invitation files. Here’s how we can implement each part of this task:
 
-Steps to Implement generate_invitations
+Steps to Implement generate_invitations:
 Validate Input Types and Content: Ensure template is a string and attendees is a list of dictionaries. If either is incorrect, log an error message and exit.
 Handle Empty Inputs: Check if template or attendees list is empty. Log a message and exit if so.
 Process Each Attendee: Loop over each dictionary in attendees, and use placeholders to substitute values from the dictionary, using "N/A" if a value is missing.
@@ -11,8 +11,7 @@ Write Output Files: Create output files in a sequence (e.g., output_1.txt, outpu
 Code Implementation
 Here's the complete Python code for the generate_invitations function:
 
-python
-Copier le code
+```python
 import os
 
 def generate_invitations(template, attendees):
@@ -51,7 +50,9 @@ def generate_invitations(template, attendees):
             print(f"Invitation file created: {output_filename}")
         except IOError as e:
             print(f"Error writing file {output_filename}: {e}")
-Explanation of Key Sections
+```
+
+### Explanation of Key Sections:
 Input Validation: We check if template is a string and attendees is a list of dictionaries. If not, an error message is printed and the function exits.
 Empty Template and Attendees Check: If the template or attendees are empty, it logs a message and stops the function.
 Generating Invitations: For each attendee, we replace placeholders ({name}, {event_title}, {event_date}, and {event_location}) in the template. If any key is missing, it substitutes "N/A".
@@ -59,8 +60,7 @@ Writing Files: Each processed template is written to a file named output_X.txt, 
 Example Template File: template.txt
 Save this content in a file named template.txt:
 
-plaintext
-Copier le code
+```plaintext
 Hello {name},
 
 You are invited to the {event_title} on {event_date} at {event_location}.
@@ -69,11 +69,11 @@ We look forward to your presence.
 
 Best regards,
 Event Team
+```
 Example Data and Main File for Testing
 Save the following code in your main file (for example, main.py) to test the program:
 
-python
-Copier le code
+```python
 from task_00_intro import generate_invitations
 
 # Read the template from a file
@@ -89,15 +89,16 @@ attendees = [
 
 # Call the function with the template and attendees list
 generate_invitations(template_content, attendees)
-Testing the Program
+```
+
+### Testing the Program:
 Run main.py in your Python environment.
 This should read template.txt, process the attendees list, and generate files named output_1.txt, output_2.txt, etc.
 Each output file should contain a personalized invitation, with missing data fields replaced by "N/A".
 Expected Output in Files
 output_1.txt for Alice:
 
-plaintext
-Copier le code
+```plaintext
 Hello Alice,
 
 You are invited to the Python Conference on 2023-07-15 at New York.
@@ -106,10 +107,10 @@ We look forward to your presence.
 
 Best regards,
 Event Team
+```
 output_2.txt for Bob:
 
-plaintext
-Copier le code
+```plaintext
 Hello Bob,
 
 You are invited to the Data Science Workshop on 2023-08-20 at San Francisco.
@@ -118,10 +119,10 @@ We look forward to your presence.
 
 Best regards,
 Event Team
+```
 output_3.txt for Charlie (missing event_date):
 
-plaintext
-Copier le code
+```plaintext
 Hello Charlie,
 
 You are invited to the AI Summit on N/A at Boston.
@@ -130,6 +131,8 @@ We look forward to your presence.
 
 Best regards,
 Event Team
+```
+
 Notes
 Ensure template.txt exists in the same directory or update the path as needed.
 Modify the file paths and names as per your directory structure and testing environment.
@@ -141,14 +144,13 @@ Here's a solution for setting up a basic Flask app with HTML templates, reusable
 Step 1: Set Up Your Flask Environment
 Ensure you have Flask installed. Run:
 
-bash
-Copier le code
+```bash
 pip install Flask
+```
 Step 2: Create the Flask Application
 In the python-server_side_rendering directory, create a file named task_01_jinja.py and add the following code:
 
-python
-Copier le code
+```python
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -167,12 +169,13 @@ def contact():
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
+```
+
 Step 3: Set Up the Templates
 In the same directory, create a folder named templates. Inside templates, create the following HTML files:
 
 index.html (Main Page)
-html
-Copier le code
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -192,9 +195,10 @@ Copier le code
     {% include 'footer.html' %}
 </body>
 </html>
+```
+
 about.html (About Page)
-html
-Copier le code
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -209,9 +213,9 @@ Copier le code
     {% include 'footer.html' %}
 </body>
 </html>
+```
 contact.html (Contact Page)
-html
-Copier le code
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -226,12 +230,12 @@ Copier le code
     {% include 'footer.html' %}
 </body>
 </html>
+```
 Step 4: Create the Header and Footer Templates
 These templates will be included in each page, promoting code reusability.
 
 header.html
-html
-Copier le code
+```html
 <header>
     <h1>My Flask App</h1>
     <nav>
@@ -240,18 +244,19 @@ Copier le code
         <a href="/contact">Contact</a>
     </nav>
 </header>
+```
 footer.html
-html
-Copier le code
+```html
 <footer>
     <p>&copy; 2024 My Flask App</p>
 </footer>
+```
 Step 5: Run the Flask Application
 Now, go to the terminal, navigate to your project directory, and run:
 
-bash
-Copier le code
+```bash
 python task_01_jinja.py
+```
 The app should be accessible at http://127.0.0.1:5000 with pages:
 
 Home: /
@@ -271,8 +276,7 @@ Here are some steps to troubleshoot and resolve this:
 
 Check the Template Directory Structure: Ensure that your project directory has a folder named templates and that index.html is located inside this folder. The structure should look like this:
 
-css
-Copier le code
+```css
 project_directory/
 ├── task_01_jinja.py
 └── templates/
@@ -281,6 +285,7 @@ project_directory/
     ├── contact.html
     ├── header.html
     └── footer.html
+```
 Verify File Names and Paths: Make sure the file is named exactly index.html (all lowercase, no typos) and is in the templates folder.
 
 Restart Flask Server: After making changes, restart the Flask server to ensure it loads the correct files.
@@ -291,11 +296,11 @@ Run in the Project Root Directory: Start the Flask application from the project 
 
 If you’ve verified all of the above and are still seeing the error, you could try adding a simple debug print statement in task_01_jinja.py to confirm the templates folder is accessible:
 
-python
-Copier le code
+```python
 import os
 print("Templates path:", os.path.join(os.getcwd(), 'templates'))
 After confirming everything is set up correctly, restart the server and navigate to http://127.0.0.1:5000 to see if the issue is resolved.
+```
 
 ## Task2:
 Here’s how to implement a dynamic template in Flask using loops and conditionals with Jinja, and to read data from a JSON file.
@@ -303,8 +308,7 @@ Here’s how to implement a dynamic template in Flask using loops and conditiona
 1. Project Structure
 Organize your project directory as follows:
 
-bash
-Copier le code
+```bash
 project_directory/
 ├── task_01_jinja.py          # Flask application file from Task 1
 ├── task_02_logic.py          # New Flask application file for this task
@@ -316,26 +320,26 @@ project_directory/
     ├── header.html
     ├── footer.html
     └── items.html            # New template for the list of items
+```
 2. items.json File
 Create a file named items.json in your project directory, containing a list of items. Here’s an example:
 
-json
-Copier le code
+```json
 {
     "items": ["Python Book", "Flask Mug", "Jinja Sticker"]
 }
+```
 To test the empty list condition, modify items.json as follows:
 
-json
-Copier le code
+```json
 {
     "items": []
 }
+```
 3. task_02_logic.py - Flask Application
 In task_02_logic.py, create a new route /items that reads from items.json and passes the data to the items.html template:
 
-python
-Copier le code
+```python
 from flask import Flask, render_template, jsonify
 import json
 
@@ -356,11 +360,11 @@ def display_items():
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
+```
 4. items.html Template
 In the templates folder, create items.html with a Jinja loop and conditional statements to display the list dynamically:
 
-html
-Copier le code
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -380,12 +384,13 @@ Copier le code
     {% endif %}
 </body>
 </html>
+```
 5. Testing the Application
 Run the Flask app:
 
-bash
-Copier le code
+```bash
 python task_02_logic.py
+```
 Visit http://127.0.0.1:5000/items in your browser to test:
 
 When items.json has items, they should display as a list.
@@ -415,24 +420,23 @@ Here's how you can set up this task in Flask to display data from either a JSON 
 Step 1: Create Data Files
 Create products.json in your project directory:
 
-json
-Copier le code
+```json
 [
     {"id": 1, "name": "Laptop", "category": "Electronics", "price": 799.99},
     {"id": 2, "name": "Coffee Mug", "category": "Home Goods", "price": 15.99}
 ]
+```
 Create products.csv in your project directory:
 
-csv
-Copier le code
+```csv
 id,name,category,price
 1,Laptop,Electronics,799.99
 2,Coffee Mug,Home Goods,15.99
+```
 Step 2: Create product_display.html Template
 In your templates folder, create product_display.html to display the data in a table. It will handle the display of products and any error messages.
 
-html
-Copier le code
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -461,11 +465,11 @@ Copier le code
     {% endif %}
 </body>
 </html>
+```
 Step 3: Implement Flask Application in task_03_files.py
 In task_03_files.py, create the Flask app with the necessary route and file-reading logic.
 
-python
-Copier le code
+```python
 from flask import Flask, render_template, request
 import json
 import csv
@@ -517,37 +521,37 @@ def display_products():
 
 if __name__ == '__main__':
     app.run(debug=True)
+```
+
 Step 4: Test Your Application
 Run the Flask app and test with various URLs:
 
 Display all products from JSON:
 
-bash
-Copier le code
+```bash
 http://127.0.0.1:5000/products?source=json
 Display all products from CSV:
+```
 
-bash
-Copier le code
+```bash
 http://127.0.0.1:5000/products?source=csv
 Display a specific product by ID (e.g., id=1) from JSON:
+```
 
-bash
-Copier le code
+```bash
 http://127.0.0.1:5000/products?source=json&id=1
 Display a product with a nonexistent ID:
-
-bash
-Copier le code
+```
+```bash
 http://127.0.0.1:5000/products?source=json&id=999
 Display with an invalid source:
+```
 
-bash
-Copier le code
+```bash
 http://127.0.0.1:5000/products?source=xml
 The app should render the data correctly in the template, and display error messages for any missing files, incorrect sources, or unfound product IDs.
+```
 
-Let me know if you encounter any issues or need further assistance!
 
 ## Task4
 Here’s how to extend your Flask application to include SQLite as an additional data source:
@@ -557,8 +561,7 @@ Create a script to initialize your SQLite database (products.db) and populate it
 
 Create and Run initialize_db.py:
 
-python
-Copier le code
+```python
 import sqlite3
 
 def create_database():
@@ -583,18 +586,18 @@ def create_database():
 
 if __name__ == '__main__':
     create_database()
+```
 Run this script to create products.db and populate it with sample data.
 
-bash
-Copier le code
+```bash
 python initialize_db.py
+```
 Step 2: Update the Flask Application (task_04_db.py)
 Add a function to fetch data from the SQLite database and integrate it with the existing Flask application.
 
 task_04_db.py:
 
-python
-Copier le code
+```python
 from flask import Flask, render_template, request
 import json
 import csv
@@ -675,19 +678,21 @@ def display_products():
 
 if __name__ == '__main__':
     app.run(debug=True)
+```
+
 Step 3: Test Your Application
 Start the Flask server:
 
-bash
-Copier le code
+```bash
 python task_04_db.py
+```
 Test URLs:
 
 Display all products from JSON:
 
-bash
-Copier le code
+```bash
 http://127.0.0.1:5000/products?source=json
+```
 
 j'ai
 http://127.0.0.1:5000/products?source=json
@@ -697,9 +702,9 @@ JSON file not found.
 
 Display all products from CSV:
 
-bash
-Copier le code
+```bash
 http://127.0.0.1:5000/products?source=csv
+```
 
 j'ai
 http://127.0.0.1:5000/products?source=csv
@@ -708,9 +713,9 @@ CSV file not found.
 
 Display all products from SQLite:
 
-bash
-Copier le code
+```bash
 http://127.0.0.1:5000/products?source=sql
+```
 
 j'ai
 http://127.0.0.1:5000/products?source=sql
@@ -719,9 +724,9 @@ Wrong source. Please specify 'json' or 'csv'.
 
 Display a specific product by ID (e.g., id=1) from SQLite:
 
-bash
-Copier le code
+```bash
 http://127.0.0.1:5000/products?source=sql&id=1
+```
 
 j'ai
 http://127.0.0.1:5000/products?source=sql&id=1
@@ -730,9 +735,16 @@ Wrong source. Please specify 'json' or 'csv'.
 
 Display with an invalid source:
 
-bash
-Copier le code
+```bash
 http://127.0.0.1:5000/products?source=xml
+```
+
+j'ai
+http://127.0.0.1:5000/products?source=xml
+Product Display
+Wrong source. Please specify 'json' or 'csv'.
+
+
 Explanation of Code Changes
 
 SQLite Database Handling:
