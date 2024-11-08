@@ -12,6 +12,7 @@ Code Implementation
 Here's the complete Python code for the generate_invitations function:
 
 ```python
+#!/usr/bin/python3
 import os
 
 def generate_invitations(template, attendees):
@@ -74,6 +75,7 @@ Example Data and Main File for Testing
 Save the following code in your main file (for example, main.py) to test the program:
 
 ```python
+#!/usr/bin/python3
 from task_00_intro import generate_invitations
 
 # Read the template from a file
@@ -151,6 +153,7 @@ Step 2: Create the Flask Application
 In the python-server_side_rendering directory, create a file named task_01_jinja.py and add the following code:
 
 ```python
+#!/usr/bin/python3
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -297,10 +300,11 @@ Run in the Project Root Directory: Start the Flask application from the project 
 If you’ve verified all of the above and are still seeing the error, you could try adding a simple debug print statement in task_01_jinja.py to confirm the templates folder is accessible:
 
 ```python
+#!/usr/bin/python3
 import os
 print("Templates path:", os.path.join(os.getcwd(), 'templates'))
-After confirming everything is set up correctly, restart the server and navigate to http://127.0.0.1:5000 to see if the issue is resolved.
 ```
+After confirming everything is set up correctly, restart the server and navigate to http://127.0.0.1:5000 to see if the issue is resolved.
 
 ## Task2:
 Here’s how to implement a dynamic template in Flask using loops and conditionals with Jinja, and to read data from a JSON file.
@@ -340,6 +344,7 @@ To test the empty list condition, modify items.json as follows:
 In task_02_logic.py, create a new route /items that reads from items.json and passes the data to the items.html template:
 
 ```python
+#!/usr/bin/python3
 from flask import Flask, render_template, jsonify
 import json
 
@@ -470,6 +475,7 @@ Step 3: Implement Flask Application in task_03_files.py
 In task_03_files.py, create the Flask app with the necessary route and file-reading logic.
 
 ```python
+#!/usr/bin/python3
 from flask import Flask, render_template, request
 import json
 import csv
@@ -559,9 +565,11 @@ Here’s how to extend your Flask application to include SQLite as an additional
 Step 1: Set Up the SQLite Database
 Create a script to initialize your SQLite database (products.db) and populate it with some sample data.
 
-Create and Run initialize_db.py:
+Create and Run create_products_db.py:
 
 ```python
+#!/usr/bin/python3
+# create_products_db.py
 import sqlite3
 
 def create_database():
@@ -598,6 +606,7 @@ Add a function to fetch data from the SQLite database and integrate it with the 
 task_04_db.py:
 
 ```python
+#!/usr/bin/python3
 from flask import Flask, render_template, request
 import json
 import csv

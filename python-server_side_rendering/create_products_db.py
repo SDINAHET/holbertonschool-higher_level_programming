@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # create_products_db.py
 import sqlite3
 
