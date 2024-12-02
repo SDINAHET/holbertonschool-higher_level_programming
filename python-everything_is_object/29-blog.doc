@@ -1,0 +1,56 @@
+Python3: Mutable, Immutable… everything is object!
+
+Introduction:
+This project explores Python's object model, focusing on the distinction between mutable and immutable objects, and how Python handles references, identities, and values.
+
+id and type:
+Every object in Python has a unique id, and its type can be determined using the type() function. These define an object's identity and classification.
+a = 42
+print(id(a)) # Example output: 139626443984120
+print(type(a)) # Output: <class 'int'>
+
+Mutable objects:
+These are objects whose values can change over time, like lists and dictionaries. They are updated in place and share the same id.
+l = [1, 2, 3] print(id(l)) # Example output: 139626443984120
+l.append(4) # Same ID print(l)
+print(id(l)) # Output: [1, 2, 3, 4]
+
+Immutable objects:
+Objects like tuples and strings cannot be altered after creation. Any modification results in a new object with a new id.
+a = 42 print(id(a)) # Example output: 139626443984120
+a += 1 print(id(a)) # Different ID print(a) # Output: 43
+Why Does it Matter?
+Understanding the difference between mutable and immutable objects influences how Python handles operations like variable assignment and copying. Mutable objects share a single reference, while immutable objects result in independent instances.
+# Mutable example
+l1 = [1, 2, 3]
+l2 = l1
+l1.append(4)
+print(l2) # Output: [1, 2, 3, 4]
+
+# Immutable example
+s1 = "hello"
+s2 = s1
+s1 += " world"
+print(s2) # Output: "hello"
+
+Function arguments:
+Mutable objects are passed by reference, allowing changes within functions to affect the original object. Immutable objects are passed by value, creating a copy for function use.
+# Mutable example
+def modify_list(lst):
+  lst.append(4)
+
+l = [1, 2, 3]
+modify_list(l)
+print(l) # Output: [1, 2, 3, 4]
+
+# Immutable example
+def modify_int(n):
+  n += 1
+
+a = 42
+modify_int(a)
+print(a) # Output: 42
+
+
+https://x.com/DS55765/status/1863609025809498504
+https://medium.com/@9546_58289/python3-mutable-immutable-everything-is-object-id-type-dd5ab1a09ae4
